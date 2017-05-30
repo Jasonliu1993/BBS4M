@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!--<bean id="timeMarker" class="com.mysportscenter.log.TimeMarker"/>
+
+    <aop:config>
+        &lt;!&ndash;pointcut元素定义一个切入点，execution中的第一个星号 用以匹配方法的返回类型，
+            这里星号表明匹配所有返回类型。 com.abc.dao.*.*(..)表明匹配cn.millery.service包下的所有类的所有
+            方法 &ndash;&gt;
+
+        <aop:aspect id="time" ref="timeMarker">
+            <aop:pointcut id="timeLogCut" expression="execution(* com.mysportscenter.potal.interceptor.SessionIntercepter.preHandle(..))"/>
+            <aop:before method="markTime" pointcut-ref="timeLogCut" />
+            <aop:after method="markTime" pointcut-ref="timeLogCut" />
+        </aop:aspect>
+    </aop:config>-->
+</beans>
