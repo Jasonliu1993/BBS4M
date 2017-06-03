@@ -17,6 +17,6 @@ public class ForumMainPageController {
     @RequestMapping("/mainPage")
     public String mainPage() {
 
-        return "index.jsp";
+        return "/forum-page/forum-index.jsp";
     }
 }

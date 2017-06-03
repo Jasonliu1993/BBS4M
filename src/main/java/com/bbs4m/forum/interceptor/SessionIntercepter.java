@@ -5,12 +5,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
  * Created by Jason on 30/05/2017.
  */
 public class SessionIntercepter implements HandlerInterceptor {
+
     List<String> allowUrl;
 
     public List<String> getAllowUrl() {
@@ -22,7 +24,17 @@ public class SessionIntercepter implements HandlerInterceptor {
     }
 
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-
+        for (String url : allowUrl) {
+            if (httpServletRequest.getRequestURL().toString().contains(url)) {
+                HttpSession session = httpServletRequest.getSession();
+                if (session.getAttribute("userName") != null) {
+                    return true;
+                } else {
+                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login/login.jsp");
+                    return false;
+                }
+            }
+        }
         return true;
     }
 

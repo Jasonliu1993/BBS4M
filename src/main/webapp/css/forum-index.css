@@ -1,0 +1,260 @@
+.search-bar {
+    margin: 0 auto;
+    width: 375px;
+    height: 50px;
+}
+
+.search-bar input[type='text'] {
+    margin: 0 auto;
+    width: 375px;
+    height: 50px;
+    border: 1px solid white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 50px;
+    outline: 0;
+    font-size: 35px;
+}
+
+.slid-page {
+    margin: 10px auto;
+    width: 375px;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slid-page ul {
+    width: 2500px;
+    height: 100px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 9;
+    animation: slid_animation 22.5s infinite;
+}
+
+.slid-page ul .slid-item {
+    list-style: none;
+    float: left;
+}
+
+.slid-page ul .slid-item img {
+    width: 375px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+@keyframes slid_animation {
+    0% {
+        left: 0px;
+    }
+    18% {
+        left: 0px;
+    }
+    20% {
+        left: -375px;
+    }
+    38% {
+        left: -375px;
+    }
+    40% {
+        left: -750px;
+    }
+    58% {
+        left: -750px;
+    }
+    60% {
+        left: -1125px;
+    }
+    78% {
+        left: -1125px;
+    }
+    80% {
+        left: -1500px;
+    }
+    98% {
+        left: -1500px;
+    }
+    100% {
+        left: -0px;
+    }
+}
+
+.content {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.content .forum-core {
+    width: 375px;
+}
+
+.content .forum-core ul {
+    width: 375px;
+    list-style: none;
+}
+
+.content .forum-core ul .forum-list {
+    margin-top: 20px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content {
+    width: 375px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-title {
+    height: 40px;
+    line-height: 40px;
+    width: 375px;
+    background-color: #fff;
+    border: #CFCFCF 1px solid;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-title .reply-avator {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin-left: 10px;
+    float: left;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-title .reply-avator img {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-top: 4px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-title .reply-person {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    display: inline-block;
+    float: left;
+    text-align: center;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-title .reply-time {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    display: inline-block;
+    margin-right: 10px;
+    float: right;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-topic {
+    height: 40px;
+    line-height: 40px;
+    width: 375px;
+    background-color: #fff;
+    border: #CFCFCF 1px solid;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-topic .forum-topic-static {
+    height: 40px;
+    line-height: 40px;
+    width: 70px;
+    display: inline-block;
+    margin-left: 10px;
+    float: left;
+    text-align: center;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-topic .forum-topic-dynamic {
+    height: 30px;
+    line-height: 30px;
+    width: 40px;
+    display: inline-block;
+    background-color: green;
+    margin-left: 5px;
+    float: left;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail {
+    width: 375px;
+    background-color: #fff;
+    border: #CFCFCF 1px solid;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail .forum-list-content-theme {
+    width: 350px;
+    font-size: 15px;
+    word-wrap: break-word;
+    margin: 10px 10px 10px 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail .forum-list-content-theme a {
+    text-decoration: none;
+    color: #ca0022;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail .forum-list-content-theme a:visited {
+    color: #ca0022;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail .forum-list-content-content {
+    width: 350px;
+    font-size: 12px;
+    word-wrap: break-word;
+    margin: 10px 10px 10px 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-footer {
+    width: 375px;
+    height: 40px;
+    background-color: #fff;
+    border: #CFCFCF 1px solid;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-footer .reply-count {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-footer .follow-count {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-footer .browse-count {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    float: left;
+    display: inline-block;
+    margin-left: 10px;
+}

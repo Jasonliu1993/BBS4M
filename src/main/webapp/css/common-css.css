@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding-top: 10px;
+    background-color: #CFCFCF;
+    color: #AFAFAF;
+}
+
+.fix-bar {
+    width: 100%;
+    height: 40px;
+    bottom: 0;
+    line-height: 40px;
+    background-color: #CFCFCF;
+    position: fixed;
+    z-index: 9999;
+    margin: 0 auto;
+}
+
+.fix-bar span {
+    width: 20%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+}
+
+.fix-bar span a {
+    text-decoration: none;
+    color: #AFAFAF;
+}
+
+.footer {
+    width: 375px;
+    height: 90px;
+    line-height: 50px;
+    margin: 0 auto;
+    text-align: center;
+}
