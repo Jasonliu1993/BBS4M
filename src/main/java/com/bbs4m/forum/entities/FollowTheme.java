@@ -14,7 +14,6 @@ public class FollowTheme {
   private String custom4;
   private String custom5;
 
-
   public String getId() {
     return id;
   }
