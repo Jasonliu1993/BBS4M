@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bbs4m.forum.dao.PersonalAvatorDao">
+    <select id="getLastReplyPersonalAvatorByThemeId"  parameterType="String" resultType="com.bbs4m.forum.entities.PersonalAvator">
+        SELECT * FROM PERSONAL_AVATOR WHERE USERID = (SELECT A.CREATER
+        FROM FORUM_CONTENT A
+        WHERE A.THEME_REF_ID = #{themeId} AND ORDER_NUMBER = (SELECT MAX(B.ORDER_NUMBER)
+                                                                FROM FORUM_CONTENT B
+                                                                WHERE A.THEME_REF_ID = B.THEME_REF_ID))
+    </select>
+</mapper>

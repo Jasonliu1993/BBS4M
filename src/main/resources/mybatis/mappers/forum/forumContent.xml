@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bbs4m.forum.dao.ForumContentDao">
+    <select id="getFirstAndLastContentByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
+        SELECT *
+        FROM FORUM_CONTENT A
+        WHERE A.THEME_REF_ID = #{themeId} AND ORDER_NUMBER = (SELECT MAX(B.ORDER_NUMBER)
+                                                                FROM FORUM_CONTENT B
+                                                                WHERE A.THEME_REF_ID = B.THEME_REF_ID)
+        UNION ALL
+        SELECT *
+        FROM FORUM_CONTENT A
+        WHERE A.THEME_REF_ID = #{themeId} AND ORDER_NUMBER = (SELECT MIN(B.ORDER_NUMBER)
+                                                              FROM FORUM_CONTENT B
+                                                              WHERE A.THEME_REF_ID = B.THEME_REF_ID);
+
+    </select>
+    <select id="getReplyNumber" parameterType="String" resultType="String">
+        SELECT CAST(COUNT(*) AS CHAR); FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId}
+    </select>
+    <select id="getLastReply" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
+        SELECT * FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId} ORDER BY ORDER_NUMBER DESC LIMIT 0, 1
+    </select>
+</mapper>

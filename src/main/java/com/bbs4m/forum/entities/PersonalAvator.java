@@ -4,9 +4,9 @@ package com.bbs4m.forum.entities;
  * Created by Jason on 04/06/2017.
  */
 public class PersonalAvator {
-
     private String id;
     private long version;
+    private String userid;
     private String path;
     private String pic;
     private String custom1;
@@ -31,6 +31,15 @@ public class PersonalAvator {
 
     public void setVersion(long version) {
         this.version = version;
+    }
+
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
 
@@ -95,5 +104,4 @@ public class PersonalAvator {
     public void setCustom5(String custom5) {
         this.custom5 = custom5;
     }
-
 }
