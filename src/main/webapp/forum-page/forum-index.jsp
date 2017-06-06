@@ -102,6 +102,7 @@
             </li>
         </ul>
     </div>
+    <div class="reload-bar"></div>
 </div>
 <jsp:include page="/common-page/footer.jsp" />
 </body>
