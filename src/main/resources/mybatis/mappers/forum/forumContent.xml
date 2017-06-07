@@ -18,7 +18,7 @@
 
     </select>
     <select id="getReplyNumber" parameterType="String" resultType="String">
-        SELECT CAST(COUNT(*) AS CHAR); FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId}
+        SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId}
     </select>
     <select id="getLastReply" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
         SELECT * FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId} ORDER BY ORDER_NUMBER DESC LIMIT 0, 1

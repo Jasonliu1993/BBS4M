@@ -1,5 +1,7 @@
 package com.bbs4m.forum.controllers;
 
+import com.bbs4m.forum.entities.PersonalSetup;
+import com.bbs4m.forum.entities.UserData;
 import com.bbs4m.forum.services.HomePageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,7 +22,13 @@ public class ForumMainPageController {
 
     @RequestMapping("/mainPage")
     public String mainPage(HttpSession session, ModelMap modelMap) {
-        modelMap.addAttribute("coreList",homePageService.getHomePageList(1,1));
+        PersonalSetup userConfig = null;
+        int num = 10;
+        if ( (userConfig = (PersonalSetup)session.getAttribute("userConfig")) != null) {
+            num = (int)userConfig.getList_Count_In_Page();
+        }
+
+        modelMap.addAttribute("coreList",homePageService.getHomePageList(0,num));
         return "/forum-page/forum-index.jsp";
     }
 }

@@ -7,7 +7,7 @@ public class ForumTheme {
 
     private String id;
     private long version;
-    private long themeContent;
+    private String themeContent;
     private String creater;
     private String createTime;
     private long browse;
@@ -89,11 +89,11 @@ public class ForumTheme {
     }
 
 
-    public long getThemeContent() {
+    public String getThemeContent() {
         return themeContent;
     }
 
-    public void setThemeContent(long themeContent) {
+    public void setThemeContent(String themeContent) {
         this.themeContent = themeContent;
     }
 

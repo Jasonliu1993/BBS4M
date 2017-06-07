@@ -1,7 +1,7 @@
 package com.bbs4m.forum.entities;
 
 
-public class LoginData {
+public class UserData {
 
   private String userid;
   private long version;

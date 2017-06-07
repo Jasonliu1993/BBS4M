@@ -1,6 +1,8 @@
 package com.bbs4m.forum.services;
 
 import com.bbs4m.forum.entities.ForumTheme;
+import com.bbs4m.forum.entities.PersonalSetup;
+
 import java.util.List;
 
 /**
@@ -8,4 +10,5 @@ import java.util.List;
  */
 public interface HomePageService {
     List<ForumTheme> getHomePageList(int currentPageNumber, int num);
+    PersonalSetup getPersoanlSetupByuserId(String userid);
 }
