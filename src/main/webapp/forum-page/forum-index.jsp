@@ -5,6 +5,7 @@
   Time: 21:16
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -34,11 +35,12 @@
 <div class="content">
     <div class="forum-core">
         <ul>
-            <li class="forum-list">
+            <c:forEach items="${coreList}" varStatus="i" var="coreItem">
+                <li class="forum-list">
                 <div class="forum-list-content">
                     <div class="forum-list-content-title">
                             <span class="reply-avator">
-                                <img src="/images/avator/avatar01.jpg" alt="avator"/>
+                                <img src="/images/getAvator.do?id=${coreItem.getLastReplyContent().getCreater()}" alt="avator"/>
                             </span>
                         <span class="reply-person">
                                 安联
@@ -67,39 +69,7 @@
                     </div>
                 </div>
             </li>
-            <li class="forum-list">
-                <div class="forum-list-content">
-                    <div class="forum-list-content-title">
-                            <span class="reply-avator">
-                                <img src="/images/avator/avatar01.jpg" alt="avator"/>
-                            </span>
-                        <span class="reply-person">
-                                安联
-                            </span>
-                        回复了问题
-                        <span class="reply-time">
-                                9小时
-                            </span>
-                    </div>
-                    <div class="forum-topic">
-                        <span class="forum-topic-static">来自话题</span>
-                        <span class="forum-topic-dynamic">测试</span>
-                    </div>
-                    <div class="forum-list-content-detail">
-                        <div class="forum-list-content-theme">
-                            <a href="#">this is theme! this is theme! this is theme! this is theme! this is theme!</a>
-                        </div>
-                        <div class="forum-list-content-content">
-                            this is content! this is content!this is content!this is content!
-                        </div>
-                    </div>
-                    <div class="forum-list-content-footer">
-                        <span class="reply-count">回复: 120</span>
-                        <span class="follow-count">关注: 20</span>
-                        <span class="browse-count">浏览: 1200</span>
-                    </div>
-                </div>
-            </li>
+            </c:forEach>
         </ul>
     </div>
     <div class="reload-bar"></div>

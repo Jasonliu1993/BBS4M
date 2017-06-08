@@ -8,7 +8,7 @@ public class PersonalAvator {
     private long version;
     private String userid;
     private String path;
-    private String pic;
+    private byte[] pic;
     private String custom1;
     private String custom2;
     private String custom3;
@@ -51,15 +51,13 @@ public class PersonalAvator {
         this.path = path;
     }
 
-
-    public String getPic() {
+    public byte[] getPic() {
         return pic;
     }
 
-    public void setPic(String pic) {
+    public void setPic(byte[] pic) {
         this.pic = pic;
     }
-
 
     public String getCustom1() {
         return custom1;

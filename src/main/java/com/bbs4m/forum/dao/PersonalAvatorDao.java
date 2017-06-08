@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface PersonalAvatorDao {
     PersonalAvator getLastReplyPersonalAvatorByThemeId(String userId);
+    PersonalAvator getAvatorByUserId(String userId);
 }

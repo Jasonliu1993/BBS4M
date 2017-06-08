@@ -21,14 +21,14 @@ public class ForumTheme {
     private List<ForumContent> forumContents;
     private String differentTime;
     private String replyCount;
-    private PersonalAvator personalAvator;
+    private ForumContent lastReplyContent;
 
-    public PersonalAvator getPersonalAvator() {
-        return personalAvator;
+    public ForumContent getLastReplyContent() {
+        return lastReplyContent;
     }
 
-    public void setPersonalAvator(PersonalAvator personalAvator) {
-        this.personalAvator = personalAvator;
+    public void setLastReplyContent(ForumContent lastReplyContent) {
+        this.lastReplyContent = lastReplyContent;
     }
 
     public List<TopicInclude> getTopicIncludes() {

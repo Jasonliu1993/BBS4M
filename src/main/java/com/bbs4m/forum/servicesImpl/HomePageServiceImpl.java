@@ -43,7 +43,7 @@ public class HomePageServiceImpl implements HomePageService {
             forumTheme.setTopicIncludes(topicIncludeDao.getTopicIncludeByThemeId(forumTheme.getId()));
             forumTheme.setReplyCount(forumContentDao.getReplyNumber(forumTheme.getId()));
             forumTheme.setDifferentTime(DateUtility.getTimeQuantum(DateUtility.getCurrentDate(),forumContentDao.getLastReply(forumTheme.getId()).getCreateTime()));
-            forumTheme.setPersonalAvator(personalAvatorDao.getLastReplyPersonalAvatorByThemeId(forumTheme.getId()));
+            forumTheme.setLastReplyContent(forumContentDao.getLastReply(forumTheme.getId()));
         }
         return forumThemes;
     }

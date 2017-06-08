@@ -1,7 +1,6 @@
 package com.bbs4m.forum.controllers;
 
 import com.bbs4m.forum.entities.PersonalSetup;
-import com.bbs4m.forum.entities.UserData;
 import com.bbs4m.forum.services.HomePageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,6 +28,7 @@ public class ForumMainPageController {
         }
 
         modelMap.addAttribute("coreList",homePageService.getHomePageList(0,num));
+
         return "/forum-page/forum-index.jsp";
     }
 }

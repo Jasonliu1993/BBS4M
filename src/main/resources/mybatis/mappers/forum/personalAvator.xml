@@ -10,4 +10,7 @@
                                                                 FROM FORUM_CONTENT B
                                                                 WHERE A.THEME_REF_ID = B.THEME_REF_ID))
     </select>
+    <select id="getAvatorByUserId" parameterType="String" resultType="com.bbs4m.forum.entities.PersonalAvator">
+        SELECT * FROM PERSONAL_AVATOR WHERE USERID = #{userId}
+    </select>
 </mapper>
