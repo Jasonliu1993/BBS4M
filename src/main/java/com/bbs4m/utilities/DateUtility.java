@@ -20,27 +20,27 @@ public class DateUtility {
         try {
             Date endDate = simpleDateFormat.parse(endDateStr);
             Date startDate = simpleDateFormat.parse(startDateStr);
-            long different = endDate.getTime() - startDate.getTime();
+            double different = (double)endDate.getTime() - startDate.getTime();
             if ((different / 60) > 1) {
                 if ((different / 60 / 60) > 1) {
                     if ((different / 60 / 60 / 24) > 1) {
                         if ((different / 60 / 60 / 24 / 30) > 1) {
                             if ((different / 60 / 60 / 24 / 30 / 12) > 1) {
-                                return Math.round(different / 60 / 60 / 24 / 30 / 12) + "年前";
+                                return (int)Math.floor(different / 60 / 60 / 24 / 30 / 12) + "年前";
                             } else {
-                                return Math.round(different / 60 / 60 / 24 / 30) + "月前";
+                                return (int)Math.floor(different / 60 / 60 / 24 / 30) + "月前";
                             }
                         } else {
-                            return Math.round(different / 60 / 60 / 24) + "天前";
+                            return (int)Math.floor(different / 60 / 60 / 24) + "天前";
                         }
                     } else {
-                        return Math.round(different / 60 / 60) + "小时前";
+                        return (int)Math.floor(different / 60 / 60) + "小时前";
                     }
                 } else {
-                    return Math.round(different / 60) + "分钟前";
+                    return (int)Math.floor(different / 60) + "分钟前";
                 }
             } else {
-                return different + "秒前";
+                return (int)different + "秒前";
             }
         } catch (ParseException e) {
             e.printStackTrace();

@@ -133,7 +133,7 @@
 
 .content .forum-core ul .forum-list .forum-list-content .forum-list-content-title .reply-person {
     height: 40px;
-    width: 40px;
+    padding-right: 5PX;
     line-height: 40px;
     display: inline-block;
     float: left;
@@ -142,7 +142,7 @@
 
 .content .forum-core ul .forum-list .forum-list-content .forum-list-content-title .reply-time {
     height: 40px;
-    width: 40px;
+    width: 50px;
     line-height: 40px;
     display: inline-block;
     margin-right: 10px;
@@ -172,7 +172,8 @@
 .content .forum-core ul .forum-list .forum-list-content .forum-topic .forum-topic-dynamic {
     height: 30px;
     line-height: 30px;
-    width: 40px;
+    padding-left: 3px;
+    padding-right: 3px;
     display: inline-block;
     background-color: green;
     margin-left: 5px;
@@ -257,4 +258,16 @@
     float: left;
     display: inline-block;
     margin-left: 10px;
+}
+
+.reload-bar {
+    width: 375px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #c4c4c4;
+    border-radius: 10px;
 }

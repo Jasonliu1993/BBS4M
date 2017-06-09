@@ -3,24 +3,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bbs4m.forum.dao.ForumContentDao">
-    <select id="getFirstAndLastContentByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
-        SELECT *
-        FROM FORUM_CONTENT A
-        WHERE A.THEME_REF_ID = #{themeId} AND ORDER_NUMBER = (SELECT MAX(B.ORDER_NUMBER)
-                                                                FROM FORUM_CONTENT B
-                                                                WHERE A.THEME_REF_ID = B.THEME_REF_ID)
-        UNION ALL
-        SELECT *
-        FROM FORUM_CONTENT A
-        WHERE A.THEME_REF_ID = #{themeId} AND ORDER_NUMBER = (SELECT MIN(B.ORDER_NUMBER)
-                                                              FROM FORUM_CONTENT B
-                                                              WHERE A.THEME_REF_ID = B.THEME_REF_ID);
-
+    <select id="getFirstContentByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
+        SELECT A.ID,
+              A.VERSION,
+              A.ORDER_NUMBER,
+              A.THEME_REF_ID,
+              A.CONTENT,
+              A.CREATER,
+              B.USER_NAME,
+              A.CREATE_TIME,
+              A.CUSTOM1,
+              A.CUSTOM2,
+              A.CUSTOM3,
+              A.CUSTOM4,
+              A.CUSTOM5
+            FROM FORUM_CONTENT A LEFT JOIN LOGIN_DATA B ON A.CREATER = B.USERID WHERE A.THEME_REF_ID = #{themeId} ORDER BY A.ORDER_NUMBER LIMIT 0, 1
     </select>
     <select id="getReplyNumber" parameterType="String" resultType="String">
         SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId}
     </select>
     <select id="getLastReply" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
-        SELECT * FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId} ORDER BY ORDER_NUMBER DESC LIMIT 0, 1
+        SELECT A.ID,
+              A.VERSION,
+              A.ORDER_NUMBER,
+              A.THEME_REF_ID,
+              A.CONTENT,
+              A.CREATER,
+              B.USER_NAME,
+              A.CREATE_TIME,
+              A.CUSTOM1,
+              A.CUSTOM2,
+              A.CUSTOM3,
+              A.CUSTOM4,
+              A.CUSTOM5
+            FROM FORUM_CONTENT A LEFT JOIN LOGIN_DATA B ON A.CREATER = B.USERID WHERE A.THEME_REF_ID = #{themeId} ORDER BY A.ORDER_NUMBER DESC LIMIT 0, 1
     </select>
 </mapper>

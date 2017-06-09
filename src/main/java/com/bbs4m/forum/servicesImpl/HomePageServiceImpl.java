@@ -39,7 +39,7 @@ public class HomePageServiceImpl implements HomePageService {
 
         for (ForumTheme forumTheme : forumThemes) {
             forumTheme.setFollowThemes(followThemeDao.getFollowThemeByThemeId(forumTheme.getId()));
-            forumTheme.setForumContents(forumContentDao.getFirstAndLastContentByThemeId(forumTheme.getId()));
+            forumTheme.setFirstForumContent(forumContentDao.getFirstContentByThemeId(forumTheme.getId()));
             forumTheme.setTopicIncludes(topicIncludeDao.getTopicIncludeByThemeId(forumTheme.getId()));
             forumTheme.setReplyCount(forumContentDao.getReplyNumber(forumTheme.getId()));
             forumTheme.setDifferentTime(DateUtility.getTimeQuantum(DateUtility.getCurrentDate(),forumContentDao.getLastReply(forumTheme.getId()).getCreateTime()));

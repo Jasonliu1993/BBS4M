@@ -6,6 +6,7 @@ public class TopicInclude {
   private String id;
   private long version;
   private String topicId;
+  private String topicName;
   private String themeRefId;
   private String custom1;
   private String custom2;
@@ -13,6 +14,13 @@ public class TopicInclude {
   private String custom4;
   private String custom5;
 
+  public String getTopicName() {
+    return topicName;
+  }
+
+  public void setTopicName(String topicName) {
+    this.topicName = topicName;
+  }
 
   public String getId() {
     return id;

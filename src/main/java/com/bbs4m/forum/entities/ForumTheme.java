@@ -18,7 +18,7 @@ public class ForumTheme {
     private String custom5;
     private List<TopicInclude> topicIncludes;
     private List<FollowTheme> followThemes;
-    private List<ForumContent> forumContents;
+    private ForumContent FirstForumContent;
     private String differentTime;
     private String replyCount;
     private ForumContent lastReplyContent;
@@ -47,12 +47,12 @@ public class ForumTheme {
         this.followThemes = followThemes;
     }
 
-    public List<ForumContent> getForumContents() {
-        return forumContents;
+    public ForumContent getFirstForumContent() {
+        return FirstForumContent;
     }
 
-    public void setForumContents(List<ForumContent> forumContents) {
-        this.forumContents = forumContents;
+    public void setFirstForumContent(ForumContent firstForumContent) {
+        FirstForumContent = firstForumContent;
     }
 
     public String getDifferentTime() {

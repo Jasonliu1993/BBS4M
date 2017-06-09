@@ -43,36 +43,38 @@
                                 <img src="/images/getAvator.do?id=${coreItem.getLastReplyContent().getCreater()}" alt="avator"/>
                             </span>
                         <span class="reply-person">
-                                安联
+                                ${coreItem.getLastReplyContent().getUserName()}
                             </span>
                         回复了问题
                         <span class="reply-time">
-                                9小时
+                              ${coreItem.getDifferentTime()}
                             </span>
                     </div>
                     <div class="forum-topic">
-                        <span class="forum-topic-static">来自话题</span>
-                        <span class="forum-topic-dynamic">测试</span>
+                            <span class="forum-topic-static">来自话题</span>
+                        <c:forEach items="${coreItem.getTopicIncludes()}" varStatus="k" var="topic" >
+                            <span class="forum-topic-dynamic">${topic.getTopicName()}</span>
+                        </c:forEach>
                     </div>
                     <div class="forum-list-content-detail">
                         <div class="forum-list-content-theme">
-                            <a href="#">this is theme! this is theme! this is theme! this is theme! this is theme!</a>
+                            <a href="/forum/fourmDetail.do?id=${coreItem.getId()}">${coreItem.getThemeContent()}</a>
                         </div>
                         <div class="forum-list-content-content">
-                            this is content! this is content!this is content!this is content!
+                                ${coreItem.getFirstForumContent().getContent()}
                         </div>
                     </div>
                     <div class="forum-list-content-footer">
-                        <span class="reply-count">回复: 120</span>
-                        <span class="follow-count">关注: 20</span>
-                        <span class="browse-count">浏览: 1200</span>
+                        <span class="reply-count">回复: ${coreItem.getReplyCount()}</span>
+                        <span class="follow-count">关注: ${coreItem.getFollowThemes().size()}</span>
+                        <span class="browse-count">浏览: ${coreItem.getBrowse()}</span>
                     </div>
                 </div>
             </li>
             </c:forEach>
         </ul>
     </div>
-    <div class="reload-bar"></div>
+    <div class="reload-bar">点击加载</div>
 </div>
 <jsp:include page="/common-page/footer.jsp" />
 </body>

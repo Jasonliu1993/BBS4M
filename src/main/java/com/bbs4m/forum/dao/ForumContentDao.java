@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Component
 public interface ForumContentDao {
-    List<ForumContent> getFirstAndLastContentByThemeId(String themeId);
+    ForumContent getFirstContentByThemeId(String themeId);
     String getReplyNumber (String themeId);
     ForumContent getLastReply (String themeId);
 }

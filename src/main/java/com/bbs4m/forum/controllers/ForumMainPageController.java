@@ -1,10 +1,12 @@
 package com.bbs4m.forum.controllers;
 
+import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.entities.PersonalSetup;
 import com.bbs4m.forum.services.HomePageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -30,5 +32,11 @@ public class ForumMainPageController {
         modelMap.addAttribute("coreList",homePageService.getHomePageList(0,num));
 
         return "/forum-page/forum-index.jsp";
+    }
+
+    @RequestMapping("/fourmDetail.do")
+    public String getForumDetail ( @RequestParam("id") String id, ModelMap modelMap) {
+
+        return "/forum-page/forum-detail.jsp";
     }
 }

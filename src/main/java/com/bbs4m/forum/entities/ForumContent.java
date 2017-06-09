@@ -9,6 +9,7 @@ public class ForumContent {
   private String themeRefId;
   private String content;
   private String creater;
+  private String userName;
   private String createTime;
   private String custom1;
   private String custom2;
@@ -16,6 +17,13 @@ public class ForumContent {
   private String custom4;
   private String custom5;
 
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
   public String getId() {
     return id;

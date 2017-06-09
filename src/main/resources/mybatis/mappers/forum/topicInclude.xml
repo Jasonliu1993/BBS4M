@@ -4,6 +4,19 @@
 
 <mapper namespace="com.bbs4m.forum.dao.TopicIncludeDao">
     <select id="getTopicIncludeByThemeId"  parameterType="String" resultType="com.bbs4m.forum.entities.TopicInclude">
-        SELECT * FROM TOPIC_INCLUDE WHERE THEME_REF_ID = #{themeId}
+        SELECT
+          A.ID,
+          A.VERSION,
+          A.TOPIC_ID,
+          B.TOPIC_NAME,
+          A.THEME_REF_ID,
+          A.CUSTOM1,
+          A.CUSTOM2,
+          A.CUSTOM3,
+          A.CUSTOM4,
+          A.CUSTOM5
+        FROM TOPIC_INCLUDE A LEFT JOIN FORUM_TOPIC B
+          ON A.TOPIC_ID = B.ID
+          WHERE A.THEME_REF_ID = #{themeId}
     </select>
 </mapper>
