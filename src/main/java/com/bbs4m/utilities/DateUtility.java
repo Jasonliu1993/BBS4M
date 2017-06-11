@@ -9,7 +9,7 @@ import java.util.Date;
  */
 public class DateUtility {
 
-    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static String getCurrentDate () {
         Date currentdate = new Date();
@@ -20,7 +20,7 @@ public class DateUtility {
         try {
             Date endDate = simpleDateFormat.parse(endDateStr);
             Date startDate = simpleDateFormat.parse(startDateStr);
-            double different = (double)endDate.getTime() - startDate.getTime();
+            double different = (double)((endDate.getTime() - startDate.getTime()) / 1000);
             if ((different / 60) > 1) {
                 if ((different / 60 / 60) > 1) {
                     if ((different / 60 / 60 / 24) > 1) {

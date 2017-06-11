@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
  */
 @Controller
 @RequestMapping("/forum")
-public class ForumMainPageController {
+public class ForumController {
 
     @Resource
     HomePageService homePageService;

@@ -1,0 +1,473 @@
+.content {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.content .forum-core-content {
+    width: 375px;
+    margin: 0 auto;
+    color: black;
+}
+
+.content .forum-core-content .forum-topic {
+    width: 375px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #DFDFDF;
+}
+
+.content .forum-core-content .forum-topic .forum-topic-dynamic {
+    height: 30px;
+    line-height: 30px;
+    padding-left: 3px;
+    padding-right: 3px;
+    display: inline-block;
+    background-color: green;
+    margin-left: 5px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.content .forum-core-content .creater-area {
+    width: 375px;
+    height: 55px;
+    margin: 0 auto;
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.content .forum-core-content .creater-area .creater-area-left {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 5px;
+    float: left;
+}
+
+.content .forum-core-content .creater-area .creater-area-left img {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.content .forum-core-content .creater-area .creater-area-right {
+    height: 30px;
+    width: 200px;
+    margin-top: 10px;
+    margin-left: 5px;
+    float: left;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-up {
+    height: 15px;
+    width: 100%;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-up .creater-area-left-name {
+    line-height: 15px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-up-follow {
+    height: 20px;
+    display: inline-block;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-up-follow .follow-button {
+    height: 20px;
+    line-height: 20px;
+    width: 40px;
+    padding: 0;
+    background-color: green;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    color: white;
+    outline: 0;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-down {
+    margin-top: 5px;
+    height: 15px;
+    width: 100%;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-down .creater-area-right-up-score {
+    height: 15px;
+    width: 80px;
+    line-height: 15px;
+    display: inline-block;
+}
+
+.content .forum-core-content .creater-area .creater-area-right .creater-area-right-down .creater-area-right-up-fans {
+    height: 15px;
+    width: 100px;
+    line-height: 15px;
+    display: inline-block;
+}
+
+.content .forum-core-content .forum-list-content-theme {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.content .forum-core-content .forum-list-content-content {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.content .forum-core-content .forum-list-content-content .forum-list-content-content-word {
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.content .forum-core-content .forum-list-content-content .forum-list-content-content-img {
+    width: 350px;
+    height: 430px;
+    margin: 0 auto;
+    border: 1px solid #c4c4c4;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.content .forum-core-content .forum-list-content-content-img img {
+    width: 350px;
+    height: 430px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+}
+
+.content .forum-core-content .forum-list-footer {
+    width: 375px;
+    height: 50px;
+    border-top: 1px solid #c4c4c4;
+    background-color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.content .forum-core-content .forum-list-footer .reply-count {
+    height: 40px;
+    line-height: 40px;
+    width: 200px;
+    margin: 0 auto;
+    padding: 5px;
+    float: left;
+}
+
+.content .forum-core-content .forum-list-footer .follow-button {
+    height: 40px;
+    width: 75px;
+    margin: 0 auto;
+    padding: 5px;
+    float: right;
+}
+
+.content .forum-core-content .forum-list-footer .follow-button .follow-theme-button {
+    margin-top: 5px;
+    height: 30px;
+    line-height: 30px;
+    width: 50px;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 5px;
+    color: white;
+    float: right;
+    margin-right: 5px;
+    outline: 0;
+}
+
+.content .reply-content {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.content .reply-content ul {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.content .reply-content ul .reply-content-detail-list {
+    width: 375px;
+    border-bottom: 1px solid #c4c4c4;
+    border-top: 1px solid #c4c4c4;
+    background-color: white;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-personal-title {
+    height: 30px;
+    width: 375px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-personal-title .reply-personal-avator {
+    height: 30px;
+    width: 30px;
+    margin-left: 5px;
+    display: inline-block;
+    float: left;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-personal-title .reply-personal-avator img {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-personal-title .reply-person {
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    margin-left: 5px;
+    display: inline-block;
+    float: left;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-detail {
+    width: 100%;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-detail .reply-content-detail-word {
+    width: 100%;
+    padding: 5px;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-detail .reply-content-detail-img {
+    width: 350px;
+    height: 430px;
+    margin: 0 auto;
+    border: 1px solid #c4c4c4;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-detail .reply-content-detail-img img {
+    width: 350px;
+    height: 430px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-footer {
+    width: 375px;
+    height: 30px;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-footer .reply-content-tool {
+    height: 20px;
+    width: 175px;
+    float: left;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-footer span {
+    height: 20px;
+    line-height: 20px;
+    width: 40px;
+    float: left;
+    margin-left: 5px;
+    display: inline-block;
+    background-color: #c4c4c4;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.content .reply-content ul .reply-content-detail-list .reply-content-footer .reply-content-time {
+    height: 20px;
+    line-height: 20px;
+    width: 185px;
+    float: right;
+    text-align: right;
+    margin-right: 5px;
+    font-size: 13px;
+}
+
+.content .next-page {
+    width: 365px;
+    height: 25px;
+    line-height: 25px;
+    margin: 10px auto;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.content .reply-input-content {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.content .reply-input-content .reply-input-content-header {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-left {
+    width: 165px;
+    height: 40px;
+    float: left;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-left .reply-header-avator {
+    height: 30px;
+    width: 30px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin-left: 5px;
+    float: left;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-left .reply-header-avator img {
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-left .reply-header-personal {
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    margin-left: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-right {
+    width: 210px;
+    height: 40px;
+    float: right;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-right .follow-theme {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    color: black;
+}
+
+.content .reply-input-content .reply-input-content-header .reply-input-content-header-right .anonymitye-checkbox {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    display: inline-block;
+    color: black;
+}
+
+.content .reply-input-content .reply-input-content-detail {
+    width: 375px;
+    height: 150px;
+    margin: 0;
+    padding: 5px;
+    border: 1px solid #c4c4c4;
+    border-top: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.content .reply-input-content .reply-input-content-detail textarea {
+    width: 100%;
+    height: 110px;
+    resize: none;
+    outline: 0;
+    border-radius: 5px;
+    border: 1px solid #c4c4c4;
+    font-size: 15px;
+}
+
+.content .reply-input-content .reply-input-content-submit {
+    width: 375px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.content .reply-input-content .reply-input-content-submit a {
+    width: 70px;
+    height: 25px;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 5px;
+    float: left;
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    text-align: center;
+}
+
+.content .reply-input-content .reply-input-content-submit input[type='submit'] {
+    width: 60px;
+    height: 25px;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 5px;
+    float: right;
+    margin-right: 10px;
+    color: white;
+    font-size: 15px;
+}
+
+.content .Related-Question {
+    width: 360px;
+    margin: 0 auto;
+    border-top: 1px solid #c4c4c4;
+    border-left: 1px solid #c4c4c4;
+    border-right: 1px solid #c4c4c4;
+}
+
+.content .Related-Question .Related-Question-title {
+    width: 360px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px solid #c4c4c4;
+    font-weight: bold;
+    color: black;
+}
+
+.content .Related-Question .Related-Question-list {
+    width: 360px;
+}
+
+.content .Related-Question .Related-Question-list ul {
+    width: 360px;
+}
+
+.content .Related-Question .Related-Question-list ul .Related-Question-list-theme {
+    width: 360px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-bottom: 1px solid #c4c4c4;
+    background-color: #fff;
+    list-style: none;
+}
+
+.content .Related-Question .Related-Question-list ul .Related-Question-list-theme a {
+    width: 360px;
+    color: deepskyblue;
+    text-decoration: none;
+}
