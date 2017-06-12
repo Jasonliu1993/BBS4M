@@ -22,6 +22,7 @@ public class ForumTheme {
     private String differentTime;
     private String replyCount;
     private ForumContent lastReplyContent;
+    private UserAttribute createrUserAttribute;
 
     public ForumContent getLastReplyContent() {
         return lastReplyContent;
@@ -169,4 +170,11 @@ public class ForumTheme {
         this.custom5 = custom5;
     }
 
+    public UserAttribute getCreaterUserAttribute() {
+        return createrUserAttribute;
+    }
+
+    public void setCreaterUserAttribute(UserAttribute createrUserAttribute) {
+        this.createrUserAttribute = createrUserAttribute;
+    }
 }

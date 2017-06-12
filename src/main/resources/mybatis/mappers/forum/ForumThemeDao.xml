@@ -12,4 +12,7 @@
         ORDER BY B.CREATE_TIME DESC
          LIMIT #{0}, #{1}
     </select>
+    <select id="getForumThemeByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumTheme">
+        SELECT * FROM FORUM_THEME WHERE ID = #{themeId}
+    </select>
 </mapper>

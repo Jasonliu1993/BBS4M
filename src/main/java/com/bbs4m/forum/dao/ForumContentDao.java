@@ -13,4 +13,5 @@ public interface ForumContentDao {
     ForumContent getFirstContentByThemeId(String themeId);
     String getReplyNumber (String themeId);
     ForumContent getLastReply (String themeId);
+    List<ForumContent> getForumContentExcludeFirstContentByThemeid(String themeId);
 }

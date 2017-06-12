@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bbs4m.forum.dao.UserAttributeDao">
+    <select id="getUserAttributeByUserId" parameterType="String" resultMap="UserAttributeFull">
+        SELECT
+              A.ID AID,
+              A.VERSION AVERSION,
+              A.USERID AUSERID,
+              A.USER_SCORE AUSER_SCORE,
+              A.CUSTOM1 ACUSTOM1,
+              A.CUSTOM2 ACUSTOM2,
+              A.CUSTOM3 ACUSTOM3,
+              A.CUSTOM4 ACUSTOM4,
+              A.CUSTOM5 ACUSTOM5,
+              B.ID BID,
+              B.VERSION BVERSION,
+              B.USERID BUSERID,
+              B.FOLLOWED_USERID BFOLLOWED_USERID,
+              B.CUSTOM1 BCUSTOM1,
+              B.CUSTOM2 BCUSTOM2,
+              B.CUSTOM3 BCUSTOM3,
+              B.CUSTOM4 BCUSTOM4,
+              B.CUSTOM5 BCUSTOM5
+            FROM USER_ATTRIBUTE A LEFT JOIN FOLLOW_USER B ON A.USERID = B.FOLLOWED_USERID
+            WHERE A.USERID = #{userId};
+    </select>
+    
+    <resultMap id="UserAttributeFull" type="com.bbs4m.forum.entities.UserAttribute" >
+        <id column="AID" property="id" />
+        <result column="AVERSION" property="version" />
+        <result column="AUSERID" property="userid" />
+        <result column="AUSER_SCORE" property="userScore" />
+        <result column="ACUSTOM1" property="custom1" />
+        <result column="ACUSTOM2" property="custom2" />
+        <result column="ACUSTOM3" property="custom3" />
+        <result column="ACUSTOM4" property="custom4" />
+        <result column="ACUSTOM5" property="custom5" />
+        <collection property="followUsers" ofType="com.bbs4m.forum.entities.FollowUser">
+            <id column="BID" property="id" />
+            <result column="BVERSION" property="version" />
+            <result column="BUSERID" property="userid" />
+            <result column="BFOLLOWED_USERID" property="followedUserid" />
+            <result column="BCUSTOM1" property="custom1" />
+            <result column="BCUSTOM2" property="custom2" />
+            <result column="BCUSTOM3" property="custom3" />
+            <result column="BCUSTOM4" property="custom4" />
+            <result column="BCUSTOM5" property="custom5" />
+        </collection>
+    </resultMap>
+</mapper>

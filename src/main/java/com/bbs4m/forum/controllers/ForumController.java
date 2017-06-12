@@ -2,6 +2,7 @@ package com.bbs4m.forum.controllers;
 
 import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.entities.PersonalSetup;
+import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.forum.services.HomePageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +22,9 @@ public class ForumController {
     @Resource
     HomePageService homePageService;
 
+    @Resource
+    GetForumDetailService getForumDetailService;
+
     @RequestMapping("/mainPage")
     public String mainPage(HttpSession session, ModelMap modelMap) {
         PersonalSetup userConfig = null;
@@ -36,7 +40,7 @@ public class ForumController {
 
     @RequestMapping("/fourmDetail.do")
     public String getForumDetail ( @RequestParam("id") String id, ModelMap modelMap) {
-
+        modelMap.addAttribute("coreForumTheme",getForumDetailService.getCoreThemeAndContentByThemeId(id));
         return "/forum-page/forum-detail.jsp";
     }
 }
