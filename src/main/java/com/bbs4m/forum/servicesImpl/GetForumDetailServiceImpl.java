@@ -35,6 +35,7 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         forumTheme.setFirstForumContent(forumContentDao.getFirstContentByThemeId(themeId));
         forumTheme.setCreaterUserAttribute(userAttributeDao.getUserAttributeByUserId(forumTheme.getCreater()));
         forumTheme.setTopicIncludes(topicIncludeDao.getTopicIncludeByThemeId(forumTheme.getId()));
+        forumTheme.setReplyCount(forumContentDao.getReplyNumber(forumTheme.getId()));
         return forumTheme;
     }
 

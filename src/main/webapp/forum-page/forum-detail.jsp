@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jason
@@ -9,7 +10,8 @@
 <html>
 <head>
     <title>Forum Detail</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" href="/css/forum/forum-detail.css">
     <link rel="stylesheet" href="/css/common-css.css">
@@ -34,39 +36,42 @@
         </div>
         <div class="creater-area">
             <div class="creater-area-left">
-                <img src="/images/avator/avatar01.jpg" alt="avator" />
+                <img src="/images/getAvator.do?id=${coreForumTheme.getCreater()}" alt="avator"/>
             </div>
             <div class="creater-area-right">
                 <div class="creater-area-right-up">
-                    <span class="creater-area-left-name">Vera</span>
+                    <span class="creater-area-left-name">${coreForumTheme.getCreaterUserAttribute().getUserName()}</span>
                     <span class="creater-area-right-up-follow">
                         <button type="button" class="follow-button">关注</button>
                     </span>
                 </div>
                 <div class="creater-area-right-down">
                     <span class="creater-area-right-up-score">
-                        积分: 2000
+                        积分: ${coreForumTheme.getCreaterUserAttribute().getUserScore()}
                     </span>
                     <span class="creater-area-right-up-fans">
-                        粉丝: 123
+                        粉丝: ${coreForumTheme.getCreaterUserAttribute().getFollowUsers().size()}
                     </span>
                 </div>
             </div>
         </div>
         <div class="forum-list-content-theme">
-            this is theme! this is theme! this is theme! this is theme! this is theme!
+            ${coreForumTheme.getThemeContent()}
         </div>
         <div class="forum-list-content-content">
             <div class="forum-list-content-content-word">
-                this is content! this is content!this is content!this is content!
+                ${coreForumTheme.getFirstForumContent().getContent()}
             </div>
-            <div class="forum-list-content-content-img">
-                <img src="/images/slid-pic/pic01.jpg" />
-            </div>
+            <c:if test="${coreForumTheme.getFirstForumContent().getPicFlag() == 'Y'}">
+                <div class="forum-list-content-content-img">
+                    <img src="/images/getForumPic.do?id=${coreForumTheme.getFirstForumContent().getPicId()}"
+                         alt="forumPic"/>
+                </div>
+            </c:if>
         </div>
 
         <div class="forum-list-footer">
-            <div class="reply-count">43 个回复</div>
+            <div class="reply-count">${coreForumTheme.getReplyCount()} 个回复</div>
             <div class="follow-button">
                 <button type="button" class="follow-theme-button">关注主题</button>
             </div>
@@ -108,17 +113,17 @@
             <div class="reply-input-content-header">
                 <div class="reply-input-content-header-left">
                     <div class="reply-header-avator">
-                        <img src="/images/avator/avatar01.jpg" alt="avator" />
+                        <img src="/images/avator/avatar01.jpg" alt="avator"/>
                     </div>
                     <div class="reply-header-personal">Jason</div>
                 </div>
                 <div class="reply-input-content-header-right">
                     <span class="follow-theme">
-                        <input type="checkbox" id="followThemeButton" name="followThemeButton" />
+                        <input type="checkbox" id="followThemeButton" name="followThemeButton"/>
                         关注问题
                     </span>
                     <span class="anonymitye-checkbox">
-                        <input type="checkbox" id="anonymitye" name="anonymitye" />
+                        <input type="checkbox" id="anonymitye" name="anonymitye"/>
                         匿名回复
                     </span>
                 </div>

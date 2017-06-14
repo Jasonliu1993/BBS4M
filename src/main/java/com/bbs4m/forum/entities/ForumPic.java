@@ -1,31 +1,20 @@
 package com.bbs4m.forum.entities;
 
-import java.util.List;
-
 /**
- * Created by Jason on 12/06/2017.
+ * Created by Jason on 13/06/2017.
  */
-public class UserAttribute {
+public class ForumPic {
 
     private String id;
     private long version;
-    private String userid;
-    private String userName;
-    private long userScore;
+    private byte[] pic;
+    private String comments;
     private String custom1;
     private String custom2;
     private String custom3;
     private String custom4;
     private String custom5;
-    private List<FollowUser> followUsers;
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     public String getId() {
         return id;
@@ -45,21 +34,20 @@ public class UserAttribute {
     }
 
 
-    public String getUserid() {
-        return userid;
+    public byte[] getPic() {
+        return pic;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setPic(byte[] pic) {
+        this.pic = pic;
     }
 
-
-    public long getUserScore() {
-        return userScore;
+    public String getComments() {
+        return comments;
     }
 
-    public void setUserScore(long userScore) {
-        this.userScore = userScore;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
 
@@ -89,6 +77,7 @@ public class UserAttribute {
         this.custom3 = custom3;
     }
 
+
     public String getCustom4() {
         return custom4;
     }
@@ -97,19 +86,12 @@ public class UserAttribute {
         this.custom4 = custom4;
     }
 
+
     public String getCustom5() {
         return custom5;
     }
 
     public void setCustom5(String custom5) {
         this.custom5 = custom5;
-    }
-
-    public List<FollowUser> getFollowUsers() {
-        return followUsers;
-    }
-
-    public void setFollowUsers(List<FollowUser> followUsers) {
-        this.followUsers = followUsers;
     }
 }

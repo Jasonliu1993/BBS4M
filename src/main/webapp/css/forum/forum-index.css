@@ -221,6 +221,21 @@
     box-sizing: border-box;
 }
 
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail .forum-list-content-pic{
+    width: 250px;
+    height: 300px;
+    margin: 5px auto;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.content .forum-core ul .forum-list .forum-list-content .forum-list-content-detail .forum-list-content-pic img{
+    width: 250px;
+    height: 300px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
 .content .forum-core ul .forum-list .forum-list-content .forum-list-content-footer {
     width: 375px;
     height: 40px;

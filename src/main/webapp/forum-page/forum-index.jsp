@@ -63,6 +63,12 @@
                         <div class="forum-list-content-content">
                                 ${coreItem.getFirstForumContent().getContent()}
                         </div>
+                        <c:if test="${coreItem.getFirstForumContent().getPicFlag() == 'Y'}">
+                            <div class="forum-list-content-pic">
+                                <img src="/images/getForumPic.do?id=${coreItem.getFirstForumContent().getPicId()}"
+                                     alt="forumPic"/>
+                            </div>
+                        </c:if>
                     </div>
                     <div class="forum-list-content-footer">
                         <span class="reply-count">回复: ${coreItem.getReplyCount()}</span>

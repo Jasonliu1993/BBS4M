@@ -8,6 +8,7 @@
               A.ID AID,
               A.VERSION AVERSION,
               A.USERID AUSERID,
+              C.USER_NAME CUSER_NAME,
               A.USER_SCORE AUSER_SCORE,
               A.CUSTOM1 ACUSTOM1,
               A.CUSTOM2 ACUSTOM2,
@@ -23,7 +24,7 @@
               B.CUSTOM3 BCUSTOM3,
               B.CUSTOM4 BCUSTOM4,
               B.CUSTOM5 BCUSTOM5
-            FROM USER_ATTRIBUTE A LEFT JOIN FOLLOW_USER B ON A.USERID = B.FOLLOWED_USERID
+            FROM USER_ATTRIBUTE A LEFT JOIN FOLLOW_USER B ON A.USERID = B.FOLLOWED_USERID LEFT JOIN LOGIN_DATA C ON A.USERID = C.USERID
             WHERE A.USERID = #{userId};
     </select>
     
@@ -31,6 +32,7 @@
         <id column="AID" property="id" />
         <result column="AVERSION" property="version" />
         <result column="AUSERID" property="userid" />
+        <result column="CUSER_NAME" property="userName" />
         <result column="AUSER_SCORE" property="userScore" />
         <result column="ACUSTOM1" property="custom1" />
         <result column="ACUSTOM2" property="custom2" />

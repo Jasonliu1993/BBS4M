@@ -1,6 +1,7 @@
 package com.bbs4m.forum.controllers;
 
 import com.bbs4m.forum.services.GetAvatorService;
+import com.bbs4m.forum.services.GetForumPicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,9 @@ public class GetPicController {
     @Resource
     GetAvatorService getAvatorService;
 
+    @Resource
+    GetForumPicService getForumPicService;
+
     @RequestMapping("/getAvator.do")
     @ResponseBody
     public void getAvator(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) {
@@ -32,6 +36,26 @@ public class GetPicController {
             os = response.getOutputStream();
             int count = 0;
             byte[] buffer = getAvatorService.getAvatorByUserId(id);
+            os.write(buffer);
+            os.flush();
+            os.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("after");
+    }
+
+    @RequestMapping("/getForumPic.do")
+    @ResponseBody
+    public void getForumPic(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("before");
+        try {
+            OutputStream os = null;
+
+            os = response.getOutputStream();
+            int count = 0;
+            byte[] buffer = getForumPicService.getForumPicById(id);
             os.write(buffer);
             os.flush();
             os.close();
