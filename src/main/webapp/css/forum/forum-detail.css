@@ -193,6 +193,7 @@
 .content .reply-content ul {
     width: 375px;
     margin: 0 auto;
+    list-style: none;
 }
 
 .content .reply-content ul .reply-content-detail-list {

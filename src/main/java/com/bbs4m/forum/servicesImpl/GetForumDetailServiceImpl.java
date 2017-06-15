@@ -40,6 +40,7 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
     }
 
     public List<ForumContent> getReplyContentByThemeId(String themeId) {
-        return null;
+        List<ForumContent> forumContentsExcludeFirstContentByThemeId = forumContentDao.getForumContentExcludeFirstContentByThemeid(themeId);
+        return forumContentsExcludeFirstContentByThemeId;
     }
 }

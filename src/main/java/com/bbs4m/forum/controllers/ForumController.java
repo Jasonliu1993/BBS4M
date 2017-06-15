@@ -41,6 +41,7 @@ public class ForumController {
     @RequestMapping("/fourmDetail.do")
     public String getForumDetail ( @RequestParam("id") String id, ModelMap modelMap) {
         modelMap.addAttribute("coreForumTheme",getForumDetailService.getCoreThemeAndContentByThemeId(id));
+        modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id));
         return "/forum-page/forum-detail.jsp";
     }
 }

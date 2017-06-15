@@ -44,10 +44,24 @@
     </select>
     <select id="getForumContentExcludeFirstContentByThemeid" parameterType="String"
             resultType="com.bbs4m.forum.entities.ForumContent">
-        SELECT *
-        FROM FORUM_CONTENT A
-        WHERE A.THEME_REF_ID = #{themeid}
-        AND ORDER_NUMBER != '1'
-        ORDER BY ORDER_NUMBER;
+        SELECT
+              A.ID,
+              A.VERSION,
+              A.ORDER_NUMBER,
+              A.THEME_REF_ID,
+              A.CONTENT,
+              A.PIC_FLAG,
+              A.PIC_ID,
+              A.CREATER,
+              B.USER_NAME,
+              A.CREATE_TIME,
+              A.CUSTOM1,
+              A.CUSTOM2,
+              A.CUSTOM3,
+              A.CUSTOM4,
+              A.CUSTOM5
+            FROM FORUM_CONTENT A LEFT JOIN LOGIN_DATA B ON A.CREATER = B.USERID
+            WHERE A.THEME_REF_ID = #{themeId} AND A.ORDER_NUMBER != '1'
+            ORDER BY A.ORDER_NUMBER;
     </select>
 </mapper>

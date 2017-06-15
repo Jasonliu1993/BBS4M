@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jason
@@ -79,32 +80,37 @@
     </div>
     <div class="reply-content">
         <ul>
-            <li class="reply-content-detail-list">
-                <div class="reply-personal-title">
+            <C:forEach items="${replyForumContents}" varStatus="i" var="forumContentItem">
+                <li class="reply-content-detail-list">
+                    <div class="reply-personal-title">
                     <span class="reply-personal-avator">
-                        <img src="/images/avator/avatar01.jpg" alt="avator"/>
+                        <img src="/images/getAvator.do?id=${forumContentItem.getCreater()}" alt="avator"/>
                     </span>
-                    <span class="reply-person">
-                        卡农
-                    </span>
-                </div>
-                <div class="reply-content-detail">
-                    <div class="reply-content-detail-word">
-                        测试内容回复!
+                        <span class="reply-person">
+                                ${forumContentItem.getUserName()}
+                        </span>
                     </div>
-                    <div class="reply-content-detail-img">
-                        <img src="/images/slid-pic/pic02.jpg" height="340" width="790"/>
+                    <div class="reply-content-detail">
+                        <div class="reply-content-detail-word">
+                                ${forumContentItem.getContent()}
+                        </div>
+                        <c:if test="${forumContentItem.getPicFlag() == 'Y'}">
+                            <div class="reply-content-detail-img">
+                                <img src="/images/getForumPic.do?id=${forumContentItem.getFirstForumContent().getPicId()}"
+                                     alt="forumPic"/>
+                            </div>
+                        </c:if>
                     </div>
-                </div>
-                <div class="reply-content-footer">
-                    <div class="reply-content-tool">
-                        <span class="reply-content-tool-support">赞 32</span>
-                        <span class="reply-content-tool-nonsupport">踩 2</span>
-                        <span class="reply-content-tool-reply">回复 1</span>
+                    <div class="reply-content-footer">
+                        <div class="reply-content-tool">
+                            <span class="reply-content-tool-support">赞 32</span>
+                            <span class="reply-content-tool-nonsupport">踩 2</span>
+                            <span class="reply-content-tool-reply">回复 1</span>
+                        </div>
+                        <div class="reply-content-time">2017-01-01 12:00:00</div>
                     </div>
-                    <div class="reply-content-time">2017-01-01 12:00:00</div>
-                </div>
-            </li>
+                </li>
+            </C:forEach>
         </ul>
     </div>
     <div class="next-page">下一页</div>
