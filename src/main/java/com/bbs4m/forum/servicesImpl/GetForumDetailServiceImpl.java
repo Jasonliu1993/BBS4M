@@ -1,9 +1,6 @@
 package com.bbs4m.forum.servicesImpl;
 
-import com.bbs4m.forum.dao.ForumContentDao;
-import com.bbs4m.forum.dao.ForumThemeDao;
-import com.bbs4m.forum.dao.TopicIncludeDao;
-import com.bbs4m.forum.dao.UserAttributeDao;
+import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.entities.ForumContent;
 import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.services.GetForumDetailService;
@@ -30,6 +27,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
     @Resource
     TopicIncludeDao topicIncludeDao;
 
+    @Resource
+    ForumContentReplyDao forumContentReplyDao;
+
     public ForumTheme getCoreThemeAndContentByThemeId(String themeId) {
         ForumTheme forumTheme = forumThemeDao.getForumThemeByThemeId(themeId);
         forumTheme.setFirstForumContent(forumContentDao.getFirstContentByThemeId(themeId));
@@ -41,6 +41,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     public List<ForumContent> getReplyContentByThemeId(String themeId) {
         List<ForumContent> forumContentsExcludeFirstContentByThemeId = forumContentDao.getForumContentExcludeFirstContentByThemeid(themeId);
+        for (ForumContent forumContent : forumContentsExcludeFirstContentByThemeId) {
+            forumContent.setReplyCount(forumContentReplyDao.getReplyCountByContentId(forumContent.getId()));
+        }
         return forumContentsExcludeFirstContentByThemeId;
     }
 }

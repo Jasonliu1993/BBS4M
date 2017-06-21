@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jason
@@ -14,9 +13,10 @@
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/Ajax.js"></script>
     <link rel="stylesheet" href="/css/forum/forum-detail.css">
+    <link rel="stylesheet" href="/css/forum/forum-reply-content.css">
     <link rel="stylesheet" href="/css/common-css.css">
-
     <style>
 
     </style>
@@ -80,7 +80,7 @@
     </div>
     <div class="reply-content">
         <ul>
-            <C:forEach items="${replyForumContents}" varStatus="i" var="forumContentItem">
+            <c:forEach items="${replyForumContents}" varStatus="i" var="forumContentItem">
                 <li class="reply-content-detail-list">
                     <div class="reply-personal-title">
                     <span class="reply-personal-avator">
@@ -96,21 +96,22 @@
                         </div>
                         <c:if test="${forumContentItem.getPicFlag() == 'Y'}">
                             <div class="reply-content-detail-img">
-                                <img src="/images/getForumPic.do?id=${forumContentItem.getFirstForumContent().getPicId()}"
+                                <img src="/images/getForumPic.do?id=${forumContentItem.getPicId()}"
                                      alt="forumPic"/>
                             </div>
                         </c:if>
                     </div>
                     <div class="reply-content-footer">
                         <div class="reply-content-tool">
-                            <span class="reply-content-tool-support">赞 32</span>
-                            <span class="reply-content-tool-nonsupport">踩 2</span>
-                            <span class="reply-content-tool-reply">回复 1</span>
+                            <span class="reply-content-tool-support">赞 ${forumContentItem.getLikeCount()}</span>
+                            <span class="reply-content-tool-nonsupport">踩 ${forumContentItem.getDislikeCount()}</span>
+                            <span class="reply-content-tool-reply">回复 ${forumContentItem.getReplyCount()}</span>
+                            <input type="hidden" id="replyContentId" value="${forumContentItem.getId()}" />
                         </div>
-                        <div class="reply-content-time">2017-01-01 12:00:00</div>
+                        <div class="reply-content-time">${forumContentItem.getCreateTime()}</div>
                     </div>
                 </li>
-            </C:forEach>
+            </c:forEach>
         </ul>
     </div>
     <div class="next-page">下一页</div>

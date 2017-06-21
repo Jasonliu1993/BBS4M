@@ -10,6 +10,8 @@ public class ForumContent {
     private String content;
     private String picFlag;
     private String picId;
+    private long likeCount;
+    private long dislikeCount;
     private String creater;
     private String userName;
     private String createTime;
@@ -18,6 +20,31 @@ public class ForumContent {
     private String custom3;
     private String custom4;
     private String custom5;
+    private String replyCount;
+
+    public String getReplyCount() {
+        return replyCount;
+    }
+
+    public void setReplyCount(String replyCount) {
+        this.replyCount = replyCount;
+    }
+
+    public long getLikeCount() {
+        return likeCount;
+    }
+
+    public void setLikeCount(long likeCount) {
+        this.likeCount = likeCount;
+    }
+
+    public long getDislikeCount() {
+        return dislikeCount;
+    }
+
+    public void setDislikeCount(long dislikeCount) {
+        this.dislikeCount = dislikeCount;
+    }
 
     public String getPicFlag() {
         return picFlag;

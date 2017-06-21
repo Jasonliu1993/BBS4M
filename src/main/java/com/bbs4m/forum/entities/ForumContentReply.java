@@ -7,12 +7,29 @@ public class ForumContentReply {
   private long version;
   private String contentRefId;
   private String content;
+  private String creater;
+  private String createTime;
   private String custom1;
   private String custom2;
   private String custom3;
   private String custom4;
   private String custom5;
 
+  public String getCreater() {
+    return creater;
+  }
+
+  public void setCreater(String creater) {
+    this.creater = creater;
+  }
+
+  public String getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(String createTime) {
+    this.createTime = createTime;
+  }
 
   public String getId() {
     return id;
