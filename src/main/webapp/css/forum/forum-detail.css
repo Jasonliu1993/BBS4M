@@ -401,9 +401,24 @@
     width: 375px;
     height: 40px;
     margin-top: 10px;
+    position:relative;
 }
 
-.content .reply-input-content .reply-input-content-submit a {
+.content .reply-input-content .reply-input-content-submit .upload-pic {
+     width: 70px;
+     height: 25px;
+     background-color: green;
+     border: 1px solid green;
+     border-radius: 5px;
+     float: left;
+     margin-left: 10px;
+     color: white;
+     text-decoration: none;
+     font-size: 15px;
+     text-align: center;
+ }
+
+.content .reply-input-content .reply-input-content-submit input[type='file'] {
     width: 70px;
     height: 25px;
     background-color: green;
@@ -412,13 +427,34 @@
     float: left;
     margin-left: 10px;
     color: white;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    outline: medium none;
+    position: absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0;
+    left:0px;
+    top: 0px;
+}
+
+.content .reply-input-content .reply-input-content-submit .reply-submit {
+    width: 70px;
+    height: 25px;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 5px;
+    float: right;
+    margin-right: 10px;
+    color: white;
     text-decoration: none;
     font-size: 15px;
     text-align: center;
 }
 
-.content .reply-input-content .reply-input-content-submit input[type='submit'] {
-    width: 60px;
+.content .reply-input-content .reply-input-content-submit input[type='button'] {
+    width: 70px;
     height: 25px;
     background-color: green;
     border: 1px solid green;
@@ -427,6 +463,14 @@
     margin-right: 10px;
     color: white;
     font-size: 15px;
+    cursor: pointer;
+    outline: medium none;
+    position: absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0;
+    left:292px;
+    top: 0px;
 }
 
 .content .Related-Question {

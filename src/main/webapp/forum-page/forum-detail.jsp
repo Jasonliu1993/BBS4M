@@ -33,6 +33,10 @@
                     $(".reply-area").html('');
                 }
             })
+
+            $(".reply-area").delegate(".reply-area-content-button-left button", "click", function () {
+                $(".reply-area").html('');
+            });
         })
     </script>
 </head>
@@ -150,8 +154,11 @@
                 <textarea name="replyDetail" id="replyDetail"></textarea>
             </div>
             <div class="reply-input-content-submit">
-                <a href="#">上传照片</a>
-                <input type="submit" value="回复"/>
+                <a href="#" class="upload-pic">上传照片</a>
+                <input type="file" value="上传照片" class="inputFile"/>
+
+                <a href="#" class="reply-submit">回复</a>
+                <input type="button" value="回复"/>
             </div>
         </form>
     </div>

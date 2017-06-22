@@ -37,6 +37,7 @@ function getReplyContent(replyContentid) {
                         '<div class="reply-area-content-content">' +
                         json[i].content +
                         '</div>' +
+                            '<input type="hidden" id="ReplyContentList" name="ReplyContentList" value="' + json[i].creater +'" />' +
                         '</div>' +
                         '</li>' ;
                 }
@@ -62,6 +63,8 @@ function getReplyContent(replyContentid) {
 
                 $(".reply-area").html(varBlock);
             }
+
+
         },
         error: function (json) {
             alert("Request Error!")
