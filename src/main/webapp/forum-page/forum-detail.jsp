@@ -14,26 +14,36 @@
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/js/Ajax.js"></script>
+    <script type="text/javascript" src="/js/PublicFunction.js"></script>
     <link rel="stylesheet" href="/css/forum/forum-detail.css">
     <link rel="stylesheet" href="/css/forum/forum-reply-content.css">
     <link rel="stylesheet" href="/css/common-css.css">
     <style>
 
     </style>
+    <script>
+
+        $(document).ready(function() {
+
+            $(".reply-content-tool-reply").on("click",function(){
+                if ($(".reply-area").html().trim() == '') {
+                    log($(this).next('#replyContentId').val());
+                    getReplyContent($(this).next('#replyContentId').val());
+                } else {
+                    $(".reply-area").html('');
+                }
+            })
+        })
+    </script>
 </head>
 <body>
-<div class="fix-bar">
-    <span><a href="#">主页</a></span>
-    <span><a href="#">话题</a></span>
-    <span><a href="#">搜索</a></span>
-    <span><a href="#">发起</a></span>
-    <span><a href="#">我</a></span>
-</div>
+<jsp:include page="/common-page/fix-bar.jsp" />
 <div class="content">
     <div class="forum-core-content">
         <div class="forum-topic">
-            <span class="forum-topic-dynamic">测试话题1</span>
-            <span class="forum-topic-dynamic">测试话题2</span>
+            <c:forEach items="${coreForumTheme.getTopicIncludes()}" varStatus="k" var="topicInclude">
+                <span class="forum-topic-dynamic">${topicInclude.getTopicName()}</span>
+            </c:forEach>
         </div>
         <div class="creater-area">
             <div class="creater-area-left">
@@ -110,6 +120,7 @@
                         </div>
                         <div class="reply-content-time">${forumContentItem.getCreateTime()}</div>
                     </div>
+                    <div class="reply-area"></div>
                 </li>
             </c:forEach>
         </ul>
@@ -154,6 +165,6 @@
         </div>
     </div>
 </div>
-<div class="footer">Copyright &copy; 2017 Jason</div>
+<jsp:include page="/common-page/footer.jsp" />
 </body>
 </html>

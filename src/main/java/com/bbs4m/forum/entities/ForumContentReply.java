@@ -8,12 +8,30 @@ public class ForumContentReply {
   private String contentRefId;
   private String content;
   private String creater;
+  private String createrName;
   private String createTime;
   private String custom1;
   private String custom2;
   private String custom3;
   private String custom4;
   private String custom5;
+  private UserAttribute userAttribute;
+
+  public UserAttribute getUserAttribute() {
+    return userAttribute;
+  }
+
+  public void setUserAttribute(UserAttribute userAttribute) {
+    this.userAttribute = userAttribute;
+  }
+
+  public String getCreaterName() {
+    return createrName;
+  }
+
+  public void setCreaterName(String createrName) {
+    this.createrName = createrName;
+  }
 
   public String getCreater() {
     return creater;

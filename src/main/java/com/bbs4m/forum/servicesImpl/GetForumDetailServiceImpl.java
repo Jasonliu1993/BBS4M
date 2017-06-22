@@ -2,6 +2,7 @@ package com.bbs4m.forum.servicesImpl;
 
 import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.entities.ForumContent;
+import com.bbs4m.forum.entities.ForumContentReply;
 import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.services.GetForumDetailService;
 import org.springframework.stereotype.Component;
@@ -45,5 +46,13 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
             forumContent.setReplyCount(forumContentReplyDao.getReplyCountByContentId(forumContent.getId()));
         }
         return forumContentsExcludeFirstContentByThemeId;
+    }
+
+    public List<ForumContentReply> getReplyContentByContentId(String contentId) {
+        List<ForumContentReply> forumContentReplies = forumContentReplyDao.getForumContentReplyByContentId(contentId);
+        for (ForumContentReply forumContentReply : forumContentReplies) {
+            forumContentReply.setUserAttribute(userAttributeDao.getUserAttributeByUserId(forumContentReply.getCreater()));
+        }
+        return forumContentReplies;
     }
 }

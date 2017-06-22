@@ -4,4 +4,7 @@
     <select id="getReplyCountByContentId" parameterType="String" resultType="java.lang.String">
           SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_CONTENT_REPLY WHERE CONTENT_REF_ID = #{id}
     </select>
+    <select id="getForumContentReplyByContentId" resultType="com.bbs4m.forum.entities.ForumContentReply">
+        SELECT * FROM FORUM_CONTENT_REPLY A WHERE A.CONTENT_REF_ID = #{ContentId}
+    </select>
 </mapper>

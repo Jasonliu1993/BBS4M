@@ -1,6 +1,7 @@
 package com.bbs4m.forum.services;
 
 import com.bbs4m.forum.entities.ForumContent;
+import com.bbs4m.forum.entities.ForumContentReply;
 import com.bbs4m.forum.entities.ForumTheme;
 
 import java.util.List;
@@ -11,4 +12,5 @@ import java.util.List;
 public interface GetForumDetailService {
     ForumTheme getCoreThemeAndContentByThemeId (String themeId);
     List<ForumContent> getReplyContentByThemeId (String themeId);
+    List<ForumContentReply> getReplyContentByContentId (String ContentId);
 }
