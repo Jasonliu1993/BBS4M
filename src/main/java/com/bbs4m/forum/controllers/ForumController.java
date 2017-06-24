@@ -44,4 +44,9 @@ public class ForumController {
         modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id));
         return "/forum-page/forum-detail.jsp";
     }
+
+    @RequestMapping("/replyTheme")
+    public String replyTheme () {
+        return "";
+    }
 }

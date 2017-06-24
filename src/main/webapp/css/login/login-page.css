@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #CFCFCF;
+    color: #AFAFAF;
+}
+
+.core-dialog {
+    width: 300px;
+    height: 120px;
+    background-color: #fff;
+    margin: 150px auto;
+    border: 1px solid #CFCFCF;
+    border-radius: 3px;
+}
+
+.core-dialog .error-dialog {
+    width: 300px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: red;
+    font-size: 12px;
+}
+.core-dialog .user-name-area {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    border-bottom: 1px solid #CFCFCF;
+}
+
+.core-dialog .user-name-area .user-name-lab {
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+    float: left;
+}
+
+.core-dialog .user-name-area .user-name-input {
+    width: 240px;
+    height: 50px;
+    line-height: 50px;
+    padding: 10px 0 10px 15px ;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+}
+
+.core-dialog .user-name-area .user-name-input input[name='userId']{
+    display: inline-block;
+    width: 200px;
+    height: 30px;
+    border: 1px solid white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+    float: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.core-dialog .user-password-area {
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.core-dialog .user-password-area .user-password-lab {
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
+    text-align: right;
+    float: left;
+}
+
+.core-dialog .user-password-area .user-password-input {
+    width: 240px;
+    height: 50px;
+    line-height: 50px;
+    padding: 10px 0 10px 15px ;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+}
+
+.core-dialog .user-password-area .user-password-input input[name='password']{
+    display: inline-block;
+    width: 200px;
+    height: 30px;
+    border: 1px solid white;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 5px;
+    float: left;
+    outline: none;
+    font-size: 15px;
+}
+
+.core-dialog .button-area {
+    width: 300px;
+    margin: 10px auto;
+}
+
+.core-dialog .button-area .login-button {
+    width: 300px;
+    height: 30px;
+}
+
+.core-dialog .button-area .login-button a {
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: green;
+    text-decoration: none;
+    color: white;
+    border-radius: 3px;
+}
+
+.core-dialog .button-area .register-button {
+    margin-top: 10px;
+    width: 300px;
+    height: 30px;
+}
+
+.core-dialog .button-area .register-button a {
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #fff;
+    color: green;
+    border-radius: 3px;
+}

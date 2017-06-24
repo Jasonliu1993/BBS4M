@@ -30,7 +30,7 @@ public class SessionIntercepter implements HandlerInterceptor {
                 if (session.getAttribute("userName") != null) {
                     return true;
                 } else {
-                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login/login.jsp");
+                    httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login/login-page.jsp");
                     return false;
                 }
             }

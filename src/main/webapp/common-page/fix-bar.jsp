@@ -11,5 +11,5 @@
     <span><a href="#">话题</a></span>
     <span><a href="#">搜索</a></span>
     <span><a href="#">发起</a></span>
-    <span><a href="#">我</a></span>
+    <span><a href="/admin/userInfo.do">我</a></span>
 </div>
