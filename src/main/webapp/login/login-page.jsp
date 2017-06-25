@@ -12,12 +12,27 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="stylesheet" href="/css/login/login-page.css">
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/public-function.js"></script>
     <title>登录 - MyBBS4M</title>
+    <script>
+        $(document).ready(function(){
+            $(".login-button a").on("click",function (e) {
+                log($.loginVerify());
+                if ($.loginVerify() == true) {
+                    $("form").submit();
+                }
+            })
+
+            $(".register-button a").on("click",function (e) {
+                $.registerPage("/login/register-page.jsp");
+            })
+        })
+    </script>
 </head>
 <body>
 <div class="core-dialog">
-    <form action="" method="post">
-        <div class="error-dialog">用户名不能为空!</div>
+    <form action="/login.do" method="post">
+        <div class="error-dialog">${errorMsg}</div>
         <div class="user-name-area">
             <div class="user-name-lab">用户名:</div>
             <div class="user-name-input">

@@ -14,7 +14,7 @@
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="/js/Ajax.js"></script>
-    <script type="text/javascript" src="/js/PublicFunction.js"></script>
+    <script type="text/javascript" src="/js/public-function.js"></script>
     <link rel="stylesheet" href="/css/forum/forum-detail.css">
     <link rel="stylesheet" href="/css/forum/forum-reply-content.css">
     <link rel="stylesheet" href="/css/common-css.css">

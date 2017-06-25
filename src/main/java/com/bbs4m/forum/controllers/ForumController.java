@@ -25,12 +25,13 @@ public class ForumController {
     @Resource
     GetForumDetailService getForumDetailService;
 
-    @RequestMapping("/mainPage")
+    @RequestMapping("/mainPage.do")
     public String mainPage(HttpSession session, ModelMap modelMap) {
         PersonalSetup userConfig = null;
         int num = 10;
-        if ( (userConfig = (PersonalSetup)session.getAttribute("userConfig")) != null) {
-            num = (int)userConfig.getList_Count_In_Page();
+        if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
+            num = (int)userConfig.getListCountInPage();
+            System.out.println("+++++" + num);
         }
 
         modelMap.addAttribute("coreList",homePageService.getHomePageList(0,num));
@@ -45,7 +46,7 @@ public class ForumController {
         return "/forum-page/forum-detail.jsp";
     }
 
-    @RequestMapping("/replyTheme")
+    @RequestMapping("/replyTheme.do")
     public String replyTheme () {
         return "";
     }

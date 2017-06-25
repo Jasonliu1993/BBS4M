@@ -12,6 +12,6 @@ public class AdminController {
 
     @RequestMapping("/userInfo.do")
     public String getUserInfo (String id) {
-        return "";
+        return "/admin-page/admin-main.jsp";
     }
 }

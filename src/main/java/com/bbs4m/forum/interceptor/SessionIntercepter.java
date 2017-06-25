@@ -27,7 +27,7 @@ public class SessionIntercepter implements HandlerInterceptor {
         for (String url : allowUrl) {
             if (httpServletRequest.getRequestURL().toString().contains(url)) {
                 HttpSession session = httpServletRequest.getSession();
-                if (session.getAttribute("userName") != null) {
+                if (session.getAttribute("UserAttr") != null) {
                     return true;
                 } else {
                     httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login/login-page.jsp");

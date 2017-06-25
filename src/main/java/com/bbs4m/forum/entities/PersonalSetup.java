@@ -8,7 +8,7 @@ public class PersonalSetup {
     private String id;
     private long version;
     private String userid;
-    private long list_Count_In_Page;
+    private long listCountInPage;
     private String custom1;
     private String custom2;
     private String custom3;
@@ -43,14 +43,13 @@ public class PersonalSetup {
     }
 
 
-    public long getList_Count_In_Page() {
-        return list_Count_In_Page;
+    public long getListCountInPage() {
+        return listCountInPage;
     }
 
-    public void setList_Count_In_Page(long list_Count_In_Page) {
-        this.list_Count_In_Page = list_Count_In_Page;
+    public void setListCountInPage(long listCountInPage) {
+        this.listCountInPage = listCountInPage;
     }
-
 
     public String getCustom1() {
         return custom1;

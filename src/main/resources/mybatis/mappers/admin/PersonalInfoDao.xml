@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bbs4m.forum.dao.PersonalInfoDao">
+    <select id="getPersonalInfoByUserId" parameterType="String" resultType="com.bbs4m.forum.entities.PersonalInfo">
+        SELECT * FORM PERSONAL_INFO WHERE USERID = #{userId}
+    </select>
+</mapper>

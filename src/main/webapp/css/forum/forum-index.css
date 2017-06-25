@@ -6,13 +6,14 @@
 
 .search-bar input[type='text'] {
     margin: 0 auto;
+    padding-left: 3px;
     width: 375px;
     height: 50px;
     border: 1px solid white;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    border-radius: 50px;
+    border-radius: 10px;
     outline: 0;
     font-size: 35px;
 }
