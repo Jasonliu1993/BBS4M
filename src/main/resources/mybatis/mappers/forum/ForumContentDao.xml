@@ -24,7 +24,7 @@
             FROM FORUM_CONTENT A LEFT JOIN LOGIN_DATA B ON A.CREATER = B.USERID WHERE A.THEME_REF_ID = #{themeId} ORDER BY A.ORDER_NUMBER LIMIT 0, 1
     </select>
     <select id="getReplyNumber" parameterType="String" resultType="String">
-        SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId}
+        SELECT CAST(COUNT(*) - 1 AS CHAR) FROM FORUM_CONTENT WHERE THEME_REF_ID = #{themeId}
     </select>
     <select id="getLastReply" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
         SELECT A.ID,
@@ -46,7 +46,7 @@
               A.CUSTOM5
             FROM FORUM_CONTENT A LEFT JOIN LOGIN_DATA B ON A.CREATER = B.USERID WHERE A.THEME_REF_ID = #{themeId} ORDER BY A.ORDER_NUMBER DESC LIMIT 0, 1
     </select>
-    <select id="getForumContentExcludeFirstContentByThemeid" parameterType="String"
+    <select id="getForumContentExcludeFirstContentByThemeid"
             resultType="com.bbs4m.forum.entities.ForumContent">
         SELECT
               A.ID,
@@ -67,7 +67,13 @@
               A.CUSTOM4,
               A.CUSTOM5
             FROM FORUM_CONTENT A LEFT JOIN LOGIN_DATA B ON A.CREATER = B.USERID
-            WHERE A.THEME_REF_ID = #{themeId} AND A.ORDER_NUMBER != '1'
-            ORDER BY A.ORDER_NUMBER;
+            WHERE A.THEME_REF_ID = #{0} AND A.ORDER_NUMBER != '1'
+            ORDER BY A.ORDER_NUMBER
+            LIMIT #{1}, #{2}
+    </select>
+    <select id="getForumContentExcludeFirstContentCountByThemeId" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR)
+          FROM FORUM_CONTENT A
+        WHERE A.THEME_REF_ID = #{0} AND A.ORDER_NUMBER != '1'
     </select>
 </mapper>

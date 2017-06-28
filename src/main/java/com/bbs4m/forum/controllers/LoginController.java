@@ -31,7 +31,7 @@ public class LoginController {
         if (userData != null) {
             session.setAttribute("PersonalSetup",personalInfoService.getPersonalSetupByUserId(userData.getUserid()));
             session.setAttribute("UserAttr",personalInfoService.getUserAttrByUserId(userData.getUserid()));
-            return "redirect:/forum//mainPage.do";
+            return "redirect:/forum/mainPage.do";
         } else {
             modelMap.addAttribute("errorMsg","用户名或密码错误");
             return "/login/login-page.jsp";

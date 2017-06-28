@@ -10,13 +10,38 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="/js/public-function.js"></script>
+    <script type="text/javascript" src="/js/Ajax.js"></script>
     <link rel="stylesheet" href="/css/common-css.css">
     <link rel="stylesheet" href="/css/forum/forum-index.css">
     <style>
 
 
     </style>
+    <script>
+
+
+
+        $(document).ready(function(){
+
+            if(window.name!="hasLoad"){
+                location.reload();
+                window.name = "hasLoad";
+            }else{
+                window.name="";
+            }
+
+            $(".reload-bar").on("click",function(){
+                log($("#currentPage").val() + 1);
+                getLoadTheme(parseInt($("#currentPage").val()) + 1);
+                getLoadButtonFlag(parseInt($("#currentPage").val()) + 1,'theme','');
+            })
+        })
+    </script>
 </head>
 <body>
 <jsp:include page="/common-page/fix-bar.jsp" />
@@ -80,7 +105,11 @@
             </c:forEach>
         </ul>
     </div>
-    <div class="reload-bar">点击加载</div>
+    <c:if test="${pagingFlag == 'Y'}">
+        <%--<div class="reload-bar">点击加载</div>--%>
+        <a href="#${currentPage}" class="reload-bar">点击加载</a>
+    </c:if>
+    <input type="hidden" id="currentPage" name="currentPage" value="${currentPage}">
 </div>
 <jsp:include page="/common-page/footer.jsp" />
 </body>

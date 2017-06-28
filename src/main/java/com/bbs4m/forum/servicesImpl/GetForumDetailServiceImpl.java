@@ -40,8 +40,8 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         return forumTheme;
     }
 
-    public List<ForumContent> getReplyContentByThemeId(String themeId) {
-        List<ForumContent> forumContentsExcludeFirstContentByThemeId = forumContentDao.getForumContentExcludeFirstContentByThemeid(themeId);
+    public List<ForumContent> getReplyContentByThemeId(String themeId, int currentPage, int pagRow) {
+        List<ForumContent> forumContentsExcludeFirstContentByThemeId = forumContentDao.getForumContentExcludeFirstContentByThemeid(themeId, (currentPage - 1) * pagRow, pagRow);
         for (ForumContent forumContent : forumContentsExcludeFirstContentByThemeId) {
             forumContent.setReplyCount(forumContentReplyDao.getReplyCountByContentId(forumContent.getId()));
         }

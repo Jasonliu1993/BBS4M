@@ -300,6 +300,7 @@
 }
 
 .content .next-page {
+    display: block;
     width: 365px;
     height: 25px;
     line-height: 25px;
@@ -312,7 +313,7 @@
 
 .content .reply-input-content {
     width: 375px;
-    margin: 0 auto;
+    margin: 5px auto;
 }
 
 .content .reply-input-content .reply-input-content-header {

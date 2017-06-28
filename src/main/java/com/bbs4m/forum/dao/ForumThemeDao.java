@@ -11,5 +11,6 @@ import java.util.List;
 @Component
 public interface ForumThemeDao {
     List<ForumTheme> getForumThemeByPilot(int currentPageNumber, int num);
+    String getThemeCount();
     ForumTheme getForumThemeByThemeId (String themeId);
 }

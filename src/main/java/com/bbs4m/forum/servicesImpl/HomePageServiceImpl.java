@@ -2,7 +2,6 @@ package com.bbs4m.forum.servicesImpl;
 
 import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.entities.ForumTheme;
-import com.bbs4m.forum.entities.PersonalSetup;
 import com.bbs4m.forum.services.HomePageService;
 import com.bbs4m.utilities.DateUtility;
 import org.springframework.stereotype.Component;
@@ -28,14 +27,8 @@ public class HomePageServiceImpl implements HomePageService {
     @Resource
     TopicIncludeDao topicIncludeDao;
 
-    @Resource
-    PersonalAvatorDao personalAvatorDao;
-
-    @Resource
-    PersonalSetupDao personalSetupDao;
-
     public List<ForumTheme> getHomePageList(int currentPageNumber, int num) {
-        List<ForumTheme> forumThemes = forumThemeDao.getForumThemeByPilot(currentPageNumber,num);
+        List<ForumTheme> forumThemes = forumThemeDao.getForumThemeByPilot((currentPageNumber - 1) * num,num);
 
         for (ForumTheme forumTheme : forumThemes) {
             forumTheme.setFollowThemes(followThemeDao.getFollowThemeByThemeId(forumTheme.getId()));
@@ -46,9 +39,5 @@ public class HomePageServiceImpl implements HomePageService {
             forumTheme.setLastReplyContent(forumContentDao.getLastReply(forumTheme.getId()));
         }
         return forumThemes;
-    }
-
-    public PersonalSetup getPersoanlSetupByuserId(String userid) {
-        return personalSetupDao.getPersonalSetupByUserId(userid);
     }
 }

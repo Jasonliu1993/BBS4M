@@ -1,9 +1,10 @@
 package com.bbs4m.forum.controllers;
 
-import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.entities.PersonalSetup;
 import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.forum.services.HomePageService;
+import com.bbs4m.forum.services.PagingService;
+import com.bbs4m.utilities.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,24 +26,54 @@ public class ForumController {
     @Resource
     GetForumDetailService getForumDetailService;
 
+    @Resource
+    PagingService pagingService;
+
     @RequestMapping("/mainPage.do")
     public String mainPage(HttpSession session, ModelMap modelMap) {
         PersonalSetup userConfig = null;
-        int num = 10;
+        int num = DefaultValue.getDefThemeRow();
         if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
             num = (int)userConfig.getListCountInPage();
             System.out.println("+++++" + num);
         }
 
-        modelMap.addAttribute("coreList",homePageService.getHomePageList(0,num));
+        modelMap.addAttribute("coreList",homePageService.getHomePageList(1,num));
+        modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(1,num, "theme",null));
+        modelMap.addAttribute("currentPage", "1");
 
         return "/forum-page/forum-index.jsp";
     }
 
     @RequestMapping("/fourmDetail.do")
-    public String getForumDetail ( @RequestParam("id") String id, ModelMap modelMap) {
+    public String getForumDetail ( @RequestParam("id") String id, HttpSession session, ModelMap modelMap) {
+        PersonalSetup userConfig = null;
+        int num = DefaultValue.getDefThemeRow();
+        if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
+            num = (int)userConfig.getListCountInPage();
+            System.out.println("+++++" + num);
+        }
+
         modelMap.addAttribute("coreForumTheme",getForumDetailService.getCoreThemeAndContentByThemeId(id));
-        modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id));
+        modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,1,num));
+        modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(1,num, "content", id));
+        modelMap.addAttribute("currentPage", "1");
+        return "/forum-page/forum-detail.jsp";
+    }
+
+    @RequestMapping("/fourmDetailByPilot.do")
+    public String getForumDetailByPilot ( @RequestParam("id") String id, String currentPage, HttpSession session, ModelMap modelMap) {
+        PersonalSetup userConfig = null;
+        int num = DefaultValue.getDefThemeRow();
+        if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
+            num = (int)userConfig.getListCountInPage();
+            System.out.println("+++++" + num);
+        }
+
+        modelMap.addAttribute("coreForumTheme",getForumDetailService.getCoreThemeAndContentByThemeId(id));
+        modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,1,(Integer.parseInt(currentPage) + 1) * num));
+        modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(Integer.parseInt(currentPage),num, "content", id));
+        modelMap.addAttribute("currentPage", (Integer.parseInt(currentPage) + 1));
         return "/forum-page/forum-detail.jsp";
     }
 

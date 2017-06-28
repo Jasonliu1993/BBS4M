@@ -277,6 +277,7 @@
 }
 
 .reload-bar {
+    display: block;
     width: 375px;
     height: 30px;
     line-height: 30px;

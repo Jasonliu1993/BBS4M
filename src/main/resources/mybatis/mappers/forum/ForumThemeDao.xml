@@ -15,4 +15,7 @@
     <select id="getForumThemeByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumTheme">
         SELECT * FROM FORUM_THEME WHERE ID = #{themeId}
     </select>
+    <select id="getThemeCount" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_THEME
+    </select>
 </mapper>

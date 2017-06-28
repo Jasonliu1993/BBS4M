@@ -25,16 +25,22 @@
 
         $(document).ready(function() {
 
-            $(".reply-content-tool-reply").on("click",function(){
+            $(".next-page").on("click",function(){
+                log($("#currentPage").val() + 1);
+                getLoadContent(parseInt($("#currentPage").val()) + 1);
+                getLoadButtonFlag(parseInt($("#currentPage").val()) + 1,'content',$(".themeId").val());
+            })
+
+            $("ul").delegate(".reply-content-detail-list .reply-content-footer .reply-content-tool .reply-content-tool-reply","click",function(){
                 if ($(".reply-area").html().trim() == '') {
                     log($(this).next('#replyContentId').val());
-                    getReplyContent($(this).next('#replyContentId').val());
+                    getReplyContent($(this),$(this).next('#replyContentId').val());
                 } else {
                     $(".reply-area").html('');
                 }
             })
 
-            $(".reply-area").delegate(".reply-area-content-button-left button", "click", function () {
+            $("ul").delegate(".reply-content-detail-list .reply-area .reply-area-content .reply-area-content-reply-content .reply-area-content-button .reply-area-content-button-left button", "click", function () {
                 $(".reply-area").html('');
             });
         })
@@ -88,6 +94,7 @@
         <div class="forum-list-footer">
             <div class="reply-count">${coreForumTheme.getReplyCount()} 个回复</div>
             <div class="follow-button">
+                <input type="hidden" id="themeId" name="themeId" value="${coreForumTheme.getId()}">
                 <button type="button" class="follow-theme-button">关注主题</button>
             </div>
         </div>
@@ -129,7 +136,10 @@
             </c:forEach>
         </ul>
     </div>
-    <div class="next-page">下一页</div>
+    <c:if test="${pagingFlag == 'Y'}">
+        <a href="/forum/fourmDetailByPilot.do?id=${coreForumTheme.getId()}&currentPage=${currentPage}" class="next-page">下一页</a>
+    </c:if>
+    <input type="hidden" id="currentPage" name="currentPage" value="${currentPage}">
     <div class="reply-input-content">
         <form action="" method="post">
             <div class="reply-input-content-header">

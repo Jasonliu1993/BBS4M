@@ -10,5 +10,4 @@ import java.util.List;
  */
 public interface HomePageService {
     List<ForumTheme> getHomePageList(int currentPageNumber, int num);
-    PersonalSetup getPersoanlSetupByuserId(String userid);
 }

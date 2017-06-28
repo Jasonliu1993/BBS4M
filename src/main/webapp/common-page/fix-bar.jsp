@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="fix-bar">
-    <span><a href="#">主页</a></span>
+    <span><a href="/forum/mainPage.do">主页</a></span>
     <span><a href="#">话题</a></span>
     <span><a href="#">搜索</a></span>
     <span><a href="#">发起</a></span>
