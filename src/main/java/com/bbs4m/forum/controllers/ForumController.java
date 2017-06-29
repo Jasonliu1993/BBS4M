@@ -4,6 +4,7 @@ import com.bbs4m.forum.entities.PersonalSetup;
 import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.forum.services.HomePageService;
 import com.bbs4m.forum.services.PagingService;
+import com.bbs4m.forum.services.RelatedForumService;
 import com.bbs4m.utilities.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,6 +29,9 @@ public class ForumController {
 
     @Resource
     PagingService pagingService;
+
+    @Resource
+    RelatedForumService relatedForumService;
 
     @RequestMapping("/mainPage.do")
     public String mainPage(HttpSession session, ModelMap modelMap) {
@@ -58,6 +62,8 @@ public class ForumController {
         modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,1,num));
         modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(1,num, "content", id));
         modelMap.addAttribute("currentPage", "1");
+        modelMap.addAttribute("relatedForum", relatedForumService.getRelatedForum(id));
+        getForumDetailService.updateBrowse(id);
         return "/forum-page/forum-detail.jsp";
     }
 
@@ -74,6 +80,7 @@ public class ForumController {
         modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,1,(Integer.parseInt(currentPage) + 1) * num));
         modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(Integer.parseInt(currentPage),num, "content", id));
         modelMap.addAttribute("currentPage", (Integer.parseInt(currentPage) + 1));
+        modelMap.addAttribute("relatedForum", relatedForumService.getRelatedForum(id));
         return "/forum-page/forum-detail.jsp";
     }
 

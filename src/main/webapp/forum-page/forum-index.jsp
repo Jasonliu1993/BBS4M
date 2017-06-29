@@ -107,7 +107,7 @@
     </div>
     <c:if test="${pagingFlag == 'Y'}">
         <%--<div class="reload-bar">点击加载</div>--%>
-        <a href="#${currentPage}" class="reload-bar">点击加载</a>
+        <a href="#${currentPage}" class="reload-bar">更多</a>
     </c:if>
     <input type="hidden" id="currentPage" name="currentPage" value="${currentPage}">
 </div>

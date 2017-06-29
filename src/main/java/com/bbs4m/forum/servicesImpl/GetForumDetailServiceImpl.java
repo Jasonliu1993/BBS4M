@@ -55,4 +55,8 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         }
         return forumContentReplies;
     }
+
+    public void updateBrowse(String themeId) {
+        forumThemeDao.updateBrowse(themeId);
+    }
 }

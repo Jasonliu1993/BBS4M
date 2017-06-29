@@ -309,6 +309,8 @@
     border-radius: 5px;
     background-color: #fff;
     text-align: center;
+    color: green;
+    text-decoration: none;
 }
 
 .content .reply-input-content {
@@ -345,7 +347,7 @@
 .content .reply-input-content .reply-input-content-header .reply-input-content-header-left .reply-header-personal {
     height: 30px;
     line-height: 30px;
-    width: 30px;
+    /*width: 30px;*/
     margin-left: 5px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

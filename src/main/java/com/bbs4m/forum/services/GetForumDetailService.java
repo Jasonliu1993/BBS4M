@@ -13,4 +13,5 @@ public interface GetForumDetailService {
     ForumTheme getCoreThemeAndContentByThemeId (String themeId);
     List<ForumContent> getReplyContentByThemeId (String themeId, int currentPage, int pagRow);
     List<ForumContentReply> getReplyContentByContentId (String ContentId);
+    void updateBrowse(String themeId);
 }

@@ -137,7 +137,7 @@
         </ul>
     </div>
     <c:if test="${pagingFlag == 'Y'}">
-        <a href="/forum/fourmDetailByPilot.do?id=${coreForumTheme.getId()}&currentPage=${currentPage}" class="next-page">下一页</a>
+        <a href="/forum/fourmDetailByPilot.do?id=${coreForumTheme.getId()}&currentPage=${currentPage}" class="next-page">更多</a>
     </c:if>
     <input type="hidden" id="currentPage" name="currentPage" value="${currentPage}">
     <div class="reply-input-content">
@@ -145,9 +145,19 @@
             <div class="reply-input-content-header">
                 <div class="reply-input-content-header-left">
                     <div class="reply-header-avator">
-                        <img src="/images/avator/avatar01.jpg" alt="avator"/>
+                        <c:if test="${empty sessionScope.UserAttr}">
+                            <img src="/images/avator/none.jpg" alt="none">
+                        </c:if>
+                        <c:if test="${not empty sessionScope.UserAttr}">
+                            <img src="/images/getAvator.do?id=${PersonalSetup.getUserid()}" alt="avator"/>
+                        </c:if>
                     </div>
-                    <div class="reply-header-personal">Jason</div>
+                    <c:if test="${empty sessionScope.UserAttr}">
+                        <div class="reply-header-personal">未登录</div>
+                    </c:if>
+                    <c:if test="${not empty sessionScope.UserAttr}">
+                        <div class="reply-header-personal">${UserAttr.getUserName()}</div>
+                    </c:if>
                 </div>
                 <div class="reply-input-content-header-right">
                     <span class="follow-theme">
@@ -176,8 +186,9 @@
         <div class="Related-Question-title">相关问题</div>
         <div class="Related-Question-list">
             <ul>
-                <li class="Related-Question-list-theme"><a href="#">相关主题</a></li>
-                <li class="Related-Question-list-theme"><a href="#">相关主题</a></li>
+                <c:forEach items="${relatedForum}" varStatus="k" var="relatedForumItem" >
+                    <li class="Related-Question-list-theme"><a href="/forum/fourmDetail.do?=${relatedForumItem.getId()}">${relatedForumItem.getThemeContent()}</a></li>
+                </c:forEach>
             </ul>
         </div>
     </div>
