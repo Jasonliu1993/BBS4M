@@ -43,6 +43,10 @@
             $("ul").delegate(".reply-content-detail-list .reply-area .reply-area-content .reply-area-content-reply-content .reply-area-content-button .reply-area-content-button-left button", "click", function () {
                 $(".reply-area").html('');
             });
+
+            $(".follow-button").on("click",function(){
+                followUser(,$("#themeCreater").val())
+            })
         })
     </script>
 </head>
@@ -64,6 +68,7 @@
                     <span class="creater-area-left-name">${coreForumTheme.getCreaterUserAttribute().getUserName()}</span>
                     <span class="creater-area-right-up-follow">
                         <button type="button" class="follow-button">关注</button>
+                        <input type="hidden" id="themeCreater" name="themeCreater" value="${coreForumTheme.getCreater()}">
                     </span>
                 </div>
                 <div class="creater-area-right-down">

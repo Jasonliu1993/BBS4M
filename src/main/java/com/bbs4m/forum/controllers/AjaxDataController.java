@@ -1,9 +1,6 @@
 package com.bbs4m.forum.controllers;
 
-import com.bbs4m.forum.entities.ForumContent;
-import com.bbs4m.forum.entities.ForumContentReply;
-import com.bbs4m.forum.entities.ForumTheme;
-import com.bbs4m.forum.entities.PersonalSetup;
+import com.bbs4m.forum.entities.*;
 import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.forum.services.HomePageService;
 import com.bbs4m.forum.services.PagingService;
@@ -76,6 +73,16 @@ public class AjaxDataController {
             System.out.println("+++++" + num);
         }
          map.put("flag",pagingService.judgeLoadButton(Integer.parseInt(currentPage),num,object,Id));
+        return map;
+    }
+
+    @RequestMapping(value = "/followUser.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String > followUser(String userId, String followedUser, String object,String Id) {
+        Map<String ,String> map = new HashMap<String, String>();
+
+        getForumDetailService.insertFollowUser(userId,followedUser);
+        map.put("flag","Y");
         return map;
     }
 }

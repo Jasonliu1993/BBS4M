@@ -1,10 +1,12 @@
 package com.bbs4m.forum.servicesImpl;
 
 import com.bbs4m.forum.dao.*;
+import com.bbs4m.forum.entities.FollowUser;
 import com.bbs4m.forum.entities.ForumContent;
 import com.bbs4m.forum.entities.ForumContentReply;
 import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.services.GetForumDetailService;
+import com.bbs4m.utilities.KeyValue;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -30,6 +32,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     @Resource
     ForumContentReplyDao forumContentReplyDao;
+
+    @Resource
+    FollowUserDao followUserDao;
 
     public ForumTheme getCoreThemeAndContentByThemeId(String themeId) {
         ForumTheme forumTheme = forumThemeDao.getForumThemeByThemeId(themeId);
@@ -58,5 +63,13 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     public void updateBrowse(String themeId) {
         forumThemeDao.updateBrowse(themeId);
+    }
+
+    public void insertFollowUser(String userId, String followedUser) {
+        FollowUser followUser = new FollowUser();
+        followUser.setId(KeyValue.getKeyValue());
+        followUser.setFollowedUserid(followedUser);
+        followUser.setUserid(userId);
+        followUserDao.insertFollowUser(followUser);
     }
 }

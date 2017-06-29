@@ -1,5 +1,6 @@
 package com.bbs4m.forum.services;
 
+import com.bbs4m.forum.entities.FollowUser;
 import com.bbs4m.forum.entities.ForumContent;
 import com.bbs4m.forum.entities.ForumContentReply;
 import com.bbs4m.forum.entities.ForumTheme;
@@ -14,4 +15,5 @@ public interface GetForumDetailService {
     List<ForumContent> getReplyContentByThemeId (String themeId, int currentPage, int pagRow);
     List<ForumContentReply> getReplyContentByContentId (String ContentId);
     void updateBrowse(String themeId);
+    void insertFollowUser(String userId, String followedUser);
 }
