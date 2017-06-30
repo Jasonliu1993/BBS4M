@@ -11,4 +11,6 @@ import java.util.List;
 @Component(value = "followThemeDao")
 public interface FollowThemeDao {
     List<FollowTheme> getFollowThemeByThemeId(String themeId);
+    void insertFollowTheme(FollowTheme followTheme);
+    String getFollowedThemeButtonFlag(String userId, String followedThemeId);
 }

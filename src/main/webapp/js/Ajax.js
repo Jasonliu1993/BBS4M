@@ -216,9 +216,9 @@ function getLoadContent(currentPage) {
                         '</div>' +
                         '<div class="reply-content-footer">' +
                         '<div class="reply-content-tool">' +
-                        '<span class="reply-content-tool-support">赞 ' + json[i].likeCount + '</span>' +
-                        '<span class="reply-content-tool-nonsupport">踩 ' + json[i].dislikeCount + '</span>' +
-                        '<span class="reply-content-tool-reply">回复 ' + json[i].replyCount + '</span>' +
+                        '<span class="reply-content-tool-support">赞 <span>' + json[i].likeCount + '</span></span>' +
+                        '<span class="reply-content-tool-nonsupport">踩 <span>' + json[i].dislikeCount + '</span></span>' +
+                        '<span class="reply-content-tool-reply">回复 <span>' + json[i].replyCount + '</span></span>' +
                         '<input type="hidden" id="replyContentId" value="' + json[i].id + '" />' +
                         '</div>' +
                         '<div class="reply-content-time">' + json[i].createTime + '</div>' +
@@ -230,6 +230,66 @@ function getLoadContent(currentPage) {
 
                 $(".reply-content ul").append(listContent);
                 $("#currentPage").val(parseInt($("#currentPage").val()) + 1);
+            }
+
+
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+function followUser(currentUser,followedUser) {
+    $.ajax({
+        url: '/ajax/followUser.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'userId': currentUser,
+            'followedUser': followedUser,
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                if (json.flag == 'Y') {
+                    $(".creater-area-right-up-follow .follow-button").css({"background-color":"white", "color":"green"});
+                } else {
+                    alert("关注失败!")
+                }
+
+
+            }
+
+
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+function followTheme(currentUser,followedTheme) {
+    $.ajax({
+        url: '/ajax/followTheme.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'userId': currentUser,
+            'followedTheme': followedTheme,
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                if (json.flag == 'Y') {
+                    $(".follow-theme-button").css({"background-color":"white", "color":"green"});
+                } else {
+                    alert("关注失败!")
+                }
+
+
             }
 
 

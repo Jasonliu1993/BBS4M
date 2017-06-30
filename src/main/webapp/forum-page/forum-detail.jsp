@@ -23,7 +23,24 @@
     </style>
     <script>
 
+
         $(document).ready(function() {
+
+            if ($("#currentUser").val() == '' || $("#followedButtonFlag").val() == 'Y') {
+                $(".creater-area-right-up-follow .follow-button").css({"background-color":"white", "color":"green"});
+            } else {
+                $(".creater-area-right-up-follow .follow-button").one("click",function(){
+                    followUser($("#currentUser").val(),$("#themeCreater").val())
+                })
+            }
+
+            if ($("#currentUser").val() == '' || $("#followedThemeButtonFlag").val() == 'Y') {
+                $(".follow-theme-button").css({"background-color":"white", "color":"green"});
+            } else {
+                $(".follow-theme-button").one("click",function(){
+                    followTheme($("#currentUser").val(),$("#themeId").val())
+                })
+            }
 
             $(".next-page").on("click",function(){
                 log($("#currentPage").val() + 1);
@@ -32,21 +49,20 @@
             })
 
             $("ul").delegate(".reply-content-detail-list .reply-content-footer .reply-content-tool .reply-content-tool-reply","click",function(){
-                if ($(".reply-area").html().trim() == '') {
+                if ($(this).parent().parent().next(".reply-area").html().trim() == '') {
+                    $(".reply-area").html('');
                     log($(this).next('#replyContentId').val());
                     getReplyContent($(this),$(this).next('#replyContentId').val());
                 } else {
-                    $(".reply-area").html('');
+                    $(this).parent().parent().next(".reply-area").html('');
                 }
             })
 
             $("ul").delegate(".reply-content-detail-list .reply-area .reply-area-content .reply-area-content-reply-content .reply-area-content-button .reply-area-content-button-left button", "click", function () {
-                $(".reply-area").html('');
+//                $(".reply-area").html('');
+                $(this).parent().parent().parent().parent().parent().html('');
             });
 
-            $(".follow-button").on("click",function(){
-                followUser(,$("#themeCreater").val())
-            })
         })
     </script>
 </head>
@@ -68,6 +84,7 @@
                     <span class="creater-area-left-name">${coreForumTheme.getCreaterUserAttribute().getUserName()}</span>
                     <span class="creater-area-right-up-follow">
                         <button type="button" class="follow-button">关注</button>
+                        <input type="hidden" id="followedButtonFlag" name="followedButtonFlag" value="${followedButtonFlag}">
                         <input type="hidden" id="themeCreater" name="themeCreater" value="${coreForumTheme.getCreater()}">
                     </span>
                 </div>
@@ -100,6 +117,7 @@
             <div class="reply-count">${coreForumTheme.getReplyCount()} 个回复</div>
             <div class="follow-button">
                 <input type="hidden" id="themeId" name="themeId" value="${coreForumTheme.getId()}">
+                <input type="hidden" id="followedThemeButtonFlag" name="followedThemeButtonFlag" value="${followedThemeButtonFlag}">
                 <button type="button" class="follow-theme-button">关注主题</button>
             </div>
         </div>
@@ -129,9 +147,9 @@
                     </div>
                     <div class="reply-content-footer">
                         <div class="reply-content-tool">
-                            <span class="reply-content-tool-support">赞 ${forumContentItem.getLikeCount()}</span>
-                            <span class="reply-content-tool-nonsupport">踩 ${forumContentItem.getDislikeCount()}</span>
-                            <span class="reply-content-tool-reply">回复 ${forumContentItem.getReplyCount()}</span>
+                            <span class="reply-content-tool-support">赞 <span>${forumContentItem.getLikeCount()}</span></span>
+                            <span class="reply-content-tool-nonsupport">踩 <span>${forumContentItem.getDislikeCount()}</span></span>
+                            <span class="reply-content-tool-reply">回复 <span>${forumContentItem.getReplyCount()}</span></span>
                             <input type="hidden" id="replyContentId" value="${forumContentItem.getId()}" />
                         </div>
                         <div class="reply-content-time">${forumContentItem.getCreateTime()}</div>
@@ -175,6 +193,7 @@
                     </span>
                 </div>
             </div>
+            <input type="hidden" id="currentUser" name="currentUser" value="${PersonalSetup.getUserid()}">
             <div class="reply-input-content-detail">
                 <textarea name="replyDetail" id="replyDetail"></textarea>
             </div>

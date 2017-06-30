@@ -1,9 +1,6 @@
 package com.bbs4m.forum.services;
 
-import com.bbs4m.forum.entities.FollowUser;
-import com.bbs4m.forum.entities.ForumContent;
-import com.bbs4m.forum.entities.ForumContentReply;
-import com.bbs4m.forum.entities.ForumTheme;
+import com.bbs4m.forum.entities.*;
 
 import java.util.List;
 
@@ -16,4 +13,7 @@ public interface GetForumDetailService {
     List<ForumContentReply> getReplyContentByContentId (String ContentId);
     void updateBrowse(String themeId);
     void insertFollowUser(String userId, String followedUser);
+    String getFollowedButtonFlag(String userId, String followedUser);
+    void insertFollowTheme(String userId, String followedTheme);
+    String getFollowedThemeButtonFlag(String userId, String followedTheme);
 }

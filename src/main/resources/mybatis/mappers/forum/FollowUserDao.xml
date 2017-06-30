@@ -7,4 +7,7 @@
     <select id="getAllFollowUserByFollowedUserId" parameterType="String" resultType="com.bbs4m.forum.entities.FollowUser">
       SELECT * FROM FOLLOW_USER WHERE FOLLOWED_USERID = #{followedUserId}
     </select>
+    <select id="getFollowedButtonFlag" resultType="java.lang.String">
+      SELECT 'Y' FROM FOLLOW_USER WHERE FOLLOWED_USERID = #{1} AND USERID = #{0}
+    </select>
 </mapper>

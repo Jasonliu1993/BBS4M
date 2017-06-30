@@ -85,4 +85,14 @@ public class AjaxDataController {
         map.put("flag","Y");
         return map;
     }
+
+    @RequestMapping(value = "/followTheme.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String > followTheme(String userId, String followedTheme, String object,String Id) {
+        Map<String ,String> map = new HashMap<String, String>();
+
+        getForumDetailService.insertFollowTheme(userId,followedTheme);
+        map.put("flag","Y");
+        return map;
+    }
 }

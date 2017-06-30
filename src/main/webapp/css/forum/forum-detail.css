@@ -275,7 +275,7 @@
     float: left;
 }
 
-.content .reply-content ul .reply-content-detail-list .reply-content-footer span {
+.content .reply-content ul .reply-content-detail-list .reply-content-footer .reply-content-tool>span {
     height: 20px;
     line-height: 20px;
     width: 40px;

@@ -1,10 +1,7 @@
 package com.bbs4m.forum.servicesImpl;
 
 import com.bbs4m.forum.dao.*;
-import com.bbs4m.forum.entities.FollowUser;
-import com.bbs4m.forum.entities.ForumContent;
-import com.bbs4m.forum.entities.ForumContentReply;
-import com.bbs4m.forum.entities.ForumTheme;
+import com.bbs4m.forum.entities.*;
 import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.utilities.KeyValue;
 import org.springframework.stereotype.Component;
@@ -20,6 +17,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     @Resource
     ForumThemeDao forumThemeDao;
+
+    @Resource
+    FollowThemeDao followThemeDao;
 
     @Resource
     ForumContentDao forumContentDao;
@@ -71,5 +71,35 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         followUser.setFollowedUserid(followedUser);
         followUser.setUserid(userId);
         followUserDao.insertFollowUser(followUser);
+    }
+
+    public void insertFollowTheme(String userId, String followedTheme) {
+        FollowTheme followTheme = new FollowTheme();
+        followTheme.setId(KeyValue.getKeyValue());
+        followTheme.setUserid(userId);
+        followTheme.setThemeRefId(followedTheme);
+        followThemeDao.insertFollowTheme(followTheme);
+    }
+
+    public String getFollowedButtonFlag(String userId, String followedUser) {
+        if (userId == null) {
+            return "N";
+        } else {
+            if (followUserDao.getFollowedButtonFlag(userId,followedUser) == null)
+                return "N";
+            else
+                return "Y";
+        }
+    }
+
+    public String getFollowedThemeButtonFlag(String userId, String followedTheme) {
+        if (userId == null) {
+            return "N";
+        } else {
+            if (followThemeDao.getFollowedThemeButtonFlag(userId,followedTheme) == null)
+                return "N";
+            else
+                return "Y";
+        }
     }
 }

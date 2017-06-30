@@ -1,6 +1,7 @@
 package com.bbs4m.forum.controllers;
 
 import com.bbs4m.forum.entities.PersonalSetup;
+import com.bbs4m.forum.entities.UserAttribute;
 import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.forum.services.HomePageService;
 import com.bbs4m.forum.services.PagingService;
@@ -53,16 +54,22 @@ public class ForumController {
     public String getForumDetail ( @RequestParam("id") String id, HttpSession session, ModelMap modelMap) {
         PersonalSetup userConfig = null;
         int num = DefaultValue.getDefThemeRow();
+        String followedButtonFlag = "N";
+        String followedThemeButtonFlag = "N";
         if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
             num = (int)userConfig.getListCountInPage();
+            followedButtonFlag = getForumDetailService.getFollowedButtonFlag(((UserAttribute)session.getAttribute("UserAttr")).getUserid(),getForumDetailService.getCoreThemeAndContentByThemeId(id).getCreater());
+            followedThemeButtonFlag = getForumDetailService.getFollowedThemeButtonFlag(((UserAttribute)session.getAttribute("UserAttr")).getUserid(),id);
             System.out.println("+++++" + num);
         }
-
+            System.out.println("************" + followedButtonFlag);
         modelMap.addAttribute("coreForumTheme",getForumDetailService.getCoreThemeAndContentByThemeId(id));
         modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,1,num));
         modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(1,num, "content", id));
         modelMap.addAttribute("currentPage", "1");
         modelMap.addAttribute("relatedForum", relatedForumService.getRelatedForum(id));
+        modelMap.addAttribute("followedButtonFlag",followedButtonFlag);
+        modelMap.addAttribute("followedThemeButtonFlag",followedThemeButtonFlag);
         getForumDetailService.updateBrowse(id);
         return "/forum-page/forum-detail.jsp";
     }
