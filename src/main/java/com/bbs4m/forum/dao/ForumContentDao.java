@@ -17,4 +17,6 @@ public interface ForumContentDao {
     String getForumContentExcludeFirstContentCountByThemeId(String themeId);
     void updateLikeCount(String forumContentId);
     void updateDislikeCount(String forumContentId);
+    long findMaxForumContentOrderId(String themeId);
+    void saveNewContent(ForumContent forumContent);
 }

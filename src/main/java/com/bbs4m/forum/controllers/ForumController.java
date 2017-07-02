@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -88,8 +89,8 @@ public class ForumController {
         }
 
         modelMap.addAttribute("coreForumTheme",getForumDetailService.getCoreThemeAndContentByThemeId(id));
-        modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,1,(Integer.parseInt(currentPage) + 1) * num));
-        modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(Integer.parseInt(currentPage),num, "content", id));
+        modelMap.addAttribute("replyForumContents",getForumDetailService.getReplyContentByThemeId(id,Integer.parseInt(currentPage) + 1, num));
+        modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(Integer.parseInt(currentPage) + 1,num, "content", id));
         modelMap.addAttribute("currentPage", (Integer.parseInt(currentPage) + 1));
         modelMap.addAttribute("relatedForum", relatedForumService.getRelatedForum(id));
         modelMap.addAttribute("followedButtonFlag",followedButtonFlag);
@@ -98,7 +99,10 @@ public class ForumController {
     }
 
     @RequestMapping("/replyTheme.do")
-    public String replyTheme () {
-        return "";
+    public String replyTheme (HttpSession session,String themeId, String followThemeButton, String anonymitye, String replyDetail, @RequestParam("uploadPic") MultipartFile file) {
+        getForumDetailService.saveNewContent(session, themeId, replyDetail, file, followThemeButton, anonymitye);
+        System.out.println("followThemeButton:" + followThemeButton);
+        System.out.println("anonymitye:" + anonymitye);
+        return "/forum/fourmDetail.do?id=" + themeId;
     }
 }

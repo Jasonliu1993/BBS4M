@@ -3,10 +3,14 @@ package com.bbs4m.forum.servicesImpl;
 import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.entities.*;
 import com.bbs4m.forum.services.GetForumDetailService;
+import com.bbs4m.utilities.DateUtility;
 import com.bbs4m.utilities.KeyValue;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -35,6 +39,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     @Resource
     FollowUserDao followUserDao;
+
+    @Resource
+    ForumPicDao forumPicDao;
 
     public ForumTheme getCoreThemeAndContentByThemeId(String themeId) {
         ForumTheme forumTheme = forumThemeDao.getForumThemeByThemeId(themeId);
@@ -113,5 +120,57 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     public void updateDislikeCount(String forumContentId) {
         forumContentDao.updateDislikeCount(forumContentId);
+    }
+
+    public void saveNewContent(HttpSession session, String themeId, String content, MultipartFile file, String followThemeButton, String anonymitye) {
+        String creater = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
+        ForumContent forumContent = new ForumContent();
+
+        forumContent.setId(KeyValue.getKeyValue());
+        forumContent.setOrderNumber(forumContentDao.findMaxForumContentOrderId(themeId) + 1);
+        forumContent.setThemeRefId(themeId);
+        forumContent.setContent(content);
+        if (file.getSize() != 0) {
+            try {
+                System.out.println("file content:" + file.getBytes().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String fileKeyId = KeyValue.getKeyValue();
+            forumContent.setPicFlag("Y");
+            forumContent.setPicId(fileKeyId);
+
+            ForumPic forumPic = new ForumPic();
+            try {
+                forumPic.setId(fileKeyId);
+                forumPic.setPic(file.getBytes());
+                forumPicDao.insertForumPic(forumPic);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            forumContent.setPicFlag("N");
+        }
+
+        if (anonymitye == null) {
+            forumContent.setAnonymitye("N");
+        } else {
+            forumContent.setAnonymitye("Y");
+        }
+
+        if (followThemeButton != null) {
+            if("Y".equals(followThemeDao.getFollowedThemeButtonFlag(content,themeId))) {
+
+            } else {
+                FollowTheme followTheme = new FollowTheme();
+                followTheme.setId(KeyValue.getKeyValue());
+                followTheme.setThemeRefId(themeId);
+                followTheme.setUserid(creater);
+                followThemeDao.insertFollowTheme(followTheme);
+            }
+        }
+        forumContent.setCreater(creater);
+        forumContent.setCreateTime(DateUtility.getCurrentDate());
+        forumContentDao.saveNewContent(forumContent);
     }
 }

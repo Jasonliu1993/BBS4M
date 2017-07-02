@@ -12,6 +12,7 @@ public class ForumContent {
     private String picId;
     private long likeCount;
     private long dislikeCount;
+    private String anonymitye;
     private String creater;
     private String userName;
     private String createTime;
@@ -123,6 +124,13 @@ public class ForumContent {
         this.creater = creater;
     }
 
+    public String getAnonymitye() {
+        return anonymitye;
+    }
+
+    public void setAnonymitye(String anonymitye) {
+        this.anonymitye = anonymitye;
+    }
 
     public String getCreateTime() {
         return createTime;

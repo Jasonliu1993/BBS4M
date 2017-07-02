@@ -456,7 +456,7 @@
     text-align: center;
 }
 
-.content .reply-input-content .reply-input-content-submit input[type='button'] {
+.content .reply-input-content .reply-input-content-submit input[type='submit'] {
     width: 70px;
     height: 25px;
     background-color: green;

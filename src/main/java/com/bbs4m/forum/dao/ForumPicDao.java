@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface ForumPicDao {
     ForumPic getForumPicByid(String id);
+    void insertForumPic(ForumPic forumPic);
 }

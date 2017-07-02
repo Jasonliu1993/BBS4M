@@ -29,7 +29,7 @@ public class PagingServiceImpl implements PagingService {
             }
         } else if ("content".equals(object)) {
             int count = Integer.parseInt(forumContentDao.getForumContentExcludeFirstContentCountByThemeId(Id));
-            if (((currentPageNumber + 1 ) * num) >= count) {
+            if (((currentPageNumber ) * num) >= count) {
                 return "N";
             } else {
                 return "Y";

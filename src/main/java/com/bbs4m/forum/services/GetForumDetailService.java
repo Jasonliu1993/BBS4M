@@ -1,7 +1,9 @@
 package com.bbs4m.forum.services;
 
 import com.bbs4m.forum.entities.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -18,4 +20,5 @@ public interface GetForumDetailService {
     String getFollowedThemeButtonFlag(String userId, String followedTheme);
     void updateLikeCount(String forumContentId);
     void updateDislikeCount(String forumContentId);
+    void saveNewContent(HttpSession session,String themeId, String content, MultipartFile file, String followThemeButton, String anonymitye);
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bbs4m.forum.dao.ForumPicDao">
+    <insert id="insertForumPic" parameterType="com.bbs4m.forum.entities.ForumPic">
+        INSERT INTO FORUM_PIC VALUES(#{id},#{version},#{pic},#{comments},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
+    </insert>
     <select id="getForumPicByid" parameterType="String" resultType="com.bbs4m.forum.entities.ForumPic">
         SELECT * FROM FORUM_PIC WHERE ID = #{id}
     </select>

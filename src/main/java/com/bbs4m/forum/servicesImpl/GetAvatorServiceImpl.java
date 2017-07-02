@@ -16,6 +16,10 @@ public class GetAvatorServiceImpl implements GetAvatorService{
     PersonalAvatorDao personalAvatorDao;
 
     public byte[] getAvatorByUserId(String userId) {
-        return personalAvatorDao.getAvatorByUserId(userId).getPic();
+        if (personalAvatorDao.getAvatorByUserId(userId) == null) {
+            return personalAvatorDao.getAvatorByUserId("anonymitye").getPic();
+        } else {
+            return personalAvatorDao.getAvatorByUserId(userId).getPic();
+        }
     }
 }

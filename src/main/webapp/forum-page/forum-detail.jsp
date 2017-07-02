@@ -125,7 +125,6 @@
         <div class="forum-list-footer">
             <div class="reply-count">${coreForumTheme.getReplyCount()} 个回复</div>
             <div class="follow-button">
-                <input type="hidden" id="themeId" name="themeId" value="${coreForumTheme.getId()}">
                 <input type="hidden" id="followedThemeButtonFlag" name="followedThemeButtonFlag" value="${followedThemeButtonFlag}">
                 <button type="button" class="follow-theme-button">关注主题</button>
             </div>
@@ -137,10 +136,20 @@
                 <li class="reply-content-detail-list">
                     <div class="reply-personal-title">
                     <span class="reply-personal-avator">
-                        <img src="/images/getAvator.do?id=${forumContentItem.getCreater()}" alt="avator"/>
+                        <c:if test="${forumContentItem.getAnonymitye() == 'N'}">
+                            <img src="/images/getAvator.do?id=${forumContentItem.getCreater()}" alt="avator"/>
+                        </c:if>
+                        <c:if test="${forumContentItem.getAnonymitye() == 'Y'}">
+                            <img src="/images/getAvator.do?id=anonymitye" alt="avator"/>
+                        </c:if>
                     </span>
                         <span class="reply-person">
+                            <c:if test="${forumContentItem.getAnonymitye() == 'N'}">
                                 ${forumContentItem.getUserName()}
+                            </c:if>
+                            <c:if test="${forumContentItem.getAnonymitye() == 'Y'}">
+                                匿名
+                            </c:if>
                         </span>
                     </div>
                     <div class="reply-content-detail">
@@ -173,7 +182,7 @@
     </c:if>
     <input type="hidden" id="currentPage" name="currentPage" value="${currentPage}">
     <div class="reply-input-content">
-        <form action="" method="post">
+        <form action="/forum/replyTheme.do" method="post" enctype="multipart/form-data">
             <div class="reply-input-content-header">
                 <div class="reply-input-content-header-left">
                     <div class="reply-header-avator">
@@ -203,15 +212,16 @@
                 </div>
             </div>
             <input type="hidden" id="currentUser" name="currentUser" value="${PersonalSetup.getUserid()}">
+            <input type="hidden" id="themeId" name="themeId" value="${coreForumTheme.getId()}">
             <div class="reply-input-content-detail">
                 <textarea name="replyDetail" id="replyDetail"></textarea>
             </div>
             <div class="reply-input-content-submit">
                 <a href="#" class="upload-pic">上传照片</a>
-                <input type="file" value="上传照片" class="inputFile"/>
+                <input type="file" class="inputFile" id="uploadPic" name="uploadPic"/>
 
                 <a href="#" class="reply-submit">回复</a>
-                <input type="button" value="回复"/>
+                <input type="submit" value="回复"/>
             </div>
         </form>
     </div>

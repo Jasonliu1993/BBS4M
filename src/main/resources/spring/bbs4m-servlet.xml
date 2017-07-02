@@ -34,9 +34,14 @@
         </property>
     </bean>
 
-    <bean id="multipartResolver"
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-          p:defaultEncoding="utf-8" />
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>1000000</value>
+        </property>
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
 
     <!--定义Controller扫描包,用户扫描Controller并创建代理对象 -->
     <context:component-scan base-package="com.bbs4m.forum.controllers"/>
