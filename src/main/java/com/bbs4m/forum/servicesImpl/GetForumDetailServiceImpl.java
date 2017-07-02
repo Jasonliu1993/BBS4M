@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jason on 12/06/2017.
@@ -42,6 +44,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     @Resource
     ForumPicDao forumPicDao;
+
+    @Resource
+    UserDataDao userDataDao;
 
     public ForumTheme getCoreThemeAndContentByThemeId(String themeId) {
         ForumTheme forumTheme = forumThemeDao.getForumThemeByThemeId(themeId);
@@ -172,5 +177,22 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         forumContent.setCreater(creater);
         forumContent.setCreateTime(DateUtility.getCurrentDate());
         forumContentDao.saveNewContent(forumContent);
+    }
+
+    public Map<String ,String> saveForumContentReply(String currentUser, String contentId, String subPersonId,String replyContent) {
+        Map<String ,String> map = new HashMap<String, String>();
+        ForumContentReply forumContentReply = new ForumContentReply();
+        forumContentReply.setId(KeyValue.getKeyValue());
+        forumContentReply.setContentRefId(contentId);
+        forumContentReply.setContentSubperson(subPersonId);
+        forumContentReply.setContent(replyContent);
+        forumContentReply.setCreater(currentUser);
+        String dateTime = DateUtility.getCurrentDate();
+        String dateTimeOutput = dateTime.substring(0,10);
+        forumContentReply.setCreateTime(dateTime);
+        forumContentReplyDao.insertForumContentReply(forumContentReply);
+        map.put("dateTime",dateTimeOutput);
+        map.put("replyName",userDataDao.getUserName(currentUser));
+        return map;
     }
 }

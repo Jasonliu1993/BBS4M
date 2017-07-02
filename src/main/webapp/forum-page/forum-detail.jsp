@@ -63,6 +63,15 @@
                 $(this).parent().parent().parent().parent().parent().html('');
             });
 
+            $("ul").delegate(".reply-content-detail-list .reply-area .reply-area-content .reply-area-content-reply-content .reply-area-content-button .reply-area-content-button-right button", "click", function () {
+                if ($("#reply-content").val() == '') {
+                    alert("请输入内容!")
+                } else {
+                    replyContentReply($("#currentUser").val(),$("#replyContentContentId").val(),$("#replyContentSubperson").val(), $("#reply-content").val())
+                    $("#reply-content").val("")
+                }
+            });
+
             $(".reply-content-tool-support").on("click", function () {
                 log($(this).next().next().next().val())
                 setLikeAndDislike("like",$(this).next().next().next().val(),$(this))
@@ -70,6 +79,18 @@
 
             $(".reply-content-tool-nonsupport").on("click", function () {
                 setLikeAndDislike("dislike",$(this).next().next().val(),$(this))
+            });
+
+            $("ul").delegate(".reply-area-content-title-right-reply-button", "click", function () {
+                log($(this).next().val())
+                $("#replyContentSubperson").val($(this).next().val())
+                $("#reply-content").val("@" + $(this).parent().prev().find(".reply-area-content-title-person").text() + ":");
+            });
+
+            $("ul").delegate("#reply-content", "keydown", function () {
+                if ($("#reply-content").val() == '') {
+                    $("#replyContentSubperson").val("");
+                }
             });
 
         })

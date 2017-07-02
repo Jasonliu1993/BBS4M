@@ -35,7 +35,11 @@ public class AjaxDataController {
     @RequestMapping(value = "/replyContentList.do", method = RequestMethod.POST)
     @ResponseBody
     public List<ForumContentReply> getReplyContentList(String id) {
-        return getForumDetailService.getReplyContentByContentId(id);
+        List<ForumContentReply> forumContentReplies = getForumDetailService.getReplyContentByContentId(id);
+        for (ForumContentReply forumContentReply : forumContentReplies) {
+            forumContentReply.setCreateTime(forumContentReply.getCreateTime().substring(0,10));
+        }
+        return forumContentReplies;
     }
 
     @RequestMapping(value = "/themeList.do", method = RequestMethod.POST)
@@ -108,6 +112,15 @@ public class AjaxDataController {
             getForumDetailService.updateDislikeCount(forumContentId);
             map.put("category","dislike");
         }
+        map.put("flag","Y");
+        return map;
+    }
+
+    @RequestMapping(value = "/replyContentReply.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String > replyContentReply(String currentUser, String contentId, String subPersonId,String replyContent) {
+        Map<String ,String> map = new HashMap<String, String>();
+        map = getForumDetailService.saveForumContentReply(currentUser,contentId,subPersonId,replyContent);
         map.put("flag","Y");
         return map;
     }

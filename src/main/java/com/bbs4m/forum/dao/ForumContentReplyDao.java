@@ -12,4 +12,5 @@ import java.util.List;
 public interface ForumContentReplyDao {
     String getReplyCountByContentId (String id);
     List<ForumContentReply> getForumContentReplyByContentId (String ContentId);
+    void insertForumContentReply(ForumContentReply forumContentReply);
 }

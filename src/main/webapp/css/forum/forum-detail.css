@@ -286,8 +286,9 @@
     color: white;
     text-align: center;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 9px;
 }
+
 
 .content .reply-content ul .reply-content-detail-list .reply-content-footer .reply-content-time {
     height: 20px;

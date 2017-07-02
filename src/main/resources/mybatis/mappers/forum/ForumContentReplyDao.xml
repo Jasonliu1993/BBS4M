@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bbs4m.forum.dao.ForumContentReplyDao">
+    <insert id="insertForumContentReply" parameterType="com.bbs4m.forum.entities.ForumContentReply">
+        INSERT INTO FORUM_CONTENT_REPLY VALUES (#{id},#{version},#{contentRefId},#{contentSubperson},#{content},#{creater},#{createTime},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
+    </insert>
     <select id="getReplyCountByContentId" parameterType="String" resultType="java.lang.String">
-          SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_CONTENT_REPLY WHERE CONTENT_REF_ID = #{id}
+          SELECT CASE WHEN COUNT(*) >= 100 THEN '99+' ELSE CAST(COUNT(*) AS CHAR) END FROM FORUM_CONTENT_REPLY WHERE CONTENT_REF_ID = #{id}
     </select>
     <select id="getForumContentReplyByContentId" resultType="com.bbs4m.forum.entities.ForumContentReply">
-        SELECT * FROM FORUM_CONTENT_REPLY A WHERE A.CONTENT_REF_ID = #{ContentId}
+        SELECT * FROM FORUM_CONTENT_REPLY A WHERE A.CONTENT_REF_ID = #{ContentId} ORDER BY CREATE_TIME
     </select>
 </mapper>

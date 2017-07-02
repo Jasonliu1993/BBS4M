@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserDataDao {
     UserData getUserData(String userId, String password);
+    String getUserName(String userId);
 }

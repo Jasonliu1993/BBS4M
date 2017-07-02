@@ -4,4 +4,7 @@
     <select id="getUserData" resultType="com.bbs4m.forum.entities.UserData">
         SELECT * FROM LOGIN_DATA WHERE USER_NAME = #{0} AND PASSWORD = #{1}
     </select>
+    <select id="getUserName" parameterType="String" resultType="java.lang.String">
+        SELECT USER_NAME FROM LOGIN_DATA WHERE USERID = #{userId}
+    </select>
 </mapper>

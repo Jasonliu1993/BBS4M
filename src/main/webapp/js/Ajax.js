@@ -32,12 +32,12 @@ function getReplyContent(varThis,replyContentid) {
                         '<span class="reply-area-content-title-right">' +
                         '<span class="reply-area-content-title-right-time">' + json[i].createTime + '</span>' +
                         '<span class="reply-area-content-title-right-reply-button">回复</span>' +
+                        '<input type="hidden" id="replyContentPersonId" name="replyContentPersonId" value="' + json[i].creater + '">' +
                         '</span>' +
                         '</div>' +
                         '<div class="reply-area-content-content">' +
                         json[i].content +
                         '</div>' +
-                            '<input type="hidden" id="ReplyContentList" name="ReplyContentList" value="' + json[i].creater +'" />' +
                         '</div>' +
                         '</li>' ;
                 }
@@ -47,6 +47,8 @@ function getReplyContent(varThis,replyContentid) {
                 '<span class="reply-area-content-reply-content">' +
                 '<div class="reply-area-content-content-textarea">' +
                 '<textarea name="reply-content" id="reply-content" ></textarea>' +
+                '<input type="hidden" name="replyContentContentId" id="replyContentContentId" value="' + replyContentid + '">' +
+                '<input type="hidden" name="replyContentSubperson" id="replyContentSubperson" >' +
                 '</div>' +
                 '<div class="reply-area-content-button">' +
                 '<span class="reply-area-content-button-left">' +
@@ -326,6 +328,51 @@ function setLikeAndDislike(flag, forumContentId, thisNode) {
                 } else {
                     alert("操作失败!")
                 }
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+function replyContentReply(currentUser,contentId,subPersonId, replyContent) {
+    $.ajax({
+        url: '/ajax/replyContentReply.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentUser': currentUser,
+            'contentId': contentId,
+            'subPersonId': subPersonId,
+            'replyContent' : replyContent
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var varList = '';
+                varList = varList + '<li class="reply-area-core-content-list">' +
+                    '<div class="reply-area-core-content">' +
+                    '<div class="reply-area-content-title">' +
+                    '<span class="reply-area-content-title-left">' +
+                    '<span class="reply-area-content-title-avater">' +
+                    '<img src="/images/getAvator.do?id=' + currentUser +'" />' +
+                    '</span>' +
+                    '<span class="reply-area-content-title-person">' + json.replyName + '</span>' +
+                    '</span>' +
+                    '<span class="reply-area-content-title-right">' +
+                    '<span class="reply-area-content-title-right-time">' + json.dateTime + '</span>' +
+                    '<span class="reply-area-content-title-right-reply-button">回复</span>' +
+                    '<input type="hidden" id="replyContentPersonId" name="replyContentPersonId" value="' + currentUser + '">' +
+                    '</span>' +
+                    '</div>' +
+                    '<div class="reply-area-content-content">' +
+                    replyContent +
+                    '</div>' +
+                    '</div>' +
+                    '</li>' ;
+                $(".reply-area-content ul").append(varList);
             }
         },
         error: function (json) {

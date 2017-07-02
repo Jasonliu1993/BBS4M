@@ -6,6 +6,7 @@ public class ForumContentReply {
   private String id;
   private long version;
   private String contentRefId;
+  private String contentSubperson;
   private String content;
   private String creater;
   private String createrName;
@@ -75,6 +76,13 @@ public class ForumContentReply {
     this.contentRefId = contentRefId;
   }
 
+  public String getContentSubperson() {
+    return contentSubperson;
+  }
+
+  public void setContentSubperson(String contentSubperson) {
+    this.contentSubperson = contentSubperson;
+  }
 
   public String getContent() {
     return content;

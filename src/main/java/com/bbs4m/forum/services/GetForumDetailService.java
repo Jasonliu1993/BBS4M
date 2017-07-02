@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Jason on 12/06/2017.
@@ -21,4 +22,5 @@ public interface GetForumDetailService {
     void updateLikeCount(String forumContentId);
     void updateDislikeCount(String forumContentId);
     void saveNewContent(HttpSession session,String themeId, String content, MultipartFile file, String followThemeButton, String anonymitye);
+    Map<String ,String> saveForumContentReply(String currentUser, String contentId, String subPersonId, String replyContent);
 }
