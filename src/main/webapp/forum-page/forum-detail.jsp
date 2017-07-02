@@ -63,6 +63,15 @@
                 $(this).parent().parent().parent().parent().parent().html('');
             });
 
+            $(".reply-content-tool-support").on("click", function () {
+                log($(this).next().next().next().val())
+                setLikeAndDislike("like",$(this).next().next().next().val(),$(this))
+            });
+
+            $(".reply-content-tool-nonsupport").on("click", function () {
+                setLikeAndDislike("dislike",$(this).next().next().val(),$(this))
+            });
+
         })
     </script>
 </head>

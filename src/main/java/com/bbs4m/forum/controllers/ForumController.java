@@ -78,8 +78,12 @@ public class ForumController {
     public String getForumDetailByPilot ( @RequestParam("id") String id, String currentPage, HttpSession session, ModelMap modelMap) {
         PersonalSetup userConfig = null;
         int num = DefaultValue.getDefThemeRow();
+        String followedButtonFlag = "N";
+        String followedThemeButtonFlag = "N";
         if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
             num = (int)userConfig.getListCountInPage();
+            followedButtonFlag = getForumDetailService.getFollowedButtonFlag(((UserAttribute)session.getAttribute("UserAttr")).getUserid(),getForumDetailService.getCoreThemeAndContentByThemeId(id).getCreater());
+            followedThemeButtonFlag = getForumDetailService.getFollowedThemeButtonFlag(((UserAttribute)session.getAttribute("UserAttr")).getUserid(),id);
             System.out.println("+++++" + num);
         }
 
@@ -88,6 +92,8 @@ public class ForumController {
         modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(Integer.parseInt(currentPage),num, "content", id));
         modelMap.addAttribute("currentPage", (Integer.parseInt(currentPage) + 1));
         modelMap.addAttribute("relatedForum", relatedForumService.getRelatedForum(id));
+        modelMap.addAttribute("followedButtonFlag",followedButtonFlag);
+        modelMap.addAttribute("followedThemeButtonFlag",followedThemeButtonFlag);
         return "/forum-page/forum-detail.jsp";
     }
 

@@ -16,4 +16,6 @@ public interface GetForumDetailService {
     String getFollowedButtonFlag(String userId, String followedUser);
     void insertFollowTheme(String userId, String followedTheme);
     String getFollowedThemeButtonFlag(String userId, String followedTheme);
+    void updateLikeCount(String forumContentId);
+    void updateDislikeCount(String forumContentId);
 }

@@ -299,3 +299,38 @@ function followTheme(currentUser,followedTheme) {
         }
     })
 }
+
+function setLikeAndDislike(flag, forumContentId, thisNode) {
+    $.ajax({
+        url: '/ajax/setLikeAndDislike.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'flag': flag,
+            'forumContentId': forumContentId,
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                if (json.flag == 'Y') {
+                    if (json.category == 'like') {
+                        thisNode.css({"color":"red"});
+                        var count = parseInt(thisNode.find("span").text());
+                        thisNode.find("span").text(count + 1);
+                    } else {
+                        thisNode.css({"color":"green"});
+                        var count = parseInt(thisNode.find("span").text());
+                        thisNode.find("span").text(count + 1);
+                    }
+                } else {
+                    alert("操作失败!")
+                }
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+

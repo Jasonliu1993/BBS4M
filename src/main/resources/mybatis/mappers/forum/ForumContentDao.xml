@@ -3,6 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bbs4m.forum.dao.ForumContentDao">
+    <update id="updateDislikeCount">
+        UPDATE FORUM_CONTENT SET DISLIKE_COUNT = DISLIKE_COUNT + 1 WHERE ID = #{forumContentId}
+    </update>
+    <update id="updateLikeCount">
+        UPDATE FORUM_CONTENT SET LIKE_COUNT = LIKE_COUNT + 1 WHERE ID = #{forumContentId}
+    </update>
     <select id="getFirstContentByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumContent">
         SELECT A.ID,
               A.VERSION,

@@ -15,4 +15,6 @@ public interface ForumContentDao {
     ForumContent getLastReply (String themeId);
     List<ForumContent> getForumContentExcludeFirstContentByThemeid(String themeId, int currentPage, int pagRow);
     String getForumContentExcludeFirstContentCountByThemeId(String themeId);
+    void updateLikeCount(String forumContentId);
+    void updateDislikeCount(String forumContentId);
 }

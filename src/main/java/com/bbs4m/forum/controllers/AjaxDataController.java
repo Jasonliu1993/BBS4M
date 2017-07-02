@@ -95,4 +95,20 @@ public class AjaxDataController {
         map.put("flag","Y");
         return map;
     }
+
+    @RequestMapping(value = "/setLikeAndDislike.do", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,String > setLikeAndDislike(String flag, String forumContentId) {
+        Map<String ,String> map = new HashMap<String, String>();
+
+        if ("like".equals(flag)) {
+            getForumDetailService.updateLikeCount(forumContentId);
+            map.put("category","like");
+        } else {
+            getForumDetailService.updateDislikeCount(forumContentId);
+            map.put("category","dislike");
+        }
+        map.put("flag","Y");
+        return map;
+    }
 }

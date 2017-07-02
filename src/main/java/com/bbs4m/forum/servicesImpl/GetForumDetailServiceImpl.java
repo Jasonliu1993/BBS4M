@@ -66,19 +66,23 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
     }
 
     public void insertFollowUser(String userId, String followedUser) {
-        FollowUser followUser = new FollowUser();
-        followUser.setId(KeyValue.getKeyValue());
-        followUser.setFollowedUserid(followedUser);
-        followUser.setUserid(userId);
-        followUserDao.insertFollowUser(followUser);
+        if (followUserDao.getFollowedButtonFlag(userId,followedUser) == null) {
+            FollowUser followUser = new FollowUser();
+            followUser.setId(KeyValue.getKeyValue());
+            followUser.setFollowedUserid(followedUser);
+            followUser.setUserid(userId);
+            followUserDao.insertFollowUser(followUser);
+        }
     }
 
     public void insertFollowTheme(String userId, String followedTheme) {
-        FollowTheme followTheme = new FollowTheme();
-        followTheme.setId(KeyValue.getKeyValue());
-        followTheme.setUserid(userId);
-        followTheme.setThemeRefId(followedTheme);
-        followThemeDao.insertFollowTheme(followTheme);
+        if (followThemeDao.getFollowedThemeButtonFlag(userId,followedTheme) == null) {
+            FollowTheme followTheme = new FollowTheme();
+            followTheme.setId(KeyValue.getKeyValue());
+            followTheme.setUserid(userId);
+            followTheme.setThemeRefId(followedTheme);
+            followThemeDao.insertFollowTheme(followTheme);
+        }
     }
 
     public String getFollowedButtonFlag(String userId, String followedUser) {
@@ -101,5 +105,13 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
             else
                 return "Y";
         }
+    }
+
+    public void updateLikeCount(String forumContentId) {
+        forumContentDao.updateLikeCount(forumContentId);
+    }
+
+    public void updateDislikeCount(String forumContentId) {
+        forumContentDao.updateDislikeCount(forumContentId);
     }
 }
