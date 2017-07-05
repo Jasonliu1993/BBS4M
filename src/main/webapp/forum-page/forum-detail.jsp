@@ -188,7 +188,9 @@
                         <div class="reply-content-tool">
                             <span class="reply-content-tool-support">赞 <span>${forumContentItem.getLikeCount()}</span></span>
                             <span class="reply-content-tool-nonsupport">踩 <span>${forumContentItem.getDislikeCount()}</span></span>
-                            <span class="reply-content-tool-reply">回复 <span>${forumContentItem.getReplyCount()}</span></span>
+                            <c:if test="${not empty sessionScope.UserAttr}">
+                                <span class="reply-content-tool-reply">回复 <span>${forumContentItem.getReplyCount()}</span></span>
+                            </c:if>
                             <input type="hidden" id="replyContentId" value="${forumContentItem.getId()}" />
                         </div>
                         <div class="reply-content-time">${forumContentItem.getCreateTime()}</div>

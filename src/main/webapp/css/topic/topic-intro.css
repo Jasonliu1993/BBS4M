@@ -1,0 +1,106 @@
+body {
+    padding: 0;
+}
+
+.header {
+    width: 375px;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    background-color: white;
+    border-bottom: 1px solid #AFAFAF;
+    font-size: large;
+}
+
+.content{
+    width: 360px;
+    margin: 10px auto;
+}
+
+.content ul .topic-list {
+    width: 360px;
+    background-color: #fff;
+    border-radius: 3px;
+    margin: 10px auto;
+}
+
+.content ul .topic-list .topic-list-content{
+    width: 360px;
+    height: 60px;
+    border-bottom: 1px solid #CFCFCF;
+}
+
+.content ul .topic-list .topic-list-content .topic-list-content-left{
+    width: 60px;
+    height: 60px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    float: left;
+}
+
+.content ul .topic-list .topic-list-content .topic-list-content-left img{
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+.content ul .topic-list .topic-list-content .topic-list-content-right{
+    width: 300px;
+    height: 60px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    float: right;
+}
+
+.content ul .topic-list .topic-list-content .topic-list-content-right .topic-list-content-right-title{
+    height: 20px;
+    line-height: 20px;
+    padding-left: 3px;
+    padding-right: 3px;
+    display: inline-block;
+    background-color: green;
+    margin-left: 5px;
+    text-align: center;
+    margin-top: 5px;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 10px;
+}
+
+.content ul .topic-list .topic-list-content .topic-list-content-right .topic-list-content-right-comments{
+    width: 290px;
+    height: 20px;
+    line-height: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+.content ul .topic-list .topic-list-footer{
+    width: 360px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+.more {
+    width: 365px;
+    height: 25px;
+    line-height: 25px;
+    margin: 10px auto;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    background-color: #fff;
+    text-align: center;
+}

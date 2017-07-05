@@ -6,6 +6,8 @@ public class ForumTopic {
   private String id;
   private long version;
   private String topicName;
+  private String comments;
+  private byte[] pic;
   private String creater;
   private String createTime;
   private String custom1;
@@ -13,6 +15,8 @@ public class ForumTopic {
   private String custom3;
   private String custom4;
   private String custom5;
+
+  private int relatedForumCount;
 
 
   public String getId() {
@@ -32,8 +36,23 @@ public class ForumTopic {
     this.version = version;
   }
 
+  public String getComments() {
+    return comments;
+  }
 
-  public String getTopicName() {
+  public void setComments(String comments) {
+    this.comments = comments;
+  }
+
+    public byte[] getPic() {
+        return pic;
+    }
+
+    public void setPic(byte[] pic) {
+        this.pic = pic;
+    }
+
+    public String getTopicName() {
     return topicName;
   }
 
@@ -104,4 +123,11 @@ public class ForumTopic {
     this.custom5 = custom5;
   }
 
+    public int getRelatedForumCount() {
+        return relatedForumCount;
+    }
+
+    public void setRelatedForumCount(int relatedForumCount) {
+        this.relatedForumCount = relatedForumCount;
+    }
 }

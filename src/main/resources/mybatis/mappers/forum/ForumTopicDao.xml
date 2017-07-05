@@ -4,6 +4,19 @@
 
 <mapper namespace="com.bbs4m.forum.dao.ForumTopicDao">
     <select id="getForumTopicById" parameterType="String" resultType="com.bbs4m.forum.entities.ForumTopic">
-        SELECT * FROM FORUM_TOPIC WHERE ID = #{Id}
+        SELECT A.ID, A.VERSION, A.TOPIC_NAME, A.COMMENTS, A.CREATER, A.CREATE_TIME, A.CUSTOM1, A.CUSTOM2, A.CUSTOM3, A.CUSTOM4, A.CUSTOM5 FROM FORUM_TOPIC A WHERE A.ID = #{Id}
+    </select>
+    <select id="getForumTopicByPilot" resultType="com.bbs4m.forum.entities.ForumTopic">
+        SELECT FT.ID, FT.VERSION, FT.TOPIC_NAME, FT.COMMENTS, FT.CREATER, FT.CREATE_TIME, FT.CUSTOM1, FT.CUSTOM2, FT.CUSTOM3, FT.CUSTOM4, FT.CUSTOM5, TC.FORUM_COUNT RELATED_FORUM_COUNT
+        FROM FORUM_TOPIC FT LEFT JOIN (SELECT
+                                         TI.TOPIC_ID,
+                                         COUNT(*) FORUM_COUNT
+                                       FROM TOPIC_INCLUDE TI
+                                       GROUP BY TI.TOPIC_ID) TC ON FT.ID = TC.TOPIC_ID
+        ORDER BY TC.FORUM_COUNT DESC
+        LIMIT #{0}, #{1}
+    </select>
+    <select id="getTopicPicById" resultType="com.bbs4m.forum.entities.ForumTopic">
+        SELECT * FROM FORUM_TOPIC WHERE ID = #{0}
     </select>
 </mapper>
