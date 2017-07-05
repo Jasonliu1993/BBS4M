@@ -4,6 +4,7 @@ import com.bbs4m.forum.entities.*;
 import com.bbs4m.forum.services.GetForumDetailService;
 import com.bbs4m.forum.services.HomePageService;
 import com.bbs4m.forum.services.PagingService;
+import com.bbs4m.forum.services.TopicService;
 import com.bbs4m.utilities.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,9 @@ public class AjaxDataController {
 
     @Resource
     PagingService pagingService;
+
+    @Resource
+    TopicService topicService;
 
     @RequestMapping(value = "/replyContentList.do", method = RequestMethod.POST)
     @ResponseBody
@@ -123,5 +127,12 @@ public class AjaxDataController {
         map = getForumDetailService.saveForumContentReply(currentUser,contentId,subPersonId,replyContent);
         map.put("flag","Y");
         return map;
+    }
+
+    @RequestMapping(value = "/topicList.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumTopic> getTopicList (HttpSession session, String currentPage) {
+        int pageCount = 10;
+        return topicService.getForumTopicByPilot(Integer.parseInt(currentPage) ,pageCount);
     }
 }

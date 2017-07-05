@@ -13,4 +13,5 @@ public interface ForumTopicDao {
     ForumTopic getForumTopicById (String id);
     List<ForumTopic> getForumTopicByPilot(int currentPageNumber, int pageCount);
     ForumTopic getTopicPicById (String id);
+    String getTopicCount ();
 }

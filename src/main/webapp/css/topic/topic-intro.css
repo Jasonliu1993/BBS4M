@@ -25,6 +25,7 @@ body {
     background-color: #fff;
     border-radius: 3px;
     margin: 10px auto;
+    list-style: none;
 }
 
 .content ul .topic-list .topic-list-content{
@@ -94,7 +95,7 @@ body {
     font-size: 13px;
 }
 
-.more {
+.reload-bar {
     width: 365px;
     height: 25px;
     line-height: 25px;

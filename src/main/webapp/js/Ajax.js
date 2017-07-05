@@ -381,3 +381,47 @@ function replyContentReply(currentUser,contentId,subPersonId, replyContent) {
     })
 }
 
+function getLoadTopic(currentPage) {
+    $.ajax({
+        url: '/ajax/topicList.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentPage': currentPage
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTopic = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTopic = listTopic +
+                        '<li class="topic-list">' +
+                        '<div class="topic-list-content">' +
+                        '<div class="topic-list-content-left">' +
+                        '<img src="/images/getTopicPic.do?id=' + json[i].id + '" alt="avatar">' +
+                        '<input type="hidden" id="topicId" name="topicId" value="' + json[i].id + '">' +
+                        '</div>' +
+                        '<div class="topic-list-content-right">' +
+                        '<div class="topic-list-content-right-title">' + json[i].topicName + '</div>' +
+                        '<div class="topic-list-content-right-comments">' + json[i].comments + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="topic-list-footer">' +
+                        '<span class="topic-forum-count">' + json[i].relatedForumCount + '</span>个帖子' +
+                        '</div>' +
+                        '</li>'
+                }
+                $("ul").append(listTopic)
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+
+
+
+

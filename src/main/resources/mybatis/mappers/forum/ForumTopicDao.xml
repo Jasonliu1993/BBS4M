@@ -19,4 +19,7 @@
     <select id="getTopicPicById" resultType="com.bbs4m.forum.entities.ForumTopic">
         SELECT * FROM FORUM_TOPIC WHERE ID = #{0}
     </select>
+    <select id="getTopicCount" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_TOPIC A
+    </select>
 </mapper>

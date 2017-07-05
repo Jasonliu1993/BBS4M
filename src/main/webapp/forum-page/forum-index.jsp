@@ -28,13 +28,6 @@
 
         $(document).ready(function(){
 
-            if(window.name!="hasLoad"){
-                location.reload();
-                window.name = "hasLoad";
-            }else{
-                window.name="";
-            }
-
             $(".reload-bar").on("click",function(){
                 log($("#currentPage").val() + 1);
                 getLoadTheme(parseInt($("#currentPage").val()) + 1);

@@ -22,6 +22,16 @@
     </style>
     <script>
 
+        $(document).ready(function(){
+            $(".reload-bar").on("click",function(){
+                getLoadTopic($("#currentPage").val());
+                getLoadButtonFlag($("#currentPage").val(),"topic",null);
+            })
+
+            $("ul").delegate(".topic-list","click",function(){
+                window.open("/topic/topic-detail.do?id=" + $(this).find("#topicId").val());
+            })
+        })
     </script>
 </head>
 <body style="padding-top: 0;">
@@ -48,7 +58,9 @@
         </c:forEach>
     </ul>
 </div>
-<div class="more">更多</div>
+<c:if test="${pagingFlag == 'Y'}">
+    <div class="reload-bar">更多</div>
+</c:if>
 <input type="hidden" id="currentPage" name="currentPage" value="${nextpage}">
 <jsp:include page="/common-page/footer.jsp" />
 </body>
