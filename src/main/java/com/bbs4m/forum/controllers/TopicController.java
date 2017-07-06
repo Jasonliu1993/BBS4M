@@ -1,7 +1,10 @@
 package com.bbs4m.forum.controllers;
 
+import com.bbs4m.forum.entities.PersonalSetup;
+import com.bbs4m.forum.services.HomePageService;
 import com.bbs4m.forum.services.PagingService;
 import com.bbs4m.forum.services.TopicService;
+import com.bbs4m.utilities.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,9 @@ public class TopicController {
     @Resource
     PagingService pagingService;
 
+    @Resource
+    HomePageService homePageService;
+
     @RequestMapping("/topicIntro.do")
     public String getTopicIntro(HttpSession session, String currentPage, ModelMap modelMap) {
         int pageCount = 1;
@@ -35,7 +41,15 @@ public class TopicController {
     }
 
     @RequestMapping("/topic-detail.do")
-    public String getTopicDetail(HttpSession session, String currentPage, ModelMap modelMap) {
+    public String getTopicDetail(HttpSession session, String id, String currentPage, ModelMap modelMap) {
+        PersonalSetup userConfig = null;
+        int num = DefaultValue.getDefTopicRow();
+
+        modelMap.addAttribute("coreList",homePageService.getHomePageList(1 ,num,id));
+        modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(1,num, "topicForum",id));
+        modelMap.addAttribute("currentPage", "1");
+        modelMap.addAttribute("topic",topicService.getForumTopicById(id));
+
         return "/topic-page/topic-detail.jsp";
     }
 

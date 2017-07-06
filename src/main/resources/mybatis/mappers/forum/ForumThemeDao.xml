@@ -12,8 +12,9 @@
         WHERE B.ORDER_NUMBER = (SELECT MAX(C.ORDER_NUMBER)
                           FROM FORUM_CONTENT C
                           WHERE B.THEME_REF_ID = C.THEME_REF_ID)
+        <if test="topicId != null">AND EXISTS(SELECT 1 FROM TOPIC_INCLUDE C WHERE C.THEME_REF_ID = A.ID AND C.TOPIC_ID = #{topicId})</if>
         ORDER BY B.CREATE_TIME DESC
-         LIMIT #{0}, #{1}
+         LIMIT #{currentPageNumber}, #{num}
     </select>
     <select id="getForumThemeByThemeId" parameterType="String" resultType="com.bbs4m.forum.entities.ForumTheme">
         SELECT * FROM FORUM_THEME WHERE ID = #{themeId}

@@ -11,4 +11,5 @@ import java.util.List;
 @Component
 public interface TopicIncludeDao {
     List<TopicInclude> getTopicIncludeByThemeId(String themeId);
+    String getTopicForumCountByTopicId(String topicId);
 }

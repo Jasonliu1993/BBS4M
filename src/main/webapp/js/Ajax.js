@@ -74,7 +74,7 @@ function getReplyContent(varThis,replyContentid) {
     })
 }
 
-function getLoadTheme(currentPage) {
+function getLoadTheme(currentPage,topicId) {
     $.ajax({
         url: '/ajax/themeList.do',
         type: "POST",//请求方式：get或post
@@ -82,7 +82,8 @@ function getLoadTheme(currentPage) {
         dataType: "json",//数据返回类型：xml、json、script
         cache: false,
         data: {
-            'currentPage': currentPage
+            'currentPage': currentPage,
+            'topicId': topicId
         },//自定义提交的数据
         success: function (json) {
             if (json !== null || json !== undefined || json !== '') {
@@ -134,7 +135,6 @@ function getLoadTheme(currentPage) {
                         '</div>' +
                         '</li>' ;
                 }
-
                 $(".forum-core ul").append(listTheme);
                 $("#currentPage").val(parseInt($("#currentPage").val()) + 1);
                 $(".reload-bar").attr("href","#" + $("#currentPage").val());

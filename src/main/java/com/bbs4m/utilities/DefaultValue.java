@@ -6,9 +6,14 @@ package com.bbs4m.utilities;
 public class DefaultValue {
     private static int DEF_THEME_ROW = 10;
     private static int DEF_CONTENT_ROW = 10;
+    private static int DEF_TOPIC_ROW = 2;
 
     public static int getDefThemeRow() {
         return DEF_THEME_ROW;
+    }
+
+    public static int getDefTopicRow() {
+        return DEF_TOPIC_ROW;
     }
 
     public static int getDefContentRow() {

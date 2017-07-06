@@ -41,3 +41,17 @@ body {
     margin: 0 auto;
     text-align: center;
 }
+
+.reload-bar {
+    display: block;
+    width: 375px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #c4c4c4;
+    border-radius: 10px;
+    text-decoration: none;
+}

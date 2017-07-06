@@ -44,7 +44,7 @@ public class ForumController {
             System.out.println("+++++" + num);
         }
 
-        modelMap.addAttribute("coreList",homePageService.getHomePageList(1,num));
+        modelMap.addAttribute("coreList",homePageService.getHomePageList(1,num,null));
         modelMap.addAttribute("pagingFlag",pagingService.judgeLoadButton(1,num, "theme",null));
         modelMap.addAttribute("currentPage", "1");
 

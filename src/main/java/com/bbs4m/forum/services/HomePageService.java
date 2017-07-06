@@ -9,5 +9,5 @@ import java.util.List;
  * Created by Jason on 06/06/2017.
  */
 public interface HomePageService {
-    List<ForumTheme> getHomePageList(int currentPageNumber, int num);
+    List<ForumTheme> getHomePageList(int currentPageNumber, int num, String topicId);
 }

@@ -3,8 +3,8 @@ package com.bbs4m.forum.servicesImpl;
 import com.bbs4m.forum.dao.ForumContentDao;
 import com.bbs4m.forum.dao.ForumThemeDao;
 import com.bbs4m.forum.dao.ForumTopicDao;
+import com.bbs4m.forum.dao.TopicIncludeDao;
 import com.bbs4m.forum.services.PagingService;
-import com.bbs4m.forum.services.TopicService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -24,6 +24,9 @@ public class PagingServiceImpl implements PagingService {
     @Resource
     ForumTopicDao forumTopicDao;
 
+    @Resource
+    TopicIncludeDao topicIncludeDao;
+
     public String judgeLoadButton(int currentPageNumber, int num, String object, String Id) {
         if ("theme".equals(object)) {
             int count = Integer.parseInt(forumThemeDao.getThemeCount());
@@ -41,6 +44,15 @@ public class PagingServiceImpl implements PagingService {
             }
         } else if ("topic".equals(object)) {
             int count = Integer.parseInt(forumTopicDao.getTopicCount());
+            if (((currentPageNumber ) * num) >= count) {
+                return "N";
+            } else {
+                return "Y";
+            }
+        } else if ("topicForum".equals(object)) {
+            int count = Integer.parseInt(topicIncludeDao.getTopicForumCountByTopicId(Id));
+            System.out.print("++++++++++count++++++++++++" + count);
+            System.out.print("++++++++++currentcount++++++++++++" + ((currentPageNumber ) * num));
             if (((currentPageNumber ) * num) >= count) {
                 return "N";
             } else {

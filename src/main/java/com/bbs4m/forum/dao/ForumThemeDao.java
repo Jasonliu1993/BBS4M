@@ -1,6 +1,7 @@
 package com.bbs4m.forum.dao;
 
 import com.bbs4m.forum.entities.ForumTheme;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
  */
 @Component
 public interface ForumThemeDao {
-    List<ForumTheme> getForumThemeByPilot(int currentPageNumber, int num);
+    List<ForumTheme> getForumThemeByPilot(@Param("currentPageNumber") int currentPageNumber,@Param("num") int num,@Param("topicId") String topicId);
     String getThemeCount();
     ForumTheme getForumThemeByThemeId (String themeId);
     List<ForumTheme> getRelatedForumByThemeId(String themeId);

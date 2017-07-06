@@ -31,4 +31,8 @@ public class TopicServiceImpl implements TopicService {
     public byte[] getTopicPicById(String id) {
         return forumTopicDao.getTopicPicById(id).getPic();
     }
+
+    public ForumTopic getForumTopicById(String id) {
+        return forumTopicDao.getForumTopicById(id);
+    }
 }

@@ -48,14 +48,20 @@ public class AjaxDataController {
 
     @RequestMapping(value = "/themeList.do", method = RequestMethod.POST)
     @ResponseBody
-    public List<ForumTheme> getThemeList(HttpSession session, String currentPage) {
+    public List<ForumTheme> getThemeList(HttpSession session, String currentPage, String topicId) {
         PersonalSetup userConfig = null;
-        int num = DefaultValue.getDefThemeRow();
+        int num = 0;
+        if (topicId != null && (! "".equals(topicId))){
+            num = DefaultValue.getDefTopicRow();
+        } else {
+            topicId = null;
+            num = DefaultValue.getDefThemeRow();
+        }
         if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
             num = (int)userConfig.getListCountInPage();
             System.out.println("+++++" + num);
         }
-        return homePageService.getHomePageList(Integer.parseInt(currentPage) ,num);
+        return homePageService.getHomePageList(Integer.parseInt(currentPage) ,num,topicId);
     }
 
     @RequestMapping(value = "/contentList.do", method = RequestMethod.POST)
@@ -75,7 +81,12 @@ public class AjaxDataController {
     public Map<String,String > getLoadButtonFlag(HttpSession session, String currentPage, String object,String Id) {
         Map<String ,String> map = new HashMap<String, String>();
         PersonalSetup userConfig = null;
-        int num = DefaultValue.getDefThemeRow();
+        int num = 0;
+        if (Id != null){
+            num = DefaultValue.getDefTopicRow();
+        } else {
+            num = DefaultValue.getDefThemeRow();
+        }
         if ( (userConfig = (PersonalSetup)session.getAttribute("PersonalSetup")) != null) {
             num = (int)userConfig.getListCountInPage();
             System.out.println("+++++" + num);
@@ -132,7 +143,7 @@ public class AjaxDataController {
     @RequestMapping(value = "/topicList.do", method = RequestMethod.POST)
     @ResponseBody
     public List<ForumTopic> getTopicList (HttpSession session, String currentPage) {
-        int pageCount = 10;
+        int pageCount = DefaultValue.getDefTopicRow();
         return topicService.getForumTopicByPilot(Integer.parseInt(currentPage) ,pageCount);
     }
 }

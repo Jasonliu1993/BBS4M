@@ -19,4 +19,7 @@
           ON A.TOPIC_ID = B.ID
           WHERE A.THEME_REF_ID = #{themeId}
     </select>
+    <select id="getTopicForumCountByTopicId" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR) FROM TOPIC_INCLUDE WHERE TOPIC_ID = #{topicId}
+    </select>
 </mapper>
