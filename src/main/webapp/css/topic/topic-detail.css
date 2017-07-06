@@ -1,0 +1,92 @@
+.header {
+    width: 375px;
+    height: 100px;
+    margin: 0 auto;
+    border-bottom: 1px solid black;
+    background-color: #fff;
+}
+
+.header .header-up {
+    width: 375px;
+    height: 60px;
+    margin: 0 auto;
+    border-bottom: 1px solid #cfcfcf;
+}
+
+.header .header-up .header-left{
+    width: 60px;
+    height: 60px;
+    float: left;
+}
+
+.header .header-up .header-left img{
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.header .header-up .header-right{
+    width: 310px;
+    height: 60px;
+    float: right;
+}
+
+.header .header-up .header-right .header-right-up{
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+    color: black;
+}
+
+.header .header-up .header-right .header-right-down{
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+}
+
+.header .header-down {
+    width: 375px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.header .header-down .topic-forum{
+    display: inline-block;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+
+.header .header-down .topic-comments{
+    display: inline-block;
+    width: 50%;
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    text-align: center;
+    color: black;
+    cursor: pointer;
+}
+
+.content {
+    width: 375px;
+    margin: 0 auto;
+}
+
+.topic-comments-core {
+    width: 375px;
+    margin: 10px auto;
+    padding: 10px;
+    word-wrap: break-word;
+    background-color: #fff;
+    color: black;
+    border-radius: 3px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
