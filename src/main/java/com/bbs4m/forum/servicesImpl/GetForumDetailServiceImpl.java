@@ -258,7 +258,7 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
                 topicIncludeDao.saveTopicInclude(topicInclude);
             }
         }
-
+        userAttributeDao.updateUserScore(userId,1);
         return forumThemeid;
     }
 

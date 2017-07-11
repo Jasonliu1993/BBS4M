@@ -9,4 +9,5 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserAttributeDao {
     UserAttribute getUserAttributeByUserId(String userId);
+    void updateUserScore(String userId, int Score);
 }
