@@ -70,7 +70,7 @@
     </div>
 </div>
 <div class="content">
-    <form action="" method="post">
+    <form action="/forum/forumPosted.do" method="post" enctype="multipart/form-data">
         <div class="forum-topic-area">
             <span class="forum-topic-area-description">所属话题</span>
             <span class="forum-topic-area-content">

@@ -195,4 +195,70 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         map.put("replyName",userDataDao.getUserName(currentUser));
         return map;
     }
+
+    public String saveForumTheme(String topicId, String forumTheme, String forumContent, String userId, MultipartFile file) {
+        String forumThemeid = KeyValue.getKeyValue();
+        String forumContentId = KeyValue.getKeyValue();
+        String forumPicId = KeyValue.getKeyValue();
+        String currentDate = DateUtility.getCurrentDate();
+
+        ForumTheme forumTheme1 = new ForumTheme();
+        forumTheme1.setId(forumThemeid);
+        forumTheme1.setThemeContent(forumTheme);
+        forumTheme1.setCreater(userId);
+        forumTheme1.setCreateTime(currentDate);
+        forumTheme1.setBrowse(0);
+        forumThemeDao.saveForumTheme(forumTheme1);
+
+        ForumContent forumContent1 = new ForumContent();
+        forumContent1.setId(forumContentId);
+        forumContent1.setOrderNumber(1);
+        forumContent1.setThemeRefId(forumThemeid);
+        forumContent1.setContent(forumContent);
+        if (file.getSize() != 0) {
+            try {
+                System.out.println("file content:" + file.getBytes().toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            forumContent1.setPicFlag("Y");
+            forumContent1.setPicId(forumPicId);
+
+            ForumPic forumPic = new ForumPic();
+            try {
+                forumPic.setId(forumPicId);
+                forumPic.setPic(file.getBytes());
+                forumPicDao.insertForumPic(forumPic);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            forumContent1.setPicFlag("N");
+        }
+
+        forumContent1.setAnonymitye("Y");
+
+        forumContent1.setCreater(userId);
+        forumContent1.setCreateTime(currentDate);
+        forumContentDao.saveNewContent(forumContent1);
+
+        TopicInclude topicInclude = new TopicInclude();
+
+        if (topicId.indexOf("|") == -1) {
+            topicInclude.setId(KeyValue.getKeyValue());
+            topicInclude.setTopicId(topicId);
+            topicInclude.setThemeRefId(forumThemeid);
+            topicIncludeDao.saveTopicInclude(topicInclude);
+        } else {
+            String[] topiIdList = topicId.split("\\|");
+            for(int i = 0; i < topiIdList.length; i++){
+                topicInclude.setId(KeyValue.getKeyValue());
+                topicInclude.setTopicId(topiIdList[i]);
+                topicInclude.setThemeRefId(forumThemeid);
+                topicIncludeDao.saveTopicInclude(topicInclude);
+            }
+        }
+
+        return forumThemeid;
+    }
 }

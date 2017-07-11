@@ -12,4 +12,5 @@ import java.util.List;
 public interface TopicIncludeDao {
     List<TopicInclude> getTopicIncludeByThemeId(String themeId);
     String getTopicForumCountByTopicId(String topicId);
+    void saveTopicInclude(TopicInclude topicInclude);
 }

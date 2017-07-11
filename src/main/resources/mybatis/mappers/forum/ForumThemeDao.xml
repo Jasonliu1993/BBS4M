@@ -3,6 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bbs4m.forum.dao.ForumThemeDao">
+    <insert id="saveForumTheme" parameterType="com.bbs4m.forum.entities.ForumTheme">
+        INSERT INTO FORUM_THEME VALUES (
+        #{id},#{version},#{themeContent},#{creater},#{createTime},#{browse},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
+    </insert>
     <update id="updateBrowse">
         UPDATE FORUM_THEME SET BROWSE = BROWSE + 1 WHERE ID = #{themeId}
     </update>

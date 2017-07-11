@@ -114,7 +114,7 @@ function getLoadTheme(currentPage,topicId) {
                         '</div>' +
                         '<div class="forum-list-content-detail">' +
                         '<div class="forum-list-content-theme">' +
-                        '<a href="/forum/fourmDetail.do?id=' + json[i].id + '">' + json[i].themeContent + '</a>' +
+                        '<a href="/forum/fourmDetail.do?id=' + json[i].id + '"  target="_blank">' + json[i].themeContent + '</a>' +
                         '</div>' +
                         '<div class="forum-list-content-content">' +
                         json[i].firstForumContent.content

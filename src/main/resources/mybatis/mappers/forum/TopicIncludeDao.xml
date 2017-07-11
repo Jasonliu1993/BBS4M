@@ -3,6 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.bbs4m.forum.dao.TopicIncludeDao">
+    <insert id="saveTopicInclude" parameterType="com.bbs4m.forum.entities.TopicInclude">
+        INSERT INTO TOPIC_INCLUDE VALUES (
+  #{id},#{version},#{topicId},#{themeRefId},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
+    </insert>
     <select id="getTopicIncludeByThemeId"  parameterType="String" resultType="com.bbs4m.forum.entities.TopicInclude">
         SELECT
           A.ID,
