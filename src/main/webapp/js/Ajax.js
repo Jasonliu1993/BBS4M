@@ -421,7 +421,87 @@ function getLoadTopic(currentPage) {
     })
 }
 
+function addTopicId(topicName,topicId) {
+    var topicIdblock = $("#topicId").val();
+    log(topicIdblock.indexOf(topicId))
+    if (topicIdblock.indexOf(topicId) == -1) {
+        if (topicIdblock.length == 0) {
+            $("#topicId").val(topicId);
+        } else {
+            $("#topicId").val(topicIdblock + '|' + topicId);
+        }
+        addForumTopicBlock(topicName,topicId);
+    } else {
+        alert("不能重复添加!")
+    }
+}
 
+function removeTopicId(topicId, varThis) {
+    var topicIdblock = $("#topicId").val();
+    if (topicIdblock.length == 0) {
+    } else {
+        var topicIdList = topicIdblock.split('|');
+        var index = $.inArray(topicId, topicIdList)
+        if (index == -1) {
+            if (topicIdblock == topicId && topicIdList.length == 0) {
+                $("#topicId").val()
+            }
+        } else {
+            topicIdList.splice(index,1);
+            var topicIdLink = ''
+            for (var i = 0; i < topicIdList.length; i++){
+                if (i == 0) {
+                    topicIdLink = topicIdLink + topicIdList[i]
+                } else {
+                    topicIdLink = topicIdLink + '|' + topicIdList[i]
+                }
+            }
+            $("#topicId").val(topicIdLink)
+            varThis.parent().remove();
+        }
+    }
+}
+
+function addForumTopicBlock (topicName,topicId) {
+    var htmlBlock = "";
+    htmlBlock = htmlBlock + '<span class="forum-topic-block">' +
+        '<span class="forum-topic-name">' +
+        topicName +
+        '</span>' +
+        '<input type="hidden" name="forumDetailId" id="forumDetailId" value="' + topicId + '"/>' +
+        '<span class="close-button"></span>' +
+        '</span>'
+    $("#filledBlock").before(htmlBlock);
+}
+
+function selectTopic(topicName) {
+    $.ajax({
+        url: '/ajax/selectTopic.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'topicName': topicName
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTopic = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTopic = listTopic +
+                        '<li>' +
+                        '<div class="forum-topic-name-list">' + json[i].topicName + '</div>' +
+                        '<input type="hidden" id="topicIdInList" name="topicIdInList" value="' + json[i].id + '">' +
+                        '</li>'
+                }
+                $(".forum-topic-area-list ul").append(listTopic)
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
 
 
 

@@ -11,4 +11,5 @@ public interface TopicService {
     List<ForumTopic> getForumTopicByPilot(int currentPageNumber, int pageCount);
     byte[] getTopicPicById (String id);
     ForumTopic getForumTopicById(String id);
+    List<ForumTopic> selectTopic(String topicName);
 }

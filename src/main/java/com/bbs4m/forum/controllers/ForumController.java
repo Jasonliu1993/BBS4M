@@ -105,4 +105,9 @@ public class ForumController {
         System.out.println("anonymitye:" + anonymitye);
         return "/forum/fourmDetail.do?id=" + themeId;
     }
+
+    @RequestMapping("/forumPost.do")
+    String forumPost(HttpSession session) {
+        return "/forum-page/forum-posted.jsp";
+    }
 }

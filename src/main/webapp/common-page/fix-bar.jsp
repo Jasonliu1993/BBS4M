@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jason
@@ -10,6 +11,11 @@
     <span><a href="/forum/mainPage.do">主页</a></span>
     <span><a href="/topic/topicIntro.do">话题</a></span>
     <span><a href="#">搜索</a></span>
-    <span><a href="#">发起</a></span>
-    <span><a href="/admin/userInfo.do">我</a></span>
+    <span><a href="/forum/forumPost.do">发贴</a></span>
+    <c:if test="${not empty sessionScope}">
+        <span><a href="/admin/userInfo.do">我</a></span>
+    </c:if>
+    <c:if test="${empty sessionScope}">
+        <span><a href="/login/login-page.jsp">登录</a></span>
+    </c:if>
 </div>

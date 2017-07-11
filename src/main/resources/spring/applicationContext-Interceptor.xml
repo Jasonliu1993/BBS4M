@@ -19,6 +19,7 @@
                     <list>
                         <value>userInfo.do</value>
                         <value>replyTheme.do</value>
+                        <value>forumPost.do</value>
                     </list>
                 </property>
             </bean>

@@ -28,4 +28,7 @@
     <select id="getTopicCount" resultType="java.lang.String">
         SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_TOPIC A
     </select>
+    <select id="selectTopic" resultType="com.bbs4m.forum.entities.ForumTopic">
+        SELECT FT.ID, FT.VERSION, FT.TOPIC_NAME, FT.COMMENTS, FT.CREATER, FT.CREATE_TIME, FT.CUSTOM1, FT.CUSTOM2, FT.CUSTOM3, FT.CUSTOM4, FT.CUSTOM5 FROM FORUM_TOPIC FT WHERE FT.TOPIC_NAME LIKE CONCAT(CONCAT('%', #{TopicName}), '%');
+    </select>
 </mapper>

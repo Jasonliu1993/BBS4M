@@ -146,4 +146,10 @@ public class AjaxDataController {
         int pageCount = DefaultValue.getDefTopicRow();
         return topicService.getForumTopicByPilot(Integer.parseInt(currentPage) ,pageCount);
     }
+
+    @RequestMapping(value = "/selectTopic.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumTopic> selectTopic (HttpSession session, String topicName) {
+        return topicService.selectTopic(topicName);
+    }
 }

@@ -35,4 +35,8 @@ public class TopicServiceImpl implements TopicService {
     public ForumTopic getForumTopicById(String id) {
         return forumTopicDao.getForumTopicById(id);
     }
+
+    public List<ForumTopic> selectTopic(String topicName) {
+        return forumTopicDao.selectTopic(topicName);
+    }
 }
