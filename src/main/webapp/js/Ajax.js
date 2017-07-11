@@ -490,7 +490,7 @@ function selectTopic(topicName) {
                 for (var i = 0; i < json.length; i++) {
                     listTopic = listTopic +
                         '<li>' +
-                        '<div class="forum-topic-name-list">' + json[i].topicName + '</div>' +
+                        '<div class="forum-topic-name-list"><a href="#" style="text-decoration: none;color: #c4c4c4">' + json[i].topicName + '</a></div>' +
                         '<input type="hidden" id="topicIdInList" name="topicIdInList" value="' + json[i].id + '">' +
                         '</li>'
                 }

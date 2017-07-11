@@ -17,4 +17,5 @@ public interface ForumThemeDao {
     List<ForumTheme> getRelatedForumByThemeId(String themeId);
     void updateBrowse(String themeId);
     void saveForumTheme(ForumTheme forumTheme);
+    List<ForumTheme> getForumThemeByName(String forumThemeName);
 }

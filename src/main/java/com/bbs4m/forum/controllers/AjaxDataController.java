@@ -152,4 +152,10 @@ public class AjaxDataController {
     public List<ForumTopic> selectTopic (HttpSession session, String topicName) {
         return topicService.selectTopic(topicName);
     }
+
+    @RequestMapping(value = "/simplySearchTheme.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumTheme> simplySearchTheme (HttpSession session, String themeName) {
+        return getForumDetailService.getForumThemeByName(themeName);
+    }
 }

@@ -261,4 +261,8 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
         return forumThemeid;
     }
+
+    public List<ForumTheme> getForumThemeByName(String forumTheme) {
+        return forumThemeDao.getForumThemeByName(forumTheme);
+    }
 }

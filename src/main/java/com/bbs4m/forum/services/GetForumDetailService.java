@@ -24,4 +24,5 @@ public interface GetForumDetailService {
     void saveNewContent(HttpSession session,String themeId, String content, MultipartFile file, String followThemeButton, String anonymitye);
     Map<String ,String> saveForumContentReply(String currentUser, String contentId, String subPersonId, String replyContent);
     String saveForumTheme(String topicId, String forumTheme, String forumContent, String userId, MultipartFile file);
+    List<ForumTheme> getForumThemeByName (String forumTheme);
 }

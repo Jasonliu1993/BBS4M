@@ -253,7 +253,7 @@
         <div class="Related-Question-list">
             <ul>
                 <c:forEach items="${relatedForum}" varStatus="k" var="relatedForumItem" >
-                    <li class="Related-Question-list-theme"><a href="/forum/fourmDetail.do?=${relatedForumItem.getId()}">${relatedForumItem.getThemeContent()}</a></li>
+                    <li class="Related-Question-list-theme"><a href="/forum/fourmDetail.do?id=${relatedForumItem.getId()}">${relatedForumItem.getThemeContent()}</a></li>
                 </c:forEach>
             </ul>
         </div>

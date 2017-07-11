@@ -34,4 +34,7 @@
         ORDER BY C.CREATE_TIME DESC
         LIMIT 0, 5;
     </select>
+    <select id="getForumThemeByName" resultType="com.bbs4m.forum.entities.ForumTheme">
+        SELECT * FROM FORUM_THEME WHERE THEME_CONTENT LIKE CONCAT(CONCAT('%', #{forumThemeName}), '%') ORDER BY CREATE_TIME DESC LIMIT 0,10;
+    </select>
 </mapper>
