@@ -12,7 +12,9 @@ import java.util.List;
 @Component
 public interface ForumThemeDao {
     List<ForumTheme> getForumThemeByPilot(@Param("currentPageNumber") int currentPageNumber,@Param("num") int num,@Param("topicId") String topicId);
+    List<ForumTheme> getForumThemeByNamePilot(@Param("currentPageNumber") int currentPageNumber,@Param("num") int num,@Param("searchContent") String searchContent);
     String getThemeCount();
+    String getThemeCountByName(String searchContent);
     ForumTheme getForumThemeByThemeId (String themeId);
     List<ForumTheme> getRelatedForumByThemeId(String themeId);
     void updateBrowse(String themeId);

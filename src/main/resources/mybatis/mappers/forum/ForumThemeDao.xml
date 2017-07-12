@@ -37,4 +37,17 @@
     <select id="getForumThemeByName" resultType="com.bbs4m.forum.entities.ForumTheme">
         SELECT * FROM FORUM_THEME WHERE THEME_CONTENT LIKE CONCAT(CONCAT('%', #{forumThemeName}), '%') ORDER BY CREATE_TIME DESC LIMIT 0,10;
     </select>
+    <select id="getForumThemeByNamePilot" resultType="com.bbs4m.forum.entities.ForumTheme">
+        SELECT A.*
+        FROM FORUM_THEME A INNER JOIN FORUM_CONTENT B ON A.ID = B.THEME_REF_ID
+        WHERE B.ORDER_NUMBER = (SELECT MAX(C.ORDER_NUMBER)
+                          FROM FORUM_CONTENT C
+                          WHERE B.THEME_REF_ID = C.THEME_REF_ID)
+        AND A.THEME_CONTENT LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+        ORDER BY B.CREATE_TIME DESC
+         LIMIT #{currentPageNumber}, #{num}
+    </select>
+    <select id="getThemeCountByName" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_THEME A WHERE A.THEME_CONTENT LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+    </select>
 </mapper>

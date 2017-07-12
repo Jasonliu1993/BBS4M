@@ -1,10 +1,7 @@
 package com.bbs4m.forum.controllers;
 
 import com.bbs4m.forum.entities.*;
-import com.bbs4m.forum.services.GetForumDetailService;
-import com.bbs4m.forum.services.HomePageService;
-import com.bbs4m.forum.services.PagingService;
-import com.bbs4m.forum.services.TopicService;
+import com.bbs4m.forum.services.*;
 import com.bbs4m.utilities.DefaultValue;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +33,9 @@ public class AjaxDataController {
     @Resource
     TopicService topicService;
 
+    @Resource
+    SearchService searchService;
+
     @RequestMapping(value = "/replyContentList.do", method = RequestMethod.POST)
     @ResponseBody
     public List<ForumContentReply> getReplyContentList(String id) {
@@ -62,6 +62,12 @@ public class AjaxDataController {
             System.out.println("+++++" + num);
         }
         return homePageService.getHomePageList(Integer.parseInt(currentPage) ,num,topicId);
+    }
+
+    @RequestMapping(value = "/searchThemeList.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumTheme> searchThemeList(HttpSession session, String currentPage, String searchContent) {
+        return searchService.getSearchForum(searchContent,Integer.parseInt(currentPage) ,DefaultValue.getDefSearchRow());
     }
 
     @RequestMapping(value = "/contentList.do", method = RequestMethod.POST)
@@ -91,6 +97,11 @@ public class AjaxDataController {
             num = (int)userConfig.getListCountInPage();
             System.out.println("+++++" + num);
         }
+
+        if ("searchForum".equals(object)){
+            num = DefaultValue.getDefSearchRow();
+        }
+
          map.put("flag",pagingService.judgeLoadButton(Integer.parseInt(currentPage),num,object,Id));
         return map;
     }

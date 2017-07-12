@@ -10,7 +10,7 @@
 <div class="fix-bar">
     <span><a href="/forum/mainPage.do">主页</a></span>
     <span><a href="/topic/topicIntro.do">话题</a></span>
-    <span><a href="#">搜索</a></span>
+    <span><a href="/searchPage.do">搜索</a></span>
     <span><a href="/forum/forumPost.do">发贴</a></span>
     <c:if test="${not empty sessionScope}">
         <span><a href="/admin/userInfo.do">我</a></span>

@@ -58,6 +58,18 @@ public class PagingServiceImpl implements PagingService {
             } else {
                 return "Y";
             }
+        }else if ("searchForum".equals(object)) {
+            int count = Integer.parseInt(forumThemeDao.getThemeCountByName(Id));
+            System.out.println("++++++++++count++++++++++++" + count);
+            System.out.println("++++++++++currentcount++++++++++++" + ((currentPageNumber ) * num));
+            System.out.println("++++++++++currentPageNumber++++++++++++" + currentPageNumber);
+            System.out.println("++++++++++num++++++++++++" + num);
+            System.out.println("++++++++++object++++++++++++" + object);
+            if (((currentPageNumber ) * num) >= count) {
+                return "N";
+            } else {
+                return "Y";
+            }
         }
         return "Y";
     }

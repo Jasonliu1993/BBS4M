@@ -503,5 +503,29 @@ function selectTopic(topicName) {
     })
 }
 
-
+function simplySearchTheme(themeName) {
+    $.ajax({
+        url: '/ajax/simplySearchTheme.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'themeName': themeName
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTopic = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTopic = listTopic +
+                        '<li class="search-list-item"><a href="/forum/fourmDetail.do?id=' + json[i].id + '">' + json[i].themeContent + '</a></li>'
+                }
+                $(".search-list ul").append(listTopic)
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
 
