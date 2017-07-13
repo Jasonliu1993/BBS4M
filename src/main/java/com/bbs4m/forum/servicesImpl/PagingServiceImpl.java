@@ -1,9 +1,6 @@
 package com.bbs4m.forum.servicesImpl;
 
-import com.bbs4m.forum.dao.ForumContentDao;
-import com.bbs4m.forum.dao.ForumThemeDao;
-import com.bbs4m.forum.dao.ForumTopicDao;
-import com.bbs4m.forum.dao.TopicIncludeDao;
+import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.services.PagingService;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +23,9 @@ public class PagingServiceImpl implements PagingService {
 
     @Resource
     TopicIncludeDao topicIncludeDao;
+
+    @Resource
+    UserAttributeDao userAttributeDao;
 
     public String judgeLoadButton(int currentPageNumber, int num, String object, String Id) {
         if ("theme".equals(object)) {
@@ -72,6 +72,13 @@ public class PagingServiceImpl implements PagingService {
             }
         } else if ("searchTopic".equals(object)) {
             int count = Integer.parseInt(forumTopicDao.getForumTopicByNameCount(Id));
+            if (((currentPageNumber) * num) >= count) {
+                return "N";
+            } else {
+                return "Y";
+            }
+        }else if ("searchPerson".equals(object)) {
+            int count = Integer.parseInt(userAttributeDao.getUserAttributeCountByName(Id));
             if (((currentPageNumber) * num) >= count) {
                 return "N";
             } else {

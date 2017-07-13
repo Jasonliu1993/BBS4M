@@ -50,4 +50,7 @@
     <select id="getThemeCountByName" resultType="java.lang.String">
         SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_THEME A WHERE A.THEME_CONTENT LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
     </select>
+    <select id="getForumThemeByUserId" resultType="com.bbs4m.forum.entities.ForumTheme">
+        SELECT * FROM FORUM_THEME A WHERE A.CREATER = #{userId}
+    </select>
 </mapper>

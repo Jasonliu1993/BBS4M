@@ -46,6 +46,7 @@ public class SearchController {
             modelMap.addAttribute("pagingFlag", pagingService.judgeLoadButton(1, DefaultValue.getDefSearchRow(), "searchTopic", searchContent));
         } else {
             modelMap.addAttribute("model",searchService.getSearchPerson(searchContent,1, DefaultValue.getDefSearchRow()));
+            modelMap.addAttribute("pagingFlag", pagingService.judgeLoadButton(1, DefaultValue.getDefSearchRow(), "searchPerson", searchContent));
         }
         return "/search-page.jsp";
     }

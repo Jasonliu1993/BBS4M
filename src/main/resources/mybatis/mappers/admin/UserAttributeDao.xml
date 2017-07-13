@@ -30,7 +30,28 @@
             FROM USER_ATTRIBUTE A LEFT JOIN FOLLOW_USER B ON A.USERID = B.FOLLOWED_USERID LEFT JOIN LOGIN_DATA C ON A.USERID = C.USERID
             WHERE A.USERID = #{userId};
     </select>
-    
+    <select id="getUserAttributeByName" resultType="com.bbs4m.forum.entities.UserAttribute">
+        SELECT
+              A.ID ,
+              A.VERSION,
+              A.USERID,
+              C.USER_NAME,
+              A.USER_SCORE,
+              A.CUSTOM1,
+              A.CUSTOM2,
+              A.CUSTOM3,
+              A.CUSTOM4,
+              A.CUSTOM5
+            FROM USER_ATTRIBUTE A LEFT JOIN LOGIN_DATA C ON A.USERID = C.USERID
+            WHERE C.USER_NAME LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+            ORDER BY C.USER_NAME
+        LIMIT #{currentPageNumber}, #{pageCount};
+    </select>
+    <select id="getUserAttributeCountByName" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR) FROM USER_ATTRIBUTE A LEFT JOIN LOGIN_DATA C ON A.USERID = C.USERID
+            WHERE C.USER_NAME LIKE CONCAT(CONCAT('%', #{searchContent}), '%')
+    </select>
+
     <resultMap id="UserAttributeFull" type="com.bbs4m.forum.entities.UserAttribute" >
         <id column="AID" property="id" />
         <result column="AVERSION" property="version" />

@@ -1,6 +1,7 @@
 package com.bbs4m.forum.dao;
 
 import com.bbs4m.forum.entities.FollowTheme;
+import com.bbs4m.forum.entities.ForumTheme;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

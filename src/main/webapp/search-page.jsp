@@ -170,11 +170,11 @@
             </c:if>
             <c:if test="${type == 'searchPerson'}" >
                 <li class="content-list">
-                <a href="" target="_blank">
+                <a href="/admin/personalDetail.do?id=${item.getUserid()}" target="_blank">
                     <div class="person-list-content">
                         <div class="person-list-content-left">
-                            <img src="/images/getTopicPic.do?id=0" alt="avatar">
-                            <input type="hidden" id="userId" name="userId" value="">
+                            <img src="/images/getAvator.do?id=${item.getUserid()}" alt="avatar">
+                            <input type="hidden" id="userId" name="userId" value="${item.getUserid()}">
                         </div>
                         <div class="person-list-content-right">
                             <div class="person-list-content-right-title">jason</div>
@@ -182,13 +182,13 @@
                     </div>
                     <div class="person-list-footer">
                         <div class="person-forum-posted">
-                            发帖:<span class="person-forum-count">5</span>
+                            发帖:<span class="person-forum-count">${item.getSendForum()}</span>
                         </div>
                         <div class="person-forum-reply">
-                            回帖:<span class="person-forum-count">5</span>
+                            粉丝:<span class="person-forum-count">${item.getFollowUsers().size()}</span>
                         </div>
                         <div class="person-forum-posted">
-                            积分:<span class="person-forum-count">5</span>
+                            积分:<span class="person-forum-count">${item.getUserScore()}</span>
                         </div>
                     </div>
                 </a>

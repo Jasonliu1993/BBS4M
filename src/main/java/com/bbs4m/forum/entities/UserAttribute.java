@@ -18,6 +18,8 @@ public class UserAttribute {
     private String custom4;
     private String custom5;
     private List<FollowUser> followUsers;
+    private String sendForum;
+    private String replyForum;
 
     public String getUserName() {
         return userName;
@@ -111,5 +113,21 @@ public class UserAttribute {
 
     public void setFollowUsers(List<FollowUser> followUsers) {
         this.followUsers = followUsers;
+    }
+
+    public String getSendForum() {
+        return sendForum;
+    }
+
+    public void setSendForum(String sendForum) {
+        this.sendForum = sendForum;
+    }
+
+    public String getReplyForum() {
+        return replyForum;
+    }
+
+    public void setReplyForum(String replyForum) {
+        this.replyForum = replyForum;
     }
 }

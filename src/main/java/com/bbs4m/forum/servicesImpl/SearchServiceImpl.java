@@ -1,6 +1,7 @@
 package com.bbs4m.forum.servicesImpl;
 
 import com.bbs4m.forum.dao.*;
+import com.bbs4m.forum.entities.FollowUser;
 import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.entities.ForumTopic;
 import com.bbs4m.forum.entities.UserAttribute;
@@ -31,6 +32,12 @@ public class SearchServiceImpl implements SearchService {
     @Resource
     ForumTopicDao forumTopicDao;
 
+    @Resource
+    UserAttributeDao userAttributeDao;
+
+    @Resource
+    FollowUserDao followUserDao;
+
     public List<ForumTopic> getSearchTopic(String searchContent, int currentPageNumber, int pageCount) {
         List<ForumTopic> forumTopics = forumTopicDao.getForumTopicByName(currentPageNumber - 1, pageCount, searchContent);
         for (ForumTopic forumTopic : forumTopics) {
@@ -57,6 +64,11 @@ public class SearchServiceImpl implements SearchService {
     }
 
     public List<UserAttribute> getSearchPerson(String searchContent, int currentPageNumber, int pageCount) {
-        return null;
+        List<UserAttribute> userAttributes = userAttributeDao.getUserAttributeByName((currentPageNumber - 1) * pageCount,pageCount,searchContent);
+        for(UserAttribute userAttribute : userAttributes) {
+            userAttribute.setFollowUsers(followUserDao.getAllFollowUserByFollowedUserId(userAttribute.getUserid()));
+            userAttribute.setSendForum(Integer.toString((forumThemeDao.getForumThemeByUserId(userAttribute.getUserid())).size()));
+        }
+        return userAttributes;
     }
 }
