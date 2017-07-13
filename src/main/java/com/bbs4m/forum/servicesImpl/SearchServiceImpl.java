@@ -1,9 +1,6 @@
 package com.bbs4m.forum.servicesImpl;
 
-import com.bbs4m.forum.dao.FollowThemeDao;
-import com.bbs4m.forum.dao.ForumContentDao;
-import com.bbs4m.forum.dao.ForumThemeDao;
-import com.bbs4m.forum.dao.TopicIncludeDao;
+import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.entities.ForumTheme;
 import com.bbs4m.forum.entities.ForumTopic;
 import com.bbs4m.forum.entities.UserAttribute;
@@ -18,7 +15,7 @@ import java.util.List;
  * Created by Jason on 12/07/2017.
  */
 @Component
-public class SearchServiceImpl implements SearchService{
+public class SearchServiceImpl implements SearchService {
     @Resource
     FollowThemeDao followThemeDao;
 
@@ -31,12 +28,22 @@ public class SearchServiceImpl implements SearchService{
     @Resource
     TopicIncludeDao topicIncludeDao;
 
+    @Resource
+    ForumTopicDao forumTopicDao;
+
     public List<ForumTopic> getSearchTopic(String searchContent, int currentPageNumber, int pageCount) {
-        return null;
+        List<ForumTopic> forumTopics = forumTopicDao.getForumTopicByName(currentPageNumber - 1, pageCount, searchContent);
+        for (ForumTopic forumTopic : forumTopics) {
+            if (forumTopic.getComments().length() > 50) {
+                System.out.println("+++++Comments legnth:" + forumTopic.getComments().length());
+                forumTopic.setComments(forumTopic.getComments().substring(1, 50) + "...");
+            }
+        }
+        return forumTopics;
     }
 
     public List<ForumTheme> getSearchForum(String searchContent, int currentPageNumber, int pageCount) {
-        List<ForumTheme> forumThemes = forumThemeDao.getForumThemeByNamePilot((currentPageNumber - 1) * pageCount, pageCount,searchContent);
+        List<ForumTheme> forumThemes = forumThemeDao.getForumThemeByNamePilot((currentPageNumber - 1) * pageCount, pageCount, searchContent);
 
         for (ForumTheme forumTheme : forumThemes) {
             forumTheme.setFollowThemes(followThemeDao.getFollowThemeByThemeId(forumTheme.getId()));

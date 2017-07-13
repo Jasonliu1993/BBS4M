@@ -529,3 +529,123 @@ function simplySearchTheme(themeName) {
     })
 }
 
+function getLoadSearchTheme(currentPage,searchContent) {
+    $.ajax({
+        url: '/ajax/searchThemeList.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentPage': currentPage,
+            'searchContent': searchContent
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTheme = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTheme = listTheme +
+                        '<li class="content-list">' +
+                        '<div class="forum-list-content">' +
+                        '<div class="forum-list-content-title">' +
+                        '<span class="reply-avator">' +
+                        '<img src="/images/getAvator.do?id=' + json[i].lastReplyContent.creater + '" alt="avator"/>' +
+                        '</span>' +
+                        '<span class="reply-person">' +
+                        json[i].lastReplyContent.userName +
+                        '</span>' +
+                        '回复了问题' +
+                        '<span class="reply-time">' +
+                        json[i].differentTime +
+                        '</span>' +
+                        '</div>' +
+                        '<div class="forum-topic">' +
+                        '<span class="forum-topic-static">来自话题</span>';
+
+                    for (var k = 0; k < json[i].topicIncludes.length; k++) {
+                        listTheme = listTheme + '<span class="forum-topic-dynamic">' + json[i].topicIncludes[k].topicName + '</span>' ;
+                    }
+                    listTheme = listTheme +
+                        '</div>' +
+                        '<div class="forum-list-content-detail">' +
+                        '<div class="forum-list-content-theme">' +
+                        '<a href="/forum/fourmDetail.do?id=' + json[i].id + '"  target="_blank">' + json[i].themeContent + '</a>' +
+                        '</div>' +
+                        '<div class="forum-list-content-content">' +
+                        json[i].firstForumContent.content
+                    '</div>' ;
+                    if (json[i].firstForumContent.picFlag == 'Y') {
+                        listTheme = listTheme +
+                            '<div class="forum-list-content-pic">' +
+                            '<img src="/images/getForumPic.do?id=' + json[i].firstForumContent.picId + '" alt="forumPic"/>' +
+                            '</div>' ;
+                    }
+                    listTheme = listTheme +
+                        '</div>' +
+                        '<div class="forum-list-content-footer">' +
+                        '<span class="reply-count">回复: ' + json[i].replyCount + '</span>' +
+                        '<span class="follow-count">关注: ' + json[i].followThemes.length + '</span>' +
+                        '<span class="browse-count">浏览: ' + json[i].browse + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>' ;
+                }
+                $(".content ul").append(listTheme);
+                $("#currentPage").val(parseInt($("#currentPage").val()) + 1);
+                $(".reload-bar").attr("href","#" + $("#currentPage").val());
+            }
+
+
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+function getLoadSearchTopic(currentPage,searchContent) {
+    $.ajax({
+        url: '/ajax/searchTopicList.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentPage': currentPage,
+            'searchContent': searchContent
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTheme = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTheme = listTheme +
+                        '<li class="content-list">' +
+                        '<a href="/topic/topic-detail.do?id=' + json[i].id + '" target="_blank">' +
+                        '<div class="topic-list-content">' +
+                        '<div class="topic-list-content-left">' +
+                        '<img src="/images/getTopicPic.do?id=' + json[i].id  + '" alt="avatar">' +
+                        '<input type="hidden" id="topicId" name="topicId" value="' + json[i].id  + '">' +
+                        '</div>' +
+                        '<div class="topic-list-content-right">' +
+                        '<div class="topic-list-content-right-title">' + json[i].topicName + '</div>' +
+                        '<div class="topic-list-content-right-comments">' + json[i].comments + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="topic-list-footer">' +
+                        '<span class="topic-forum-count">' + json[i].relatedForumCount + '</span>个帖子' +
+                        '</div>' +
+                        '</a>' +
+                        '</li>';
+                }
+                $(".content ul").append(listTheme);
+                $("#currentPage").val(parseInt($("#currentPage").val()) + 1);
+                $(".reload-bar").attr("href","#" + $("#currentPage").val());
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+

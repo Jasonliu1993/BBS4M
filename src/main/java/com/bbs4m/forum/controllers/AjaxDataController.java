@@ -158,6 +158,13 @@ public class AjaxDataController {
         return topicService.getForumTopicByPilot(Integer.parseInt(currentPage) ,pageCount);
     }
 
+    @RequestMapping(value = "/searchTopicList.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumTopic> searchTopicList (HttpSession session, String currentPage, String searchContent) {
+        int pageCount = DefaultValue.getDefSearchRow();
+        return searchService.getSearchTopic(searchContent,Integer.parseInt(currentPage) ,pageCount);
+    }
+
     @RequestMapping(value = "/selectTopic.do", method = RequestMethod.POST)
     @ResponseBody
     public List<ForumTopic> selectTopic (HttpSession session, String topicName) {

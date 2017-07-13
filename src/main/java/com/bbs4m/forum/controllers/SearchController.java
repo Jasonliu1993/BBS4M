@@ -43,6 +43,7 @@ public class SearchController {
             modelMap.addAttribute("pagingFlag", pagingService.judgeLoadButton(1, DefaultValue.getDefSearchRow(), "searchForum", searchContent));
         } else if ("searchTopic".equals(searchList)) {
             modelMap.addAttribute("model",searchService.getSearchTopic(searchContent,1, DefaultValue.getDefSearchRow()));
+            modelMap.addAttribute("pagingFlag", pagingService.judgeLoadButton(1, DefaultValue.getDefSearchRow(), "searchTopic", searchContent));
         } else {
             modelMap.addAttribute("model",searchService.getSearchPerson(searchContent,1, DefaultValue.getDefSearchRow()));
         }

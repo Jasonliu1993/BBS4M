@@ -37,14 +37,14 @@ public class PagingServiceImpl implements PagingService {
             }
         } else if ("content".equals(object)) {
             int count = Integer.parseInt(forumContentDao.getForumContentExcludeFirstContentCountByThemeId(Id));
-            if (((currentPageNumber ) * num) >= count) {
+            if (((currentPageNumber) * num) >= count) {
                 return "N";
             } else {
                 return "Y";
             }
         } else if ("topic".equals(object)) {
             int count = Integer.parseInt(forumTopicDao.getTopicCount());
-            if (((currentPageNumber ) * num) >= count) {
+            if (((currentPageNumber) * num) >= count) {
                 return "N";
             } else {
                 return "Y";
@@ -52,20 +52,27 @@ public class PagingServiceImpl implements PagingService {
         } else if ("topicForum".equals(object)) {
             int count = Integer.parseInt(topicIncludeDao.getTopicForumCountByTopicId(Id));
             System.out.print("++++++++++count++++++++++++" + count);
-            System.out.print("++++++++++currentcount++++++++++++" + ((currentPageNumber ) * num));
-            if (((currentPageNumber ) * num) >= count) {
+            System.out.print("++++++++++currentcount++++++++++++" + ((currentPageNumber) * num));
+            if (((currentPageNumber) * num) >= count) {
                 return "N";
             } else {
                 return "Y";
             }
-        }else if ("searchForum".equals(object)) {
+        } else if ("searchForum".equals(object)) {
             int count = Integer.parseInt(forumThemeDao.getThemeCountByName(Id));
             System.out.println("++++++++++count++++++++++++" + count);
-            System.out.println("++++++++++currentcount++++++++++++" + ((currentPageNumber ) * num));
+            System.out.println("++++++++++currentcount++++++++++++" + ((currentPageNumber) * num));
             System.out.println("++++++++++currentPageNumber++++++++++++" + currentPageNumber);
             System.out.println("++++++++++num++++++++++++" + num);
             System.out.println("++++++++++object++++++++++++" + object);
-            if (((currentPageNumber ) * num) >= count) {
+            if (((currentPageNumber) * num) >= count) {
+                return "N";
+            } else {
+                return "Y";
+            }
+        } else if ("searchTopic".equals(object)) {
+            int count = Integer.parseInt(forumTopicDao.getForumTopicByNameCount(Id));
+            if (((currentPageNumber) * num) >= count) {
                 return "N";
             } else {
                 return "Y";
