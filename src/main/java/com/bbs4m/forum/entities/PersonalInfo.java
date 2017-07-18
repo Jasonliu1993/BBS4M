@@ -10,6 +10,8 @@ public class PersonalInfo {
   private String monthOfBirth;
   private String dayOfBirth;
   private String location;
+  private String job;
+  private String phoneNumber;
   private String custom1;
   private String custom2;
   private String custom3;
@@ -79,6 +81,22 @@ public class PersonalInfo {
     this.location = location;
   }
 
+
+  public String getJob() {
+    return job;
+  }
+
+  public void setJob(String job) {
+    this.job = job;
+  }
+
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
 
   public String getCustom1() {
     return custom1;

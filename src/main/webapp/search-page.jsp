@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Forum Detail</title>
+    <title>Search Page</title>
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
@@ -22,51 +22,6 @@
 
     </style>
     <script>
-        function getLoadSearchPerson(currentPage,searchContent) {
-            $.ajax({
-                url: '/ajax/searchPersonList.do',
-                type: "POST",//请求方式：get或post
-                scriptCharset: 'utf-8',
-                dataType: "json",//数据返回类型：xml、json、script
-                cache: false,
-                data: {
-                    'currentPage': currentPage,
-                    'searchContent': searchContent
-                },//自定义提交的数据
-                success: function (json) {
-                    if (json !== null || json !== undefined || json !== '') {
-                        var listTheme = '';
-                        for (var i = 0; i < json.length; i++) {
-                            listTheme = listTheme +
-                                '<li class="content-list">' +
-                                '<a href="/topic/topic-detail.do?id=' + json[i].id + '" target="_blank">' +
-                                '<div class="topic-list-content">' +
-                                '<div class="topic-list-content-left">' +
-                                '<img src="/images/getTopicPic.do?id=' + json[i].id  + '" alt="avatar">' +
-                                '<input type="hidden" id="topicId" name="topicId" value="' + json[i].id  + '">' +
-                                '</div>' +
-                                '<div class="topic-list-content-right">' +
-                                '<div class="topic-list-content-right-title">' + json[i].topicName + '</div>' +
-                                '<div class="topic-list-content-right-comments">' + json[i].comments + '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="topic-list-footer">' +
-                                '<span class="topic-forum-count">' + json[i].relatedForumCount + '</span>个帖子' +
-                                '</div>' +
-                                '</a>' +
-                                '</li>';
-                        }
-                        $(".content ul").append(listTheme);
-                        $("#currentPage").val(parseInt($("#currentPage").val()) + 1);
-                        $(".reload-bar").attr("href","#" + $("#currentPage").val());
-                    }
-                },
-                error: function (json) {
-                    alert("Request Error!")
-                }
-            })
-        }
-
         $(document).ready(function () {
             $("#searchContent").val($("#searchContentReturn").val());
 
@@ -170,29 +125,29 @@
             </c:if>
             <c:if test="${type == 'searchPerson'}" >
                 <li class="content-list">
-                <a href="/admin/personalDetail.do?id=${item.getUserid()}" target="_blank">
-                    <div class="person-list-content">
-                        <div class="person-list-content-left">
-                            <img src="/images/getAvator.do?id=${item.getUserid()}" alt="avatar">
-                            <input type="hidden" id="userId" name="userId" value="${item.getUserid()}">
+                    <a href="/admin/personalDetail.do?id=${item.getUserid()}" target="_blank">
+                        <div class="person-list-content">
+                            <div class="person-list-content-left">
+                                <img src="/images/getAvator.do?id=${item.getUserid()}" alt="avatar">
+                                <input type="hidden" id="userId" name="userId" value="${item.getUserid()}">
+                            </div>
+                            <div class="person-list-content-right">
+                                <div class="person-list-content-right-title">${item.getUserName()}</div>
+                            </div>
                         </div>
-                        <div class="person-list-content-right">
-                            <div class="person-list-content-right-title">jason</div>
+                        <div class="person-list-footer">
+                            <div class="person-forum-posted">
+                                发帖:<span class="person-forum-count">${item.getSendForum()}</span>
+                            </div>
+                            <div class="person-forum-reply">
+                                粉丝:<span class="person-forum-count">${item.getFollowUsers().size()}</span>
+                            </div>
+                            <div class="person-forum-posted">
+                                积分:<span class="person-forum-count">${item.getUserScore()}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="person-list-footer">
-                        <div class="person-forum-posted">
-                            发帖:<span class="person-forum-count">${item.getSendForum()}</span>
-                        </div>
-                        <div class="person-forum-reply">
-                            粉丝:<span class="person-forum-count">${item.getFollowUsers().size()}</span>
-                        </div>
-                        <div class="person-forum-posted">
-                            积分:<span class="person-forum-count">${item.getUserScore()}</span>
-                        </div>
-                    </div>
-                </a>
-            </li>
+                    </a>
+                </li>
             </c:if>
         </c:forEach>
     </ul>

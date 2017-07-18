@@ -178,6 +178,8 @@ function getLoadButtonFlag(currentPage, object, themeId) {
     })
 }
 
+
+
 function getLoadContent(currentPage) {
     $.ajax({
         url: '/ajax/contentList.do',
@@ -647,5 +649,59 @@ function getLoadSearchTopic(currentPage,searchContent) {
         }
     })
 }
+
+function getLoadSearchPerson(currentPage,searchContent) {
+    $.ajax({
+        url: '/ajax/searchPersonList.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentPage': currentPage,
+            'searchContent': searchContent
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTheme = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTheme = listTheme +
+                        '<li class="content-list">' +
+                        '<a href="/admin/personalDetail.do?id=' + json[i].userid + '" target="_blank">' +
+                        '<div class="person-list-content">' +
+                        '<div class="person-list-content-left">' +
+                        '<img src="/images/getAvator.do?id=' + json[i].userid + '" alt="avatar">' +
+                        '<input type="hidden" id="userId" name="userId" value="' + json[i].userid + '">' +
+                        '</div>' +
+                        '<div class="person-list-content-right">' +
+                        '<div class="person-list-content-right-title">' + json[i].userName + '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="person-list-footer">' +
+                        '<div class="person-forum-posted">' +
+                        '发帖:<span class="person-forum-count">' + json[i].sendForum + '</span>' +
+                        '</div>' +
+                        '<div class="person-forum-reply">' +
+                        '粉丝:<span class="person-forum-count">' + json[i].followUsers.length + '</span>' +
+                        '</div>' +
+                        '<div class="person-forum-posted">' +
+                        '积分:<span class="person-forum-count">' + json[i].userScore + '</span>' +
+                        '</div>' +
+                        '</div>' +
+                        '</a>' +
+                        '</li>';
+                }
+                $(".content ul").append(listTheme);
+                $("#currentPage").val(parseInt($("#currentPage").val()) + 1);
+                $(".reload-bar").attr("href","#" + $("#currentPage").val());
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}
+
+
 
 

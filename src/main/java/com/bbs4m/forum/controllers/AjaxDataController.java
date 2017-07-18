@@ -36,6 +36,9 @@ public class AjaxDataController {
     @Resource
     SearchService searchService;
 
+    @Resource
+    AdminService adminService;
+
     @RequestMapping(value = "/replyContentList.do", method = RequestMethod.POST)
     @ResponseBody
     public List<ForumContentReply> getReplyContentList(String id) {
@@ -70,6 +73,18 @@ public class AjaxDataController {
         return searchService.getSearchForum(searchContent,Integer.parseInt(currentPage) ,DefaultValue.getDefSearchRow());
     }
 
+    @RequestMapping(value = "/getForumByUserId.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumTheme> getForumByUserId(HttpSession session, String currentPage, String id) {
+        return adminService.getSendForumTheme(id,Integer.parseInt(currentPage) ,DefaultValue.getDefSearchRow());
+    }
+
+    @RequestMapping(value = "/searchPersonList.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<UserAttribute> searchPersonalList(HttpSession session, String currentPage, String searchContent) {
+        return searchService.getSearchPerson(searchContent,Integer.parseInt(currentPage) ,DefaultValue.getDefSearchRow());
+    }
+
     @RequestMapping(value = "/contentList.do", method = RequestMethod.POST)
     @ResponseBody
     public List<ForumContent> getContentList (HttpSession session, String currentPage, String themeId) {
@@ -98,7 +113,7 @@ public class AjaxDataController {
             System.out.println("+++++" + num);
         }
 
-        if ("searchForum".equals(object)){
+        if ("searchForum".equals(object) || "searchTopic".equals(object) || "searchPerson".equals(object) || "sendForumTheme".equals(object)){
             num = DefaultValue.getDefSearchRow();
         }
 
@@ -176,4 +191,6 @@ public class AjaxDataController {
     public List<ForumTheme> simplySearchTheme (HttpSession session, String themeName) {
         return getForumDetailService.getForumThemeByName(themeName);
     }
+
+
 }

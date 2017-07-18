@@ -11,6 +11,7 @@ import java.util.List;
 @Component
 public interface FollowUserDao {
     List<FollowUser> getAllFollowUserByFollowedUserId (String followedUserId);
+    List<FollowUser> getFollowedUserByUserId (String userId);
     void insertFollowUser(FollowUser followUser);
     String getFollowedButtonFlag(String userId, String followedUserId);
 }
