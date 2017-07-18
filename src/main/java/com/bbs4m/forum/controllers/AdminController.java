@@ -35,7 +35,9 @@ public class AdminController {
 
         modelMap.addAttribute("userDescr", adminService.getUserAttribute(id));
 
-
+        modelMap.addAttribute("forumJoinTheme", adminService.getForumJoin(id,1,pageCount));
+        modelMap.addAttribute("forumJoinCurrentPageingFlag", pagingService.judgeLoadButton(1, pageCount, "ForumJoinTheme", id));
+        modelMap.addAttribute("forumJoinCurrentPage", "1");
 
         modelMap.addAttribute("sendForumTheme", adminService.getSendForumTheme(id,1,pageCount));
         modelMap.addAttribute("forumCurrentPageingFlag", pagingService.judgeLoadButton(1, pageCount, "sendForumTheme", id));

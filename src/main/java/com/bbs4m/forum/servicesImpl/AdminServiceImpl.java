@@ -1,10 +1,7 @@
 package com.bbs4m.forum.servicesImpl;
 
 import com.bbs4m.forum.dao.*;
-import com.bbs4m.forum.entities.FollowUser;
-import com.bbs4m.forum.entities.ForumTheme;
-import com.bbs4m.forum.entities.PersonalInfo;
-import com.bbs4m.forum.entities.UserAttribute;
+import com.bbs4m.forum.entities.*;
 import com.bbs4m.forum.services.AdminService;
 import com.bbs4m.utilities.DateUtility;
 import org.springframework.stereotype.Component;
@@ -57,5 +54,13 @@ public class AdminServiceImpl implements AdminService{
             forumTheme.setDifferentTime(DateUtility.getTimeQuantum(DateUtility.getCurrentDate(), forumTheme.getCreateTime()));
         }
         return forumThemes;
+    }
+
+    public List<ForumContent> getForumJoin(String id, int currentPageNumber, int pageCount) {
+        List<ForumContent> forumContents = forumContentDao.getForumJoinByUserId((currentPageNumber - 1) * pageCount,pageCount,id);
+        for(ForumContent forumContent : forumContents) {
+            forumContent.setDifferentTime(DateUtility.getTimeQuantum(DateUtility.getCurrentDate(), forumContent.getCreateTime()));
+        }
+        return forumContents;
     }
 }

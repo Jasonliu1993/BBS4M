@@ -1,9 +1,6 @@
 package com.bbs4m.forum.services;
 
-import com.bbs4m.forum.entities.FollowUser;
-import com.bbs4m.forum.entities.ForumTheme;
-import com.bbs4m.forum.entities.PersonalInfo;
-import com.bbs4m.forum.entities.UserAttribute;
+import com.bbs4m.forum.entities.*;
 
 import java.util.List;
 
@@ -15,4 +12,5 @@ public interface AdminService {
     UserAttribute getUserAttribute(String id);
     List<FollowUser> getFollowedUserByUserId(String id);
     List<ForumTheme> getSendForumTheme(String id,int currentPageNumber, int pageCount);
+    List<ForumContent> getForumJoin(String id,int currentPageNumber, int pageCount);
 }

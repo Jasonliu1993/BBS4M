@@ -474,6 +474,50 @@
             })
         }
 
+        function getLoadForumJoinByUserId(currentPage,id) {
+            $.ajax({
+                url: '/ajax/getForumJoinByUserId.do',
+                type: "POST",//请求方式：get或post
+                scriptCharset: 'utf-8',
+                dataType: "json",//数据返回类型：xml、json、script
+                cache: false,
+                data: {
+                    'currentPage': currentPage,
+                    'id': id
+                },//自定义提交的数据
+                success: function (json) {
+                    if (json !== null || json !== undefined || json !== '') {
+                        var listTheme = '';
+                        for (var i = 0; i < json.length; i++) {
+                            listTheme = listTheme +
+                                '<li class="forum-join-area-list">' +
+                                '<div class="forum-join-area-block">' +
+                                '<div class="forum-join-area-block-header"><a href="/forum/fourmDetail.do?id=' + json[i].themeRefId + '"' +
+                            'target="_blank">' + json[i].themeContent + '</a></div>' +
+                                '<div class="forum-join-area-block-content">' + json[i].content + '</div>' +
+                                '<div class="forum-join-area-block-footer">' +
+                                '<div class="forum-join-area-block-footer-like">' +
+                                 + json[i].likeCount + ' 个赞同' +
+                                '</div>' +
+                                '<div class="forum-join-area-block-footer-time">' +
+                                json[i].differentTime +
+                                '</div>' +
+                                '</div>' +
+                                '</div>' +
+                                '</li>'
+                        }
+                        $(".forum-join-area ul").append(listTheme);
+                        $("#forumJoinCurrentPage").val(parseInt($("#forumJoinCurrentPage").val()) + 1);
+                    }
+                },
+                error: function (json) {
+                    alert("Request Error!")
+                }
+            })
+        }
+
+
+
         $(document).ready(function(){
             $(".tab-button-forum-join").addClass("selected");
             $(".forum-join-area").css("display","block");
@@ -547,6 +591,11 @@
                 getLoadForumByUserId(parseInt($("#forumCurrentPage").val()) + 1,$("#userId").val());
                 getLoadButtonFlag4PersonalDetail(parseInt($("#forumCurrentPage").val()) + 1,'sendForumTheme',$("#userId").val(),$("#forumReloadBar"));
             })
+
+            $("#forumJoinReloadBar").on("click",function(){
+                getLoadForumJoinByUserId(parseInt($("#forumJoinCurrentPage").val()) + 1,$("#userId").val());
+                getLoadButtonFlag4PersonalDetail(parseInt($("#forumJoinCurrentPage").val()) + 1,'ForumJoinTheme',$("#userId").val(),$("#forumJoinReloadBar"));
+            })
         })
 
     </script>
@@ -584,41 +633,28 @@
 <div class="content">
     <div class="forum-join-area">
         <ul>
-            <li class="forum-join-area-list">
-                <div class="forum-join-area-block">
-                    <div class="forum-join-area-block-header"><a href="/forum/fourmDetail.do?id=${item.getId()}"
-                                                                 target="_blank">测试测试测试测试测试测试</a></div>
-                    <div class="forum-join-area-block-content">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-                    <div class="forum-join-area-block-footer">
-                        <div class="forum-join-area-block-footer-like">
-                            0 个赞同
-                        </div>
-                        <div class="forum-join-area-block-footer-time">
-                            5个小时
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="forum-join-area-list">
-                <div class="forum-join-area-block">
-                    <div class="forum-join-area-block-header"><a href="/forum/fourmDetail.do?id=${item.getId()}"
-                                                                 target="_blank">测试测试测试测试测试测试</a></div>
-                    <div class="forum-join-area-block-content">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-                    <div class="forum-join-area-block-footer">
-                        <div class="forum-join-area-block-footer-like">
-                            <span>0</span> 个赞同
-                        </div>
-                        <div class="forum-join-area-block-footer-time">
-                            5个小时
+            <c:forEach items="${forumJoinTheme}" varStatus="n" var="forumJoinItem">
+                <li class="forum-join-area-list">
+                    <div class="forum-join-area-block">
+                        <div class="forum-join-area-block-header"><a href="/forum/fourmDetail.do?id=${forumJoinItem.getThemeRefId()}"
+                                                                     target="_blank">${forumJoinItem.getThemeContent()}</a></div>
+                        <div class="forum-join-area-block-content">${forumJoinItem.getContent()}</div>
+                        <div class="forum-join-area-block-footer">
+                            <div class="forum-join-area-block-footer-like">
+                                ${forumJoinItem.getLikeCount()} 个赞同
+                            </div>
+                            <div class="forum-join-area-block-footer-time">
+                                ${forumJoinItem.getDifferentTime()}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-            <c:if test="${pagingFlag == 'Y'}">
-                <div class="reload-bar">更多</div>
-            </c:if>
-            <input type="hidden" id="ForumJoinCurrentPage" name="ForumJoinCurrentPage" value="${currentPage}">
+                </li>
+            </c:forEach>
         </ul>
+        <c:if test="${forumJoinCurrentPageingFlag == 'Y'}">
+            <div class="reload-bar" id="forumJoinReloadBar">更多</div>
+        </c:if>
+        <input type="hidden" id="forumJoinCurrentPage" name="forumJoinCurrentPage" value="${forumJoinCurrentPage}">
     </div>
     <div class="forum-area">
         <ul>

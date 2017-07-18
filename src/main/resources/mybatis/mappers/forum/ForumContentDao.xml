@@ -91,4 +91,24 @@
     <select id="findMaxForumContentOrderId" resultType="java.lang.Long">
         SELECT MAX(ORDER_NUMBER) FROM FORUM_CONTENT WHERE THEME_REF_ID = #{contentId}
     </select>
+    <select id="getForumJoinByUserId" resultType="com.bbs4m.forum.entities.ForumContent">
+        SELECT B.*, A.THEME_CONTENT
+          FROM FORUM_THEME A INNER JOIN FORUM_CONTENT B ON A.ID = B.THEME_REF_ID
+        WHERE B.ORDER_NUMBER = (SELECT MAX(C.ORDER_NUMBER)
+                          FROM FORUM_CONTENT C
+                          WHERE B.THEME_REF_ID = C.THEME_REF_ID
+                          AND C.CREATER = #{userId})
+        AND B.ORDER_NUMBER != 1
+        ORDER BY B.CREATE_TIME DESC
+         LIMIT #{currentPageNumber}, #{num}
+    </select>
+    <select id="getForumJoinCountByUserId" resultType="java.lang.String">
+        SELECT CAST(COUNT(*) AS CHAR)
+          FROM FORUM_THEME A INNER JOIN FORUM_CONTENT B ON A.ID = B.THEME_REF_ID
+        WHERE B.ORDER_NUMBER = (SELECT MAX(C.ORDER_NUMBER)
+                          FROM FORUM_CONTENT C
+                          WHERE B.THEME_REF_ID = C.THEME_REF_ID
+                          AND C.CREATER = #{userId})
+          AND B.ORDER_NUMBER != 1
+    </select>
 </mapper>

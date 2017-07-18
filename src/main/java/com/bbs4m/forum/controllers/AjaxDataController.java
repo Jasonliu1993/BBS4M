@@ -79,6 +79,12 @@ public class AjaxDataController {
         return adminService.getSendForumTheme(id,Integer.parseInt(currentPage) ,DefaultValue.getDefSearchRow());
     }
 
+    @RequestMapping(value = "/getForumJoinByUserId.do", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ForumContent> getForumJoinByUserId(HttpSession session, String currentPage, String id) {
+        return adminService.getForumJoin(id,Integer.parseInt(currentPage) ,DefaultValue.getDefSearchRow());
+    }
+
     @RequestMapping(value = "/searchPersonList.do", method = RequestMethod.POST)
     @ResponseBody
     public List<UserAttribute> searchPersonalList(HttpSession session, String currentPage, String searchContent) {
@@ -113,7 +119,7 @@ public class AjaxDataController {
             System.out.println("+++++" + num);
         }
 
-        if ("searchForum".equals(object) || "searchTopic".equals(object) || "searchPerson".equals(object) || "sendForumTheme".equals(object)){
+        if ("searchForum".equals(object) || "searchTopic".equals(object) || "searchPerson".equals(object) || "sendForumTheme".equals(object) || "ForumJoinTheme".equals(object)){
             num = DefaultValue.getDefSearchRow();
         }
 

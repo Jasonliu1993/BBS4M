@@ -22,6 +22,33 @@ public class ForumContent {
     private String custom4;
     private String custom5;
     private String replyCount;
+    private ForumTheme forumTheme;
+    private String themeContent;
+    private String differentTime;
+
+    public String getDifferentTime() {
+        return differentTime;
+    }
+
+    public void setDifferentTime(String differentTime) {
+        this.differentTime = differentTime;
+    }
+
+    public String getThemeContent() {
+        return themeContent;
+    }
+
+    public void setThemeContent(String themeContent) {
+        this.themeContent = themeContent;
+    }
+
+    public ForumTheme getForumTheme() {
+        return forumTheme;
+    }
+
+    public void setForumTheme(ForumTheme forumTheme) {
+        this.forumTheme = forumTheme;
+    }
 
     public String getReplyCount() {
         return replyCount;
