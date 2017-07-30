@@ -812,4 +812,44 @@ function getLoadForumJoinByUserId(currentPage, id) {
     })
 }
 
-
+function getLoadForumByUserId(currentPage, id) {
+    $.ajax({
+        url: '/ajax/getForumJoinByUserId.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentPage': currentPage,
+            'id': id
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var listTheme = '';
+                for (var i = 0; i < json.length; i++) {
+                    listTheme = listTheme +
+                        '<li class="forum-join-area-list">' +
+                        '<div class="forum-join-area-block">' +
+                        '<div class="forum-join-area-block-header"><a href="/forum/fourmDetail.do?id=' + json[i].themeRefId + '"' +
+                        'target="_blank">' + json[i].themeContent + '</a></div>' +
+                        '<div class="forum-join-area-block-content">' + json[i].content + '</div>' +
+                        '<div class="forum-join-area-block-footer">' +
+                        '<div class="forum-join-area-block-footer-like">' +
+                        +json[i].likeCount + ' 个赞同' +
+                        '</div>' +
+                        '<div class="forum-join-area-block-footer-time">' +
+                        json[i].differentTime +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>'
+                }
+                $(".forum-content ul").append(listTheme);
+                $("#forumCurrentPage").val(parseInt($("#forumCurrentPage").val()) + 1);
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}

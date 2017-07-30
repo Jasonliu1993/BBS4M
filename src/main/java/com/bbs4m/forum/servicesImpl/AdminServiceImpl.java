@@ -63,4 +63,12 @@ public class AdminServiceImpl implements AdminService{
         }
         return forumContents;
     }
+
+    public List<ForumContent> getForumFollow(String userId,int currentPageNumber, int pageCount) {
+        List<ForumContent> forumContents = forumContentDao.getForumByUserId((currentPageNumber - 1) * pageCount,pageCount,userId);
+        for(ForumContent forumContent : forumContents) {
+            forumContent.setDifferentTime(DateUtility.getTimeQuantum(DateUtility.getCurrentDate(), forumContent.getCreateTime()));
+        }
+        return forumContents;
+    }
 }

@@ -13,7 +13,7 @@
     <span><a href="/searchPage.do">搜索</a></span>
     <span><a href="/forum/forumPost.do">发贴</a></span>
     <c:if test="${not empty sessionScope}">
-        <span><a href="/admin/userInfo.do">我</a></span>
+        <span><a href="/admin/userMsg.do">消息</a></span>
     </c:if>
     <c:if test="${empty sessionScope}">
         <span><a href="/login/login-page.jsp">登录</a></span>

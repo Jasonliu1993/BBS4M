@@ -13,4 +13,5 @@ public interface AdminService {
     List<FollowUser> getFollowedUserByUserId(String id);
     List<ForumTheme> getSendForumTheme(String id,int currentPageNumber, int pageCount);
     List<ForumContent> getForumJoin(String id,int currentPageNumber, int pageCount);
+    List<ForumContent> getForumFollow(String userId,int currentPageNumber, int pageCount);
 }

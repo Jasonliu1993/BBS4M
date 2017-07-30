@@ -17,7 +17,9 @@ public interface ForumContentDao {
     List<ForumContent> getForumContentExcludeFirstContentByThemeid(String themeId, int currentPage, int pagRow);
     String getForumContentExcludeFirstContentCountByThemeId(String themeId);
     List<ForumContent> getForumJoinByUserId(@Param("currentPageNumber") int currentPageNumber, @Param("num") int num, @Param("userId") String userId);
+    List<ForumContent> getForumByUserId(@Param("currentPageNumber") int currentPageNumber, @Param("num") int num, @Param("userId") String userId);
     String getForumJoinCountByUserId(String userid);
+    String getForumCountByUserId(String userid);
     void updateLikeCount(String forumContentId);
     void updateDislikeCount(String forumContentId);
     long findMaxForumContentOrderId(String themeId);

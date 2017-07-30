@@ -1,5 +1,6 @@
 package com.bbs4m.forum.controllers;
 
+import com.bbs4m.forum.entities.UserAttribute;
 import com.bbs4m.forum.services.AdminService;
 import com.bbs4m.forum.services.PagingService;
 import com.bbs4m.utilities.DefaultValue;
@@ -23,9 +24,27 @@ public class AdminController {
     @Resource
     PagingService pagingService;
 
-    @RequestMapping("/userInfo.do")
-    public String getUserInfo (String id) {
-        return "/admin-page/admin-main.jsp";
+    @RequestMapping("/userMsg.do")
+    public String getUserMsg (HttpSession session, ModelMap modelMap) {
+        int pageCount = DefaultValue.getDefSearchRow();
+        String userId = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
+
+        modelMap.addAttribute("forumTheme", adminService.getForumFollow(userId,1,pageCount));
+        modelMap.addAttribute("forumCurrentPageingFlag", pagingService.judgeLoadButton(1, pageCount, "ForumTheme", userId));
+        modelMap.addAttribute("forumCurrentPage", "1");
+        modelMap.addAttribute("pageFlag", "userMsg");
+
+
+        return "/admin-page/user-message.jsp";
+    }
+
+    @RequestMapping("/userMsgNote.do")
+    public String getUserMsgNote (HttpSession session, ModelMap modelMap) {
+
+        modelMap.addAttribute("pageFlag", "userMsgNote");
+
+
+        return "/admin-page/user-message.jsp";
     }
 
     @RequestMapping("/personalDetail.do")
