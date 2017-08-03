@@ -23,4 +23,5 @@ public interface ForumThemeDao {
     void saveForumTheme(ForumTheme forumTheme);
     List<ForumTheme> getForumThemeByName(String forumThemeName);
     List<ForumTheme> getForumThemeByUserId(String userId);
+    String getThemeCreaterByThemeId(String themeId);
 }

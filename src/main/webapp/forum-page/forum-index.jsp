@@ -48,6 +48,16 @@
 
         }
 
+        /*.iframe {
+            width: 100%;
+            height: 40px;
+            bottom: 0;
+            line-height: 40px;
+            background-color: #CFCFCF;
+            position: fixed;
+            z-index: 9999;
+            margin: 0 auto;
+        }*/
     </style>
     <script>
 
@@ -67,11 +77,13 @@
                 getLoadTheme(parseInt($("#currentPage").val()) + 1,null);
                 getLoadButtonFlag(parseInt($("#currentPage").val()) + 1,'theme','');
             })
+
         })
     </script>
 </head>
 <body>
 <jsp:include page="/common-page/fix-bar.jsp" />
+<%--<iframe src="/common-page/fix-bar.jsp" frameborder="0" class="iframe"></iframe>--%>
 <div class="search-bar">
     <input type="text" name="searchContent" id="searchContent" value=""/>
     <div class="search-list">

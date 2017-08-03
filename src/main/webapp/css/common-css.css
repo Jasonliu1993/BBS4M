@@ -42,6 +42,21 @@ body {
     text-align: center;
 }
 
+.fix-bar span a[href="/admin/userMsg.do"] {
+    position: relative;
+}
+
+.point {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 5px;
+    height: 5px;
+    left: 35px;
+    top: -5px;
+    border-radius: 5px;
+}
+
 .reload-bar {
     display: block;
     width: 375px;

@@ -66,4 +66,7 @@
     <select id="getThemeCountByUserId" resultType="java.lang.String">
         SELECT CAST(COUNT(*) AS CHAR) FROM FORUM_THEME A WHERE A.CREATER = #{userId}
     </select>
+    <select id="getThemeCreaterByThemeId" resultType="java.lang.String">
+        SELECT CREATER FROM FORUM_THEME WHERE ID = #{themeId}
+    </select>
 </mapper>

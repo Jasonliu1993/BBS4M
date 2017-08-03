@@ -3,6 +3,7 @@ package com.bbs4m.forum.servicesImpl;
 import com.bbs4m.forum.dao.*;
 import com.bbs4m.forum.entities.*;
 import com.bbs4m.forum.services.GetForumDetailService;
+import com.bbs4m.forum.services.WebSocketService;
 import com.bbs4m.utilities.DateUtility;
 import com.bbs4m.utilities.KeyValue;
 import org.springframework.stereotype.Component;
@@ -47,6 +48,12 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     @Resource
     UserDataDao userDataDao;
+
+    @Resource
+    WebSocketService webSocketService;
+
+    @Resource
+    ReplyRemindDao replyRemindDao;
 
     public ForumTheme getCoreThemeAndContentByThemeId(String themeId) {
         ForumTheme forumTheme = forumThemeDao.getForumThemeByThemeId(themeId);
@@ -130,8 +137,10 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
     public void saveNewContent(HttpSession session, String themeId, String content, MultipartFile file, String followThemeButton, String anonymitye) {
         String creater = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
         ForumContent forumContent = new ForumContent();
+        ReplyRemind replyRemind = new ReplyRemind();
+        String forumContentId = KeyValue.getKeyValue();
 
-        forumContent.setId(KeyValue.getKeyValue());
+        forumContent.setId(forumContentId);
         forumContent.setOrderNumber(forumContentDao.findMaxForumContentOrderId(themeId) + 1);
         forumContent.setThemeRefId(themeId);
         forumContent.setContent(content);
@@ -177,6 +186,18 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         forumContent.setCreater(creater);
         forumContent.setCreateTime(DateUtility.getCurrentDate());
         forumContentDao.saveNewContent(forumContent);
+
+        replyRemind.setId(KeyValue.getKeyValue());
+        replyRemind.setFlag("replyTheme");
+        replyRemind.setReadFlag("N");
+        replyRemind.setFromUserid(creater);
+        replyRemind.setToUserid(forumThemeDao.getThemeCreaterByThemeId(themeId));
+        replyRemind.setThemeId(themeId);
+        replyRemind.setContentId(forumContentId);
+        replyRemind.setCreateTime(DateUtility.getCurrentDate());
+
+        replyRemindDao.insertRemind(replyRemind);
+        webSocketService.sendMsg(forumThemeDao.getThemeCreaterByThemeId(themeId));
     }
 
     public Map<String ,String> saveForumContentReply(String currentUser, String contentId, String subPersonId,String replyContent) {

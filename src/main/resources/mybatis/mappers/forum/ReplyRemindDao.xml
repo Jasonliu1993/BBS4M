@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bbs4m.forum.dao.ReplyRemindDao">
+    <insert id="insertRemind">
+      INSERT INTO REPLY_REMIND VALUES(#{id},#{version},#{flag},#{readFlag},#{fromUserid},#{toUserid},#{themeId},#{contentId},#{createTime},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
+    </insert>
+    <update id="updateRemind">
+      UPDATE REPLY_REMIND SET READ_FLAG = #{readFlag} WHERE ID = #{id}
+    </update>
+</mapper>
