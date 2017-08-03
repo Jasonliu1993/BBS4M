@@ -183,21 +183,25 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
                 followThemeDao.insertFollowTheme(followTheme);
             }
         }
-        forumContent.setCreater(creater);
-        forumContent.setCreateTime(DateUtility.getCurrentDate());
-        forumContentDao.saveNewContent(forumContent);
+        if (creater.equals(forumThemeDao.getThemeCreaterByThemeId(themeId))) {
 
-        replyRemind.setId(KeyValue.getKeyValue());
-        replyRemind.setFlag("replyTheme");
-        replyRemind.setReadFlag("N");
-        replyRemind.setFromUserid(creater);
-        replyRemind.setToUserid(forumThemeDao.getThemeCreaterByThemeId(themeId));
-        replyRemind.setThemeId(themeId);
-        replyRemind.setContentId(forumContentId);
-        replyRemind.setCreateTime(DateUtility.getCurrentDate());
+        } else {
+            forumContent.setCreater(creater);
+            forumContent.setCreateTime(DateUtility.getCurrentDate());
+            forumContentDao.saveNewContent(forumContent);
 
-        replyRemindDao.insertRemind(replyRemind);
-        webSocketService.sendMsg(forumThemeDao.getThemeCreaterByThemeId(themeId));
+            replyRemind.setId(KeyValue.getKeyValue());
+            replyRemind.setFlag("replyTheme");
+            replyRemind.setReadFlag("N");
+            replyRemind.setFromUserid(creater);
+            replyRemind.setToUserid(forumThemeDao.getThemeCreaterByThemeId(themeId));
+            replyRemind.setThemeId(themeId);
+            replyRemind.setContentId(forumContentId);
+            replyRemind.setCreateTime(DateUtility.getCurrentDate());
+
+            replyRemindDao.insertRemind(replyRemind);
+            webSocketService.sendMsg(forumThemeDao.getThemeCreaterByThemeId(themeId));
+        }
     }
 
     public Map<String ,String> saveForumContentReply(String currentUser, String contentId, String subPersonId,String replyContent) {
@@ -285,5 +289,9 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
 
     public List<ForumTheme> getForumThemeByName(String forumTheme) {
         return forumThemeDao.getForumThemeByName(forumTheme);
+    }
+
+    public void updateReplyRemind(String themeId, String userId) {
+        replyRemindDao.updateRemindByTheme(themeId,userId);
     }
 }

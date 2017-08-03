@@ -30,6 +30,9 @@ public class AdminServiceImpl implements AdminService{
     @Resource
     ForumContentDao forumContentDao;
 
+    @Resource
+    ReplyRemindDao replyRemindDao;
+
     public PersonalInfo getPersonalInfo(String id) {
         return personalInfoDao.getPersonalInfoByUserId(id);
     }
@@ -70,5 +73,9 @@ public class AdminServiceImpl implements AdminService{
             forumContent.setDifferentTime(DateUtility.getTimeQuantum(DateUtility.getCurrentDate(), forumContent.getCreateTime()));
         }
         return forumContents;
+    }
+
+    public List<ReplyRemind> getReplyRemind(String userId) {
+        return replyRemindDao.getReplyRemind(userId);
     }
 }

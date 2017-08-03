@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <script type="text/javascript">
-    var websocket = null;
+    /*var websocket = null;
     //判断当前浏览器是否支持WebSocket
     if ('WebSocket' in window) {
         websocket = new WebSocket("ws://localhost:8080/MessageRemind");
@@ -51,7 +51,7 @@
     //关闭WebSocket连接
     function closeWebSocket() {
         websocket.close();
-    }
+    }*/
 </script>
 
 

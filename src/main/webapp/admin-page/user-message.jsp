@@ -136,7 +136,62 @@
             float: right;
         }
 
+        .content .msg-content ul {
+            list-style: none;
+        }
 
+        .content .msg-content ul .msg-content-list {
+            width: 375px;
+            margin: 10px auto;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area{
+            width: 375px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area .msg-content-list-area-title{
+            width: 375px;
+            margin: 0 auto;
+            padding: 5px;
+            border-bottom: 1px solid #c4c4c4;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area .msg-content-list-area-title a{
+            text-decoration: none;
+            margin-left: 3px;
+            margin-right: 3px;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area .msg-content-list-area-footer{
+            margin: 0 auto;
+            padding: 5px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area .msg-content-list-area-footer .msg-content-list-area-footer-left{
+            width: 50px;
+            height: 23px;
+            line-height: 23px;
+            float: left;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area .msg-content-list-area-footer .msg-content-list-area-footer-right{
+            width: 100px;
+            height: 23px;
+            line-height: 23px;
+            float: right;
+        }
+
+        .content .msg-content ul .msg-content-list .msg-content-list-area .msg-content-list-area-footer .clear{
+            clear: both;
+        }
 
         .reload-bar {
             width: 365px;
@@ -215,8 +270,32 @@
             <input type="hidden" id="forumCurrentPage" name="forumCurrentPage" value="${forumCurrentPage}">
         </div>
         <div class="msg-content">
-
+            <ul>
+                <c:forEach items="${msgList}" varStatus="i" var="msgItem">
+                    <li class="msg-content-list">
+                        <div class="msg-content-list-area">
+                            <div class="msg-content-list-area-title">
+                                <a href="/admin/personalDetail.do?id=${msgItem.getFromUserid()}" class="msg-content-list-area-title-person">${msgItem.getFromUserName()}</a>
+                                <input type="hidden" id="fromUserId" name="fromUserId" value="${msgItem.getFromUserid()}">
+                                回复了问题
+                                <a href="/forum/fourmDetail.do?flag=msgRemind&id=${msgItem.getThemeId()}" class="msg-content-list-area-title-theme">${msgItem.getThemeName()}</a>
+                            </div>
+                            <div class="msg-content-list-area-footer">
+                                <c:if test="${msgItem.getReadFlag() == 'N'}">
+                                    <div class="msg-content-list-area-footer-left">未读</div>
+                                </c:if>
+                                <c:if test="${msgItem.getReadFlag() == 'Y'}">
+                                    <div class="msg-content-list-area-footer-left">已读</div>
+                                </c:if>
+                                <div class="msg-content-list-area-footer-right">${msgItem.getCreateTime()}</div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
         </div>
     </div>
+<jsp:include page="/common-page/footer.jsp"/>
 </body>
 </html>

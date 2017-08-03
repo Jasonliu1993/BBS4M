@@ -53,7 +53,7 @@ public class ForumController {
     }
 
     @RequestMapping("/fourmDetail.do")
-    public String getForumDetail(@RequestParam("id") String id, HttpSession session, ModelMap modelMap) {
+    public String getForumDetail(@RequestParam("id") String id, HttpSession session, ModelMap modelMap, String flag) {
         PersonalSetup userConfig = null;
         int num = DefaultValue.getDefThemeRow();
         String followedButtonFlag = "N";
@@ -64,6 +64,12 @@ public class ForumController {
             followedThemeButtonFlag = getForumDetailService.getFollowedThemeButtonFlag(((UserAttribute) session.getAttribute("UserAttr")).getUserid(), id);
             System.out.println("+++++" + num);
         }
+
+        if ("msgRemind".equals(flag)) {
+            String userId = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
+            getForumDetailService.updateReplyRemind(id,userId);
+        }
+
         System.out.println("************" + followedButtonFlag);
         modelMap.addAttribute("coreForumTheme", getForumDetailService.getCoreThemeAndContentByThemeId(id));
         modelMap.addAttribute("replyForumContents", getForumDetailService.getReplyContentByThemeId(id, 1, num));

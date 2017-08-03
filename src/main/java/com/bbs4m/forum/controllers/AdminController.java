@@ -41,8 +41,11 @@ public class AdminController {
     @RequestMapping("/userMsgNote.do")
     public String getUserMsgNote (HttpSession session, ModelMap modelMap) {
 
-        modelMap.addAttribute("pageFlag", "userMsgNote");
+        int pageCount = DefaultValue.getDefSearchRow();
+        String userId = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
 
+        modelMap.addAttribute("pageFlag", "userMsgNote");
+        modelMap.addAttribute("msgList",adminService.getReplyRemind(userId));
 
         return "/admin-page/user-message.jsp";
     }

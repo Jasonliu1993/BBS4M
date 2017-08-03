@@ -9,8 +9,10 @@ public class ReplyRemind {
     private String flag;
     private String readFlag;
     private String fromUserid;
+    private String fromUserName;
     private String toUserid;
     private String themeId;
+    private String themeName;
     private String contentId;
     private String createTime;
     private String custom1;
@@ -57,6 +59,22 @@ public class ReplyRemind {
 
     public void setFromUserid(String fromUserid) {
         this.fromUserid = fromUserid;
+    }
+
+    public String getFromUserName() {
+        return fromUserName;
+    }
+
+    public void setFromUserName(String fromUserName) {
+        this.fromUserName = fromUserName;
+    }
+
+    public String getThemeName() {
+        return themeName;
+    }
+
+    public void setThemeName(String themeName) {
+        this.themeName = themeName;
     }
 
     public String getToUserid() {

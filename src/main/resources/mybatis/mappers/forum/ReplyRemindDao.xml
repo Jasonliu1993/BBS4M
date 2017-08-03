@@ -4,7 +4,31 @@
     <insert id="insertRemind">
       INSERT INTO REPLY_REMIND VALUES(#{id},#{version},#{flag},#{readFlag},#{fromUserid},#{toUserid},#{themeId},#{contentId},#{createTime},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
     </insert>
-    <update id="updateRemind">
-      UPDATE REPLY_REMIND SET READ_FLAG = #{readFlag} WHERE ID = #{id}
+    <update id="updateRemindByTheme">
+      UPDATE REPLY_REMIND SET READ_FLAG = 'Y' WHERE THEME_ID = #{0} AND TO_USERID = #{1} AND READ_FLAG = 'N'
     </update>
+    <select id="getReplyRemind" resultType="com.bbs4m.forum.entities.ReplyRemind">
+        SELECT
+            A.ID,
+            A.VERSION,
+            A.FLAG,
+            A.READ_FLAG,
+            A.FROM_USERID,
+            (SELECT B.USER_NAME
+             FROM LOGIN_DATA B
+             WHERE A.FROM_USERID = B.USERID) FROM_USER_NAME,
+            A.TO_USERID,
+            A.THEME_ID,
+            (SELECT C.THEME_CONTENT FROM FORUM_THEME C WHERE C.ID = A.THEME_ID) THEME_NAME,
+            A.CONTENT_ID,
+            SUBSTRING(A.CREATE_TIME,1,10) CREATE_TIME,
+            A.CUSTOM1,
+            A.CUSTOM2,
+            A.CUSTOM3,
+            A.CUSTOM4,
+            A.CUSTOM5
+        FROM REPLY_REMIND A
+        WHERE A.TO_USERID = #{userId}
+        ORDER BY A.CREATE_TIME DESC;
+    </select>
 </mapper>
