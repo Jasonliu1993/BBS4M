@@ -114,12 +114,18 @@ public class ForumController {
     }
 
     @RequestMapping("/forumPost.do")
-    String forumPost(HttpSession session) {
+    public String forumPost(HttpSession session) {
         return "/forum-page/forum-posted.jsp";
     }
 
     @RequestMapping(value = "/forumPosted.do", method = RequestMethod.POST)
-    String forumPosted(@RequestParam("uploadPic") MultipartFile file, String topicId, String forumTheme, String forumContent, HttpSession session) {
+    public String forumPosted(@RequestParam("uploadPic") MultipartFile file, String topicId, String forumTheme, String forumContent, HttpSession session) {
         return "redirect:/forum/fourmDetail.do?id=" + getForumDetailService.saveForumTheme(topicId,forumTheme,forumContent,((UserAttribute)session.getAttribute("UserAttr")).getUserid(),file);
     }
+
+    @RequestMapping("/forumReplyDetail.do")
+    public String forumReplyDetail(HttpSession session,ModelMap modelMap,String themeId,String contentId){
+        return "/forum-page/forum-reply-detail.jsp";
+    }
+
 }

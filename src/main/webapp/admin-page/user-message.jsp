@@ -278,7 +278,12 @@
                                 <a href="/admin/personalDetail.do?id=${msgItem.getFromUserid()}" class="msg-content-list-area-title-person">${msgItem.getFromUserName()}</a>
                                 <input type="hidden" id="fromUserId" name="fromUserId" value="${msgItem.getFromUserid()}">
                                 回复了问题
-                                <a href="/forum/fourmDetail.do?flag=msgRemind&id=${msgItem.getThemeId()}" class="msg-content-list-area-title-theme">${msgItem.getThemeName()}</a>
+                                <c:if test="${msgItem.getFlag() == 'replyTheme'}">
+                                    <a href="/forum/fourmDetail.do?flag=msgRemind&id=${msgItem.getThemeId()}" class="msg-content-list-area-title-theme">${msgItem.getThemeName()}</a>
+                                </c:if>
+                                <c:if test="${msgItem.getFlag() == 'replyContent'}">
+                                    <a href="/forum/forumReplyDetail.do?flag=msgRemind&themeId=${msgItem.getThemeId()}&contentId=${msgItem.getContentId()}" class="msg-content-list-area-title-theme">${msgItem.getThemeName()}</a>
+                                </c:if>
                             </div>
                             <div class="msg-content-list-area-footer">
                                 <c:if test="${msgItem.getReadFlag() == 'N'}">
