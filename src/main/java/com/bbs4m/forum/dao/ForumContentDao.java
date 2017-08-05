@@ -20,6 +20,8 @@ public interface ForumContentDao {
     List<ForumContent> getForumByUserId(@Param("currentPageNumber") int currentPageNumber, @Param("num") int num, @Param("userId") String userId);
     String getForumJoinCountByUserId(String userid);
     String getForumCountByUserId(String userid);
+    String getThemeIdByContentId(String contentId);
+    String getUserIdByContentId(String contentId);
     void updateLikeCount(String forumContentId);
     void updateDislikeCount(String forumContentId);
     long findMaxForumContentOrderId(String themeId);

@@ -67,7 +67,7 @@ public class ForumController {
 
         if ("msgRemind".equals(flag)) {
             String userId = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
-            getForumDetailService.updateReplyRemind(id,userId);
+            getForumDetailService.updateReplyRemind(id,userId,"replyTheme");
         }
 
         System.out.println("************" + followedButtonFlag);
@@ -124,7 +124,14 @@ public class ForumController {
     }
 
     @RequestMapping("/forumReplyDetail.do")
-    public String forumReplyDetail(HttpSession session,ModelMap modelMap,String themeId,String contentId){
+    public String forumReplyDetail(HttpSession session,ModelMap modelMap,String themeId,String contentId ,String flag){
+
+        if ("msgRemind".equals(flag)) {
+            String userId = ((UserAttribute)session.getAttribute("UserAttr")).getUserid();
+            getForumDetailService.updateReplyRemind(contentId,userId,"replyContent");
+        }
+
+        modelMap.addAttribute("contentReply",getForumDetailService.getForumContentReplyByContentIdAndThemeId(themeId,contentId));
         return "/forum-page/forum-reply-detail.jsp";
     }
 

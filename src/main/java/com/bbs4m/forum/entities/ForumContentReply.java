@@ -17,6 +17,51 @@ public class ForumContentReply {
   private String custom4;
   private String custom5;
   private UserAttribute userAttribute;
+  private String themeId;
+  private String themeName;
+  private String contentName;
+  private String contentCreater;
+  private String contentCreaterName;
+
+  public String getThemeId() {
+    return themeId;
+  }
+
+  public void setThemeId(String themeId) {
+    this.themeId = themeId;
+  }
+
+  public String getThemeName() {
+    return themeName;
+  }
+
+  public void setThemeName(String themeName) {
+    this.themeName = themeName;
+  }
+
+  public String getContentName() {
+    return contentName;
+  }
+
+  public void setContentName(String contentName) {
+    this.contentName = contentName;
+  }
+
+  public String getContentCreater() {
+    return contentCreater;
+  }
+
+  public void setContentCreater(String contentCreater) {
+    this.contentCreater = contentCreater;
+  }
+
+  public String getContentCreaterName() {
+    return contentCreaterName;
+  }
+
+  public void setContentCreaterName(String contentCreaterName) {
+    this.contentCreaterName = contentCreaterName;
+  }
 
   public UserAttribute getUserAttribute() {
     return userAttribute;

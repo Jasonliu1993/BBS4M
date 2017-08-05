@@ -131,4 +131,10 @@
         AND C.USERID = #{userId}
         AND B.ORDER_NUMBER != 1
     </select>
+    <select id="getThemeIdByContentId" resultType="java.lang.String">
+        SELECT THEME_REF_ID FROM FORUM_CONTENT WHERE ID = #{contentId}
+    </select>
+    <select id="getUserIdByContentId" resultType="java.lang.String">
+        SELECT CREATER FROM FORUM_CONTENT WHERE ID = #{contentId}
+    </select>
 </mapper>

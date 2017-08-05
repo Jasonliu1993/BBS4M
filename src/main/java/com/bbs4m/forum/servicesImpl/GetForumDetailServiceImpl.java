@@ -218,6 +218,32 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         forumContentReplyDao.insertForumContentReply(forumContentReply);
         map.put("dateTime",dateTimeOutput);
         map.put("replyName",userDataDao.getUserName(currentUser));
+
+        /**
+         * 触发通知程序
+         */
+
+
+        ReplyRemind replyRemind = new ReplyRemind();
+
+        if ("".equals(subPersonId) || subPersonId == null) {
+            replyRemind.setToUserid(forumContentDao.getUserIdByContentId(contentId));
+        } else {
+            replyRemind.setToUserid(subPersonId);
+        }
+
+        replyRemind.setId(KeyValue.getKeyValue());
+        replyRemind.setFlag("replyContent");
+        replyRemind.setReadFlag("N");
+        replyRemind.setFromUserid(currentUser);
+
+        replyRemind.setThemeId(forumContentDao.getThemeIdByContentId(contentId));
+        replyRemind.setContentId(contentId);
+        replyRemind.setCreateTime(DateUtility.getCurrentDate());
+
+        replyRemindDao.insertRemind(replyRemind);
+        webSocketService.sendMsg(subPersonId);
+
         return map;
     }
 
@@ -291,7 +317,14 @@ public class GetForumDetailServiceImpl implements GetForumDetailService{
         return forumThemeDao.getForumThemeByName(forumTheme);
     }
 
-    public void updateReplyRemind(String themeId, String userId) {
-        replyRemindDao.updateRemindByTheme(themeId,userId);
+    public void updateReplyRemind(String themeId, String userId,String flag) {
+        if ("replyContent".equals(flag))
+            replyRemindDao.updateRemindByContent(themeId,userId, flag);
+        else
+            replyRemindDao.updateRemindByTheme(themeId,userId, flag);
+    }
+
+    public List<ForumContentReply> getForumContentReplyByContentIdAndThemeId(String themeId, String contentId) {
+        return forumContentReplyDao.getForumContentReplyByContentIdAndThemeId(themeId,contentId);
     }
 }

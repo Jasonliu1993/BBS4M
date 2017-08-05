@@ -5,7 +5,10 @@
       INSERT INTO REPLY_REMIND VALUES(#{id},#{version},#{flag},#{readFlag},#{fromUserid},#{toUserid},#{themeId},#{contentId},#{createTime},#{custom1},#{custom2},#{custom3},#{custom4},#{custom5})
     </insert>
     <update id="updateRemindByTheme">
-      UPDATE REPLY_REMIND SET READ_FLAG = 'Y' WHERE THEME_ID = #{0} AND TO_USERID = #{1} AND READ_FLAG = 'N'
+      UPDATE REPLY_REMIND SET READ_FLAG = 'Y' WHERE THEME_ID = #{0} AND TO_USERID = #{1} AND READ_FLAG = 'N' AND FLAG = #{2}
+    </update>
+    <update id="updateRemindByContent">
+        UPDATE REPLY_REMIND SET READ_FLAG = 'Y' WHERE CONTENT_ID = #{0} AND TO_USERID = #{1} AND READ_FLAG = 'N' AND FLAG = #{2}
     </update>
     <select id="getReplyRemind" resultType="com.bbs4m.forum.entities.ReplyRemind">
         SELECT

@@ -853,3 +853,50 @@ function getLoadForumByUserId(currentPage, id) {
         }
     })
 }
+
+function replyContentReplyForMsg(currentUser, contentId, subPersonId, replyContent) {
+    $.ajax({
+        url: '/ajax/replyContentReply.do',
+        type: "POST",//请求方式：get或post
+        scriptCharset: 'utf-8',
+        dataType: "json",//数据返回类型：xml、json、script
+        cache: false,
+        data: {
+            'currentUser': currentUser,
+            'contentId': contentId,
+            'subPersonId': subPersonId,
+            'replyContent': replyContent
+        },//自定义提交的数据
+        success: function (json) {
+            if (json !== null || json !== undefined || json !== '') {
+                var varList = '';
+                varList = varList + '<li class="reply-area-core-content-list">' +
+                    '<div class="reply-area-core-content">' +
+                    '<div class="reply-area-content-title">' +
+                    '<span class="reply-area-content-title-left">' +
+                    '<span class="reply-area-content-title-avater">' +
+                    '<img src="/images/getAvator.do?id=' + currentUser + '" />' +
+                    '</span>' +
+                    '<span class="reply-area-content-title-person">'+
+                    '<a href="/admin/personalDetail.do?id=' + currentUser + '">' + json.replyName + '</a>' +
+                    '</span>' +
+                    '</span>' +
+                    '<span class="reply-area-content-title-right">' +
+                    '<span class="reply-area-content-title-right-time">' + json.dateTime + '</span>' +
+                    '<span class="reply-area-content-title-right-reply-button">回复</span>' +
+                    '<input type="hidden" id="replyContentPersonId" name="replyContentPersonId" value="' + currentUser + '">' +
+                    '</span>' +
+                    '</div>' +
+                    '<div class="reply-area-content-content">' +
+                    replyContent +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+                $(".content ul").append(varList);
+            }
+        },
+        error: function (json) {
+            alert("Request Error!")
+        }
+    })
+}

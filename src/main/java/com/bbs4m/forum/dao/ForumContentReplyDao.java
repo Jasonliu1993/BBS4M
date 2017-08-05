@@ -13,4 +13,5 @@ public interface ForumContentReplyDao {
     String getReplyCountByContentId (String id);
     List<ForumContentReply> getForumContentReplyByContentId (String ContentId);
     void insertForumContentReply(ForumContentReply forumContentReply);
+    List<ForumContentReply> getForumContentReplyByContentIdAndThemeId(String themeId,String contentId);
 }

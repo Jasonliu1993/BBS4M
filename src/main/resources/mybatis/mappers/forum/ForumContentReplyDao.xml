@@ -10,4 +10,41 @@
     <select id="getForumContentReplyByContentId" resultType="com.bbs4m.forum.entities.ForumContentReply">
         SELECT * FROM FORUM_CONTENT_REPLY A WHERE A.CONTENT_REF_ID = #{ContentId} ORDER BY CREATE_TIME
     </select>
+    <select id="getForumContentReplyByContentIdAndThemeId"
+            resultType="com.bbs4m.forum.entities.ForumContentReply">
+        SELECT
+            A.ID,
+            A.VERSION,
+            A.CONTENT_REF_ID,
+            A.CONTENT_SUBPERSON,
+            A.CONTENT,
+            A.CREATER,
+            (SELECT B.USER_NAME
+             FROM LOGIN_DATA B
+             WHERE B.USERID = A.CREATER)        CREATER_NAME,
+            SUBSTRING(A.CREATE_TIME, 1, 10) CREATE_TIME,
+            A.CUSTOM1,
+            A.CUSTOM2,
+            A.CUSTOM3,
+            A.CUSTOM4,
+            A.CUSTOM5,
+            (SELECT C.THEME_REF_ID
+             FROM FORUM_CONTENT C
+             WHERE C.ID = A.CONTENT_REF_ID) THEME_ID,
+            (SELECT D.THEME_CONTENT
+             FROM FORUM_CONTENT C INNER JOIN FORUM_THEME D ON C.THEME_REF_ID = D.ID
+             WHERE C.ID = A.CONTENT_REF_ID) THEME_NAME,
+            (SELECT C.CONTENT
+             FROM FORUM_CONTENT C
+             WHERE C.ID = A.CONTENT_REF_ID) CONTENT_NAME,
+            (SELECT C.CREATER
+             FROM FORUM_CONTENT C
+             WHERE C.ID = A.CONTENT_REF_ID) CONTENT_CREATER,
+            (SELECT E.USER_NAME
+             FROM FORUM_CONTENT C INNER JOIN LOGIN_DATA E ON C.CREATER = E.USERID
+             WHERE C.ID = A.CONTENT_REF_ID) CONTENT_CREATER_NAME
+        FROM FORUM_CONTENT_REPLY A
+        WHERE A.CONTENT_REF_ID = #{1}
+        ORDER BY CREATE_TIME;
+    </select>
 </mapper>

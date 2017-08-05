@@ -11,6 +11,7 @@ import java.util.List;
 @Component
 public interface ReplyRemindDao {
     void insertRemind(ReplyRemind replyRemind);
-    void updateRemindByTheme(String themeId,String userId);
+    void updateRemindByTheme(String themeId,String userId,String flag);
+    void updateRemindByContent(String themeId,String userId,String flag);
     List<ReplyRemind> getReplyRemind(String userId);
 }
